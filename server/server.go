@@ -2,13 +2,13 @@ package main
 
 import (
 	"net/http"
-	"strconv"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
 
 func main() {
+
 	// インスタンスを作成
 	e := echo.New()
 
@@ -17,20 +17,18 @@ func main() {
 	e.Use(middleware.Recover())
 
 	// ルートを設定
-	e.GET("/", hello) // ローカル環境の場合、http://localhost:1323/ にGETアクセスされるとhelloハンドラーを実行する
-	e.GET("/hello", hello2)
+	e.GET("/", connect_check) // ローカル環境の場合、http://localhost:1323/ にGETアクセスされるとhelloハンドラーを実行する
+	e.GET("/hello", insert_sample)
 	// サーバーをポート番号1323で起動
 	e.Logger.Fatal(e.Start(":1323"))
 }
 
 // ハンドラーを定義
-func hello(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello, World!")
+func connect_check(c echo.Context) error {
+	res:=connectOnly()
+	return c.String(http.StatusOK, res)
 }
-func hello2(c echo.Context) error {
-	var sum int
-	for i := 0; i < 10; i++ {
-		sum += i
-	}
-	return c.String(http.StatusOK, strconv.Itoa(sum))
+func insert_sample(c echo.Context) error {
+	sqlInsert()
+	return c.String(http.StatusOK, "inserted")
 }

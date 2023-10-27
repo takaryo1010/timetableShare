@@ -2,7 +2,10 @@ module github.com/takaryo1010/timetableShare
 
 go 1.20
 
-require github.com/labstack/echo/v4 v4.11.2
+require (
+	github.com/go-sql-driver/mysql v1.7.1
+	github.com/labstack/echo/v4 v4.11.2
+)
 
 require (
 	github.com/golang-jwt/jwt v3.2.2+incompatible // indirect
