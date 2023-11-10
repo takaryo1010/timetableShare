@@ -2,7 +2,6 @@ package main
 
 import (
 	"net/http"
-	"strconv"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -32,13 +31,8 @@ func connect_check(c echo.Context) error {
 }
 
 func insert_sample(c echo.Context) error {
-	// curl -d "name=hoge" -d "class_id=3" http://localhost:1323/add_person
+	// curl -d "name=hoge"  http://localhost:1323/add_person
 	name := c.FormValue("name")
-	class_id := c.FormValue("class_id")
-	id, err := strconv.Atoi(class_id)
-	if err != nil {
-		return c.String(http.StatusBadRequest, err.Error())
-	}
-	sqlInsert(name, id)
+	sqlInsert(name)
 	return c.String(http.StatusOK, "inserted")
 }
