@@ -9,6 +9,9 @@ import (
 
 var db_state = "root:project@tcp(localhost:13306)/timetable_db"
 
+
+
+
 func connectOnly() string {
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
@@ -29,7 +32,7 @@ func connectOnly() string {
 	}
 }
 
-func sqlInsert() {
+func sqlInsert(name string ,class_id int ) {
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
 	if err != nil {
@@ -46,7 +49,7 @@ func sqlInsert() {
 	defer ins.Close()
 
 	// SQLの実行
-	res, err := ins.Exec(0, "keita", 1)
+	res, err := ins.Exec(0, name, class_id)
 	if err != nil {
 		log.Fatal(err)
 	}
