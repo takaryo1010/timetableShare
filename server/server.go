@@ -20,7 +20,7 @@ func main() {
 	// ルートを設定
 	e.GET("/", connect_check) // ローカル環境の場合、http://localhost:1323/ にGETアクセスされるとhelloハンドラーを実行する
 	e.POST("/add_person", insert_sample)
-	
+
 	// サーバーをポート番号1323で起動
 	e.Logger.Fatal(e.Start(":1323"))
 }
@@ -35,9 +35,9 @@ func insert_sample(c echo.Context) error {
 	// curl -d "name=hoge" -d "class_id=3" http://localhost:1323/add_person
 	name := c.FormValue("name")
 	class_id := c.FormValue("class_id")
-	id,err:=strconv.Atoi(class_id)
-	if err!=nil{
-		return c.String(http.StatusBadRequest,err.Error())
+	id, err := strconv.Atoi(class_id)
+	if err != nil {
+		return c.String(http.StatusBadRequest, err.Error())
 	}
 	sqlInsert(name, id)
 	return c.String(http.StatusOK, "inserted")
