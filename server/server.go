@@ -17,9 +17,11 @@ func main() {
 	e.Use(middleware.Recover())
 
 	// ルートを設定
-	e.GET("/", connect_check) // ローカル環境の場合、http://localhost:1323/ にGETアクセスされるとhelloハンドラーを実行する
-	// e.POST("/add_person", insert_sample)
-	e.POST("/add_person", registPerson)
+	e.GET("/", connect_check) // ローカル環境の場合、http://localhost:1323/をGETするとDBと接続できたか返す
+	e.POST("/registPerson", registPerson)
+	e.GET("/showClassInfoAll", showClassInfoAll)
+	e.POST("/showClassInfoTimeSpecification", showClassInfoTimeSpecification)
+
 
 	// サーバーをポート番号1323で起動
 	e.Logger.Fatal(e.Start(":1323"))
@@ -32,7 +34,7 @@ func connect_check(c echo.Context) error {
 }
 
 func insert_sample(c echo.Context) error {
-	// curl -d "name=hoge"  http://localhost:1323/add_person
+	// curl -d "name=hoge"  http://localhost:1323/registPerson
 	name := c.FormValue("name")
 	sqlInsert(name)
 	return c.String(http.StatusOK, "inserted")
