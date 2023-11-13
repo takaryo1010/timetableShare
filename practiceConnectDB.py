@@ -1,7 +1,7 @@
 import requests
 
 # サーバーのエンドポイントURLを設定
-url = 'http://localhost:1323/registPerson'  # サーバーの実際のURLに置き換えてください
+url = 'http://52.69.43.211/registPerson'  # サーバーの実際のURLに置き換えてください
 
 # 送信するデータを準備
 data = {'name': 'hoge'}  # 送信するデータをここで設定
