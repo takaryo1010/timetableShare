@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>時間割</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>週間時間割</h1>
+    <table>
+        <tr>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+        </tr>
+        {% for i in range(5) %}
+        <tr>
+            {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"] %}
+            <td>{{ timetable.get(day)[i] if timetable.get(day) else 'フリー' }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
