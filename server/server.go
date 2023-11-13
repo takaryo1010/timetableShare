@@ -17,8 +17,7 @@ func main() {
 	e.Use(middleware.Recover())
 
 	// ルートを設定
-	e.GET("/", connect_check) // ローカル環境の場合、http://localhost:1323/ にGETアクセスされるとhelloハンドラーを実行する
-	// e.POST("/add_person", insert_sample)
+	e.GET("/", connect_check) // ローカル環境の場合、http://localhost:1323/をGETするとDBと接続できたか返す
 	e.POST("/registPerson", registPerson)
 	e.GET("/showClassInfoAll", showClassInfoAll)
 	e.POST("/showClassInfoTimeSpecification", showClassInfoTimeSpecification)
