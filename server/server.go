@@ -18,9 +18,10 @@ func main() {
 
 	// ルートを設定
 	e.GET("/", connect_check) // ローカル環境の場合、http://localhost:8080/をGETするとDBと接続できたか返す
-	e.POST("/registPerson", registPerson)
+	e.POST("/registerPerson", registerPerson)
 	e.GET("/showClassInfoAll", showClassInfoAll)
 	e.POST("/showClassInfoTimeSpecification", showClassInfoTimeSpecification)
+	e.POST("/registerClass",registerClass)
 
 
 	// サーバーをポート番号8080で起動
