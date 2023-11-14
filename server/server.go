@@ -21,7 +21,8 @@ func main() {
 	e.POST("/registPerson", registPerson)
 	e.GET("/showClassInfoAll", showClassInfoAll)
 	e.POST("/showClassInfoTimeSpecification", showClassInfoTimeSpecification)
-
+	e.GET("/", connect_check)
+	e.POST("/registerClass", registerClass)
 
 	// サーバーをポート番号8080で起動
 	e.Logger.Fatal(e.Start(":8080"))
