@@ -11,7 +11,8 @@ h1 {
 
 table {
     width: 80%; /* ページ幅の80%の幅に設定 */
-    margin: 20px auto; /* 上下の余白を20px、左右の余白を自動に設定して中央寄せ */
+    margin: 20px auto;
+    /* margin-right: 0; 右寄せ */
     border-collapse: collapse;
     box-shadow: 0 2px 3px #ccc;
     table-layout: fixed; /* テーブルのレイアウトを固定に設定 */
@@ -74,3 +75,71 @@ td .free {
     padding: 10px;
     margin: 4px;
 }
+
+
+/* ヘッダー全体のスタイル */
+header {
+    background-color: #f8f9fa; /* ヘッダーの背景色 */
+    padding: 10px 20px; /* パディング */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影をつける */
+    display: flex; /* フレックスボックス */
+    justify-content: space-between; /* アイテムを両端に配置 */
+    align-items: center; /* アイテムを中央揃え */
+}
+
+/* タイトルのスタイル */
+header h1 {
+    margin: 0; /* マージンを取り除く */
+    font-size: 1.5em; /* フォントサイズ */
+    color: #333; /* フォントカラー */
+}
+
+/* ナビゲーションバーのスタイル */
+nav ul {
+    list-style: none; /* リストスタイルを無効化 */
+    padding: 0; /* パディングを取り除く */
+    margin: 0; /* マージンを取り除く */
+    display: flex; /* フレックスボックス */
+}
+
+/* ナビゲーションバー内のリンクのスタイル */
+nav ul li {
+    margin-left: 20px; /* 左のマージン */
+}
+
+nav ul li a {
+    text-decoration: none; /* テキストの下線を取り除く */
+    color: #007bff; /* リンクカラー */
+    font-weight: bold; /* フォントを太くする */
+    padding: 5px 10px; /* パディング */
+    border-radius: 5px; /* 角を丸くする */
+    transition: background-color 0.3s; /* 背景色のトランジション */
+}
+
+/* リンクにホバーしたときのスタイル */
+nav ul li a:hover {
+    background-color: #e7f1ff; /* ホバー時の背景色 */
+}
+
+/* レスポンシブデザインのためのメディアクエリ */
+@media (max-width: 768px) {
+    /* スマホやタブレットでのスタイル調整 */
+    header {
+        flex-direction: column; /* スタックして表示 */
+    }
+
+    nav ul {
+        flex-direction: column; /* リンクを縦に並べる */
+        width: 100%; /* 幅いっぱい */
+    }
+
+    nav ul li {
+        text-align: center; /* テキストを中央揃え */
+        margin: 5px 0; /* 上下のマージン */
+    }
+
+    nav ul li a {
+        display: block; /* ブロック要素に */
+    }
+}
+
