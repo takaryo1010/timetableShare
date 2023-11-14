@@ -12,6 +12,9 @@ def index():
         "Wednesday": ["", "時事英語", "", "" ,"データ構造とアルゴリズム 2"],
         "Thursday": ["", "", "", "", ""],
         "Friday": ["", "", "プロジェクト", "データベース", ""],
+        "Friday": ["", "", "プロジェクト", "データベース", ""],
+        "Saturday": ["", "", "", "", ""],
+        "Ondemand": ["", "", "", "", ""],
     }
     ## return render_template('lectures.html', lectures=lectures)
     return render_template('lectures.html', timetable=lectures)
