@@ -14,11 +14,32 @@ def index():
         "Friday": ["", "", "プロジェクト", "データベース", ""],
         "Friday": ["", "", "プロジェクト", "データベース", ""],
         "Saturday": ["", "", "", "", ""],
-        "Ondemand": ["", "", "", "", ""],
+        "Ondemand": ["CF 特論", "IS 特論", "", "", ""],
     }
-    ## return render_template('lectures.html', lectures=lectures)
     return render_template('lectures.html', timetable=lectures)
 
+@app.route("/home")
+def index_home():
+    return render_template('home.html')
+
+@app.route("/login")
+def index_login():
+    return render_template('login.html')
+
+@app.route("/timetable_registration")
+def index_timetable_registration():
+    return render_template('timetable_registration.html')
+
+@app.route("/lecture_list")
+def index_lecture_list():
+    return render_template('lecture_list.html')
+
+@app.route("/lecture_creation")
+def index_lecture_creation():
+    return render_template('lecture_creation.html')
+@app.route("/timetable_sharing")
+def index_timetable_sharing():
+    return render_template('timetable_sharing.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

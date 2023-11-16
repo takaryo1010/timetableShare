@@ -10,20 +10,20 @@ h1 {
 }
 
 table {
-    width: 80%; /* ページ幅の80%の幅に設定 */
-    margin: 20px auto; /* 上下の余白を20px、左右の余白を自動に設定して中央寄せ */
+    width: 95%; 
+    margin: 20px auto;
     border-collapse: collapse;
     box-shadow: 0 2px 3px #ccc;
-    table-layout: fixed; /* テーブルのレイアウトを固定に設定 */
+    table-layout: fixed; 
 }
 
 th, td {
     padding: 8px;
     text-align: center;
     border: 1px solid #ddd;
-    overflow: hidden; /* 内容がオーバーフローした場合に非表示にする */
-    white-space: nowrap; /* 改行を防ぐ */
-    text-overflow: ellipsis; /* 内容がオーバーフローした場合に省略記号を表示する */
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis; 
 }
 
 th {
@@ -35,42 +35,110 @@ td {
     background-color: #fff;
 }
 
-/* 列幅の設定 */
+
 th:first-child, td:first-child {
-    width: 15%; /* 時間列の幅を他の列より狭く設定 */
+    width: 15%; 
 }
 
 th, td {
-    width: auto; /* その他の列の幅を設定 */
+    width: auto; 
 }
 
 .lecture {
-    display: flex; /* フレックスボックスとして扱い */
-    align-items: center; /* 中央揃え */
-    justify-content: center; /* 中央揃え */
-    padding: 8px; /* 内部のパディング */
-    background-color: #e8eaf6; /* プレートの背景色 */
-    border-radius: 8px; /* 角を丸くする */
-    margin: 2px; /* 内側のマージンを調整 */
-    height: 80px; /* タイルの高さを指定 */
-    box-sizing: border-box; /* パディングを含めて高さを計算 */
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); /* プレートに影をつける */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 8px; 
+    background-color: #e8eaf6; 
+    border-radius: 8px; 
+    margin: 2px; 
+    height: 80px; 
+    box-sizing: border-box; 
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); 
     white-space: normal;
-    overflow: hidden; /* はみ出したテキストを非表示にする */
-    text-overflow: ellipsis; /* はみ出したテキストを省略記号で表示 */
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 }
 
-/* テーブルデータのスタイリング */
+
 td {
-    position: relative; /* 相対位置 */
-    padding: 2px; /* タイル周りのパディングを調整 */
-    text-align: center; /* テキストを中央揃え */
-    vertical-align: middle; /* テキストを垂直方向に中央揃え */
+    position: relative; 
+    padding: 2px; 
+    text-align: center; 
+    vertical-align: middle; 
 }
 
-/* 講義がないマス（フリー）のスタイリング */
+
 td .free {
     display: block;
     padding: 10px;
     margin: 4px;
 }
+
+
+
+header {
+    background-color: rgb(31, 113, 106); 
+    padding: 10px 20px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+
+header h1 {
+    margin: 0; 
+    font-size: 1.5em; 
+    color: #ffffff; 
+}
+
+
+nav ul {
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+    display: flex; 
+}
+
+
+nav ul li {
+    margin-left: 20px; 
+}
+
+nav ul li a {
+    text-decoration: none; 
+    color: rgb(255, 255, 255); 
+    font-weight: bold; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    transition: background-color 0.3s; 
+}
+
+
+nav ul li a:hover {
+    background-color: #e7f1ff; 
+}
+
+
+@media (max-width: 768px) {
+    
+    header {
+        flex-direction: column; 
+    }
+
+    nav ul {
+        flex-direction: column; 
+        width: 100%; 
+    }
+
+    nav ul li {
+        text-align: center; 
+        margin: 5px 0; 
+    }
+
+    nav ul li a {
+        display: block; 
+    }
+}
+
