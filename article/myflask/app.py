@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import requests
 
 app = Flask(__name__)
@@ -47,8 +47,28 @@ def index_lecture_list():
 
     return render_template('lecture_list.html', json=json_response)
 
-@app.route("/lecture_creation")
+@app.route("/lecture_creation", methods=['GET', 'POST'])
 def index_lecture_creation():
+    if request.method == 'POST':
+        class_name = request.form.get('class_name')
+        class_day = request.form.get('class_day')
+        class_time = request.form.get('class_time')
+        class_unit = request.form.get('class_unit')
+        must_flag = request.form.get('must_flag')
+        teacher_name = request.form.get('teacher_name')
+        room = request.form.get('room')
+        term = request.form.get('term')
+        dmcs = request.form.get('dmcs')
+        data = {
+        'name' : class_name, 
+        'day' : class_day, 'piriod' : class_time, 
+        'unit' : class_unit, 'must' : must_flag,
+        'teacher' : teacher_name, 'room' : room, 
+        'term' : term, 'Department' : dmcs
+        }
+        url = 'http://52.69.43.211/registerClass'  # サーバーの実際のURLに置き換えてください
+        response = requests.post(url, data=data)
+        print(response) # test
     return render_template('lecture_creation.html')
 @app.route("/timetable_sharing")
 def index_timetable_sharing():
