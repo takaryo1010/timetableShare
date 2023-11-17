@@ -2,23 +2,25 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"net/http"
-	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
 
 type (
 	classInfo struct {
-		Class_id int    `json:"class_id"`
-		Name     string `json:"name"`
-		Day      string `json:"day"`
-		Period   string `json:"period"`
-		Unit     int    `json:"unit"`
-		Must     bool   `json:"must"`
-		Teacher  string `json:"teacher"`
-		Room     string `json:"room"`
+		Class_id   int    `json:"class_id"`
+		Name       string `json:"name"`
+		Day        string `json:"day"`
+		Period     string `json:"period"`
+		Unit       int    `json:"unit"`
+		Must       bool   `json:"must"`
+		Teacher    string `json:"teacher"`
+		Room       string `json:"room"`
+		Term       string `json:"term"`
+		Department string `json:"department"`
 	}
 )
 
@@ -63,7 +65,7 @@ func showClassInfoAll(c echo.Context) error {
 	for rows.Next() {
 		var cl classInfo
 
-		err := rows.Scan(&cl.Class_id, &cl.Name, &cl.Day, &cl.Period, &cl.Unit, &cl.Must, &cl.Teacher, &cl.Room)
+		err := rows.Scan(&cl.Class_id, &cl.Name, &cl.Day, &cl.Period, &cl.Unit, &cl.Must, &cl.Teacher, &cl.Room, &cl.Term, &cl.Department)
 
 		if err != nil {
 			log.Fatal(err)
@@ -77,13 +79,19 @@ func showClassInfoAll(c echo.Context) error {
 }
 
 func showClassInfoTimeSpecification(c echo.Context) error {
-	// 指定した曜日時間の授業を返す
-	day := c.FormValue("day")
-	period,err := strconv.Atoi((c.FormValue("period")))
-	if err != nil {
-		log.Fatal(err)
-		return err // エラーを返す
-	}
+	// 入力データの解析
+
+	// 任意の条件を取得
+	conditions := make(map[string]interface{})
+	conditions["unit"] = c.FormValue("unit")
+	conditions["must"] = c.FormValue("must")
+	conditions["teacher"] = c.FormValue("teacher")
+	conditions["room"] = c.FormValue("room")
+	conditions["term"] = c.FormValue("term")
+	conditions["Department"] = c.FormValue("Department")
+	conditions["day"] = c.FormValue("day")
+	conditions["period"] = c.FormValue("period")
+
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
 	if err != nil {
@@ -92,15 +100,28 @@ func showClassInfoTimeSpecification(c echo.Context) error {
 	}
 	defer db.Close()
 
+	// SQLクエリの構築
+	query := "SELECT * FROM Class WHERE "
+	args := []interface{}{}
+
+	// 任意の条件が指定されている場合、クエリに追加
+	for key, value := range conditions {
+		if value != "" {
+			query += fmt.Sprintf(" %s = ? AND", key)
+			args = append(args, value)
+		}
+	}
+	query = query[:len(query)-4]
+
 	// SQLの準備
-	stmt, err := db.Prepare("SELECT * FROM Class WHERE day = ? AND period = ?")
+	stmt, err := db.Prepare(query)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
 	}
 
 	// SQLの実行
-	rows, err := stmt.Query(day, period)
+	rows, err := stmt.Query(args...)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
@@ -113,7 +134,7 @@ func showClassInfoTimeSpecification(c echo.Context) error {
 	// データベースから授業情報を取得
 	for rows.Next() {
 		var cl classInfo
-		err := rows.Scan(&cl.Class_id, &cl.Name, &cl.Day, &cl.Period, &cl.Unit, &cl.Must, &cl.Teacher, &cl.Room)
+		err := rows.Scan(&cl.Class_id, &cl.Name, &cl.Day, &cl.Period, &cl.Unit, &cl.Must, &cl.Teacher, &cl.Room, &cl.Term, &cl.Department)
 		if err != nil {
 			log.Fatal(err)
 			return err // エラーを返す

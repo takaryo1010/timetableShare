@@ -17,7 +17,7 @@ type (
 
 var people []person
 
-func registPerson(c echo.Context) error {
+func registerPerson(c echo.Context) error {
 	name := c.FormValue("name")
 
 	// データベースのハンドルを取得する

@@ -10,14 +10,16 @@ import (
 
 type (
 	class struct {
-		Class_id int    `json:"class_id"`
-		Name     string `json:"name"`
-		Day      string `json:"day"`
-		Period   string `json:"period"`
-		Unit     int    `json:"unit"`
-		Must     bool   `json:"must"`
-		Teacher  string `json:"teacher"`
-		Room     string `json:"room"`
+		Class_id   int    `json:"class_id"`
+		Name       string `json:"name"`
+		Day        string `json:"day"`
+		Period     string `json:"period"`
+		Unit       int    `json:"unit"`
+		Must       bool   `json:"must"`
+		Teacher    string `json:"teacher"`
+		Room       string `json:"room"`
+		Term       string `json:"term"`
+		Department string `json:"department"`
 	}
 )
 
@@ -32,6 +34,8 @@ func registerClass(e echo.Context) error {
 	must := e.FormValue("must")
 	teacher := e.FormValue("teacher")
 	room := e.FormValue("room")
+	term := e.FormValue("term")
+	Department := e.FormValue("department")
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
@@ -42,14 +46,14 @@ func registerClass(e echo.Context) error {
 	defer db.Close()
 
 	// SQLの準備
-	ins, err := db.Prepare("INSERT INTO Class (Name, Day, Period, Unit, Must, Teacher, Room) VALUES (?, ?, ?, ?, ?, ?, ?)")
+	ins, err := db.Prepare("INSERT INTO Class (Name, Day, Period, Unit, Must, Teacher, Room,Term,Department) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)")
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
 	}
 
 	// SQLの実行
-	_, err = ins.Exec(name, day, period, unit, must, teacher, room)
+	_, err = ins.Exec(name, day, period, unit, must, teacher, room, term, Department)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
@@ -71,7 +75,7 @@ func registerClass(e echo.Context) error {
 		var c class
 
 		err := rows.Scan(&c.Class_id, &c.Name, &c.Day, &c.Period,
-			&c.Unit, &c.Must, &c.Teacher, &c.Room)
+			&c.Unit, &c.Must, &c.Teacher, &c.Room, &c.Term, &c.Department)
 
 		if err != nil {
 			log.Fatal(err)
