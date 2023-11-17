@@ -22,5 +22,12 @@
             </ul>
         </nav>
     </header>
-    this is timetable_registration
+
+    <body>
+        {% for message in get_flashed_messages() %}
+    <p>{{ message }}</p>
+    {% endfor %}
+    <p>You have been logged out.</p>
+    <a href="{{ url_for('login') }}">Login again</a>
+    </body>
 </body>
