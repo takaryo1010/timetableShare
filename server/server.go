@@ -22,6 +22,8 @@ func main() {
 	e.GET("/showClassInfoAll", showClassInfoAll)
 	e.POST("/showClassInfoTimeSpecification", showClassInfoTimeSpecification)
 	e.POST("/registerClass",registerClass)
+	e.POST("/registerFriends",registerFriends)
+	e.POST("/showMyFriends",showMyFriends)
 
 
 	// サーバーをポート番号80で起動
