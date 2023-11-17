@@ -10,15 +10,15 @@ import (
 
 type (
 	class struct {
-		Class_id int    `json:"class_id"`
-		Name     string `json:"name"`
-		Day      string `json:"day"`
-		Period   string `json:"period"`
-		Unit     int    `json:"unit"`
-		Must     bool   `json:"must"`
-		Teacher  string `json:"teacher"`
-		Room     string `json:"room"`
-		Term	 string `json:"term"`
+		Class_id   int    `json:"class_id"`
+		Name       string `json:"name"`
+		Day        string `json:"day"`
+		Period     string `json:"period"`
+		Unit       int    `json:"unit"`
+		Must       bool   `json:"must"`
+		Teacher    string `json:"teacher"`
+		Room       string `json:"room"`
+		Term       string `json:"term"`
 		Department string `json:"department"`
 	}
 )
@@ -35,7 +35,7 @@ func registerClass(e echo.Context) error {
 	teacher := e.FormValue("teacher")
 	room := e.FormValue("room")
 	term := e.FormValue("term")
-	Department :=e.FormValue("department")
+	Department := e.FormValue("department")
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
@@ -53,7 +53,7 @@ func registerClass(e echo.Context) error {
 	}
 
 	// SQLの実行
-	_, err = ins.Exec(name, day, period, unit, must, teacher, room,term,Department)
+	_, err = ins.Exec(name, day, period, unit, must, teacher, room, term, Department)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
@@ -75,7 +75,7 @@ func registerClass(e echo.Context) error {
 		var c class
 
 		err := rows.Scan(&c.Class_id, &c.Name, &c.Day, &c.Period,
-			&c.Unit, &c.Must, &c.Teacher, &c.Room,&c.Term,&c.Department)
+			&c.Unit, &c.Must, &c.Teacher, &c.Room, &c.Term, &c.Department)
 
 		if err != nil {
 			log.Fatal(err)

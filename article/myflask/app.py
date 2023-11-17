@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import requests
 
 app = Flask(__name__)
 
@@ -32,7 +33,19 @@ def index_timetable_registration():
 
 @app.route("/lecture_list")
 def index_lecture_list():
-    return render_template('lecture_list.html')
+        # サーバーのエンドポイントURLを設定
+    url = 'http://52.69.43.211/showClassInfoAll'  # サーバーの実際のURLに置き換えてください
+    
+    # HTTP POSTリクエストを送信
+    response = requests.get(url)
+    
+    # レスポンスをJSONとしてパース
+    json_response = response.json()
+    
+    # レスポンスを出力
+    print(json_response)
+
+    return render_template('lecture_list.html', json=json_response)
 
 @app.route("/lecture_creation")
 def index_lecture_creation():
