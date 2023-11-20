@@ -144,3 +144,51 @@ func showClassInfoTimeSpecification(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, classInfos)
 }
+
+func showMyClassInfo(c echo.Context) error {
+	// 入力データの解析
+	id := c.FormValue("id")
+
+	// データベースのハンドルを取得する
+	db, err := sql.Open("mysql", db_state)
+	if err != nil {
+		log.Fatal(err)
+		return err // エラーを返す
+	}
+	defer db.Close()
+
+	// SQLクエリの構築（スペースが不足していたので修正）
+	query := "SELECT Class.* FROM Person JOIN Course ON Person.id = Course.person_id JOIN Class ON Course.class_id = Class.class_id WHERE Person.id = ?"
+
+	// SQLの準備
+	stmt, err := db.Prepare(query)
+	if err != nil {
+		log.Fatal(err)
+		return err // エラーを返す
+	}
+	defer stmt.Close() // ステートメントを閉じる
+
+	// SQLの実行
+	rows, err := stmt.Query(id)
+	if err != nil {
+		log.Fatal(err)
+		return err // エラーを返す
+	}
+	defer rows.Close()
+
+	// classInfosスライスをクリア
+	classInfos := []classInfo{}
+
+	// データベースから授業情報を取得
+	for rows.Next() {
+		var cl classInfo
+		err := rows.Scan(&cl.Class_id, &cl.Name, &cl.Day, &cl.Period, &cl.Unit, &cl.Must, &cl.Teacher, &cl.Room, &cl.Term, &cl.Department)
+		if err != nil {
+			log.Fatal(err)
+			return err // エラーを返す
+		}
+		classInfos = append(classInfos, cl)
+	}
+
+	return c.JSON(http.StatusOK, classInfos)
+}

@@ -25,6 +25,7 @@ func main() {
 	e.POST("/registerFriends", registerFriends)
 	e.POST("/showMyFriends", showMyFriends)
 	e.POST("/registerCourse", registerCourse)
+	e.POST("/showMyClassInfo", showMyClassInfo)
 
 	// サーバーをポート番号80で起動
 	e.Logger.Fatal(e.Start(":80"))
