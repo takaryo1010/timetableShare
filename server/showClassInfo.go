@@ -147,7 +147,7 @@ func showClassInfoTimeSpecification(c echo.Context) error {
 
 func showMyClassInfo(c echo.Context) error {
 	// 入力データの解析
-	id := c.FormValue("id")
+	name := c.FormValue("name")
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
@@ -157,8 +157,8 @@ func showMyClassInfo(c echo.Context) error {
 	}
 	defer db.Close()
 
-	// SQLクエリの構築（スペースが不足していたので修正）
-	query := "SELECT Class.* FROM Person JOIN Course ON Person.id = Course.person_id JOIN Class ON Course.class_id = Class.class_id WHERE Person.id = ?"
+	// SQLクエリの構築（名前を条件に追加）
+	query := "SELECT Class.* FROM Person JOIN Course ON Person.id = Course.person_id JOIN Class ON Course.class_id = Class.class_id WHERE Person.name = ?"
 
 	// SQLの準備
 	stmt, err := db.Prepare(query)
@@ -169,7 +169,7 @@ func showMyClassInfo(c echo.Context) error {
 	defer stmt.Close() // ステートメントを閉じる
 
 	// SQLの実行
-	rows, err := stmt.Query(id)
+	rows, err := stmt.Query(name)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
