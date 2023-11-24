@@ -10,8 +10,8 @@ import (
 
 type (
 	Friend struct {
-		My_name   int `json:"my_name"`
-		Your_name int `json:"your_name"`
+		My_name   string `json:"my_name"`
+		Your_name string `json:"your_name"`
 	}
 )
 
