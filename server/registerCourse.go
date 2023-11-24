@@ -19,7 +19,7 @@ type (
 var courses []course
 
 func registerCourse(e echo.Context) error {
-	person_name := e.FormValue("name")
+	name := e.FormValue("name")
 	class_id := e.FormValue("class_id")
 
 	// データベースのハンドルを取得する
@@ -31,14 +31,14 @@ func registerCourse(e echo.Context) error {
 	defer db.Close()
 
 	// SQLの準備
-	ins, err := db.Prepare("INSERT INTO Course (name, Class_id) VALUES(?,?)")
+	ins, err := db.Prepare("INSERT INTO Course (person_id, class_id) SELECT id AS person_id, ? AS class_id FROM Person WHERE name = ?")
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
 	}
 
 	// SQLの実行
-	_, err = ins.Exec(person_name, class_id)
+	_, err = ins.Exec(name, class_id)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
