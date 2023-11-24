@@ -19,6 +19,31 @@
             </ul>
         </nav>
     </header>
-    this is lecture_list
-    {{json}}
+    <table>
+        <tr>
+            <th>授業名</th>
+            <th>授業ID</th>
+            <th>曜日</th>
+            <th>時限</th>
+            <th>必修</th>
+            <th>先生</th>
+            <th>教室</th>
+            <th>学期</th>
+            <th>学科</th>
+        </tr>
+        {% for lecture in {{json}} %}
+        <tr>
+            <td>{{ lecture.name }}</td>
+            <td>{{ lecture.class_id }}</td>
+            <td>{{ lecture.day }}</td>
+            <td>{{ lecture.period }}</td>
+            <td>{{ lecture.unit }}</td>
+            <td>{{ lecture.must }}</td>
+            <td>{{ lecture.teacher }}</td>
+            <td>{{ lecture.room }}</td>
+            <td>{{ lecture.term }}</td>
+            <td>{{ lecture.department }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
