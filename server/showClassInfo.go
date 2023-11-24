@@ -101,17 +101,24 @@ func showClassInfoTimeSpecification(c echo.Context) error {
 	defer db.Close()
 
 	// SQLクエリの構築
-	query := "SELECT * FROM Class WHERE "
-	args := []interface{}{}
+	query := "SELECT * FROM Class"
 
 	// 任意の条件が指定されている場合、クエリに追加
+	whereClause := false
+	args := []interface{}{}
+
 	for key, value := range conditions {
 		if value != "" {
-			query += fmt.Sprintf(" %s = ? AND", key)
+			if !whereClause {
+				query += " WHERE"
+				whereClause = true
+			} else {
+				query += " AND"
+			}
+			query += fmt.Sprintf(" %s = ?", key)
 			args = append(args, value)
 		}
 	}
-	query = query[:len(query)-4]
 
 	// SQLの準備
 	stmt, err := db.Prepare(query)
