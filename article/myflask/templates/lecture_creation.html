@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <title>時間割</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
     <header>
         <h1>週間時間割</h1>
@@ -12,6 +14,7 @@
             <ul>
                 <li><a href="/">ホーム</a></li>
                 <li><a href="/login">ログイン</a></li>
+                <li><a href="/logout">ログアウト</a></li>
                 <li><a href="/timetable_registration">時間割登録</a></li>
                 <li><a href="/timetable_sharing">時間割共有</a></li>
                 <li><a href="/lecture_list">授業一覧</a></li>
@@ -19,5 +22,41 @@
             </ul>
         </nav>
     </header>
-    this is lecture_creation
+    <h1>授業作成</h1>
+    <form action="/lecture_creation" method="post">
+        <input type="text" name="class_name" placeholder="Class Name" required>
+        <select name="class_day" required>
+            <option value="Sunday">Sunday</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Ondemand">Ondemand</option>
+        </select>
+        <select name="class_time" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <input type="number" name="class_unit" placeholder="Class Unit" required>
+        <select name="must_flag" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+        </select>
+        <input type="text" name="teacher_name" placeholder="Teacher Name" required>
+        <input type="text" name="room" placeholder="Room" required>
+        <select name="term" required>
+            <option value="Spring">Spring</option>
+            <option value="Fall">Fall</option>
+        </select>
+        <select name="dmcs" required>
+            <option value="DM">DM</option>
+            <option value="CS">CS</option>
+        </select>
+        <button type="submit">登録</button>
+    </form>
 </body>
