@@ -38,7 +38,7 @@ func registerCourse(e echo.Context) error {
 	}
 
 	// SQLの実行
-	_, err = ins.Exec(name, class_id)
+	_, err = ins.Exec(class_id, name)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
