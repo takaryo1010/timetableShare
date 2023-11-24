@@ -34,6 +34,10 @@ def load_user(user_id):
 @app.route('/')
 @login_required
 def index():
+    url = 'http://52.69.43.211/showMyClassInfo'
+    response = requests.post(url, "maeshin")
+    json_response = response.json()
+    print(json_response)
     # ここで講義のデータを取得する
     lectures = {
         "Monday": ["微積文法の応用", "", "プログラミング (C/C++)", "プログラミング (C/C++)", "人工知能"],
