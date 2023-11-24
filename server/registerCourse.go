@@ -11,7 +11,7 @@ import (
 type (
 	course struct {
 		Course_id   int    `json:"course_id"`
-		Person_name string `json:"person_name"`
+		Person_name string `json:"name"`
 		Class_id    int    `json:"class_id"`
 	}
 )
@@ -19,7 +19,7 @@ type (
 var courses []course
 
 func registerCourse(e echo.Context) error {
-	person_name := e.FormValue("person_name")
+	person_name := e.FormValue("name")
 	class_id := e.FormValue("class_id")
 
 	// データベースのハンドルを取得する
@@ -31,7 +31,7 @@ func registerCourse(e echo.Context) error {
 	defer db.Close()
 
 	// SQLの準備
-	ins, err := db.Prepare("INSERT INTO Course (Person_name, Class_id) VALUES(?,?)")
+	ins, err := db.Prepare("INSERT INTO Course (name, Class_id) VALUES(?,?)")
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
