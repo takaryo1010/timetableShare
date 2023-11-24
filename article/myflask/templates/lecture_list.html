@@ -28,13 +28,14 @@
             <th>授業ID</th>
             <th>曜日</th>
             <th>時限</th>
+            <th>単位</th>
             <th>必修</th>
             <th>先生</th>
             <th>教室</th>
             <th>学期</th>
             <th>学科</th>
         </tr>
-        {% for lecture in {{json}} %}
+        {% for lecture in json %}
         <tr>
             <td>{{ lecture.name }}</td>
             <td>{{ lecture.class_id }}</td>
