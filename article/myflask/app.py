@@ -125,18 +125,20 @@ def index_lecture_creation():
         class_name = request.form.get('class_name')
         class_day = request.form.get('class_day')
         class_time = request.form.get('class_time')
+        print(class_time)
         class_unit = request.form.get('class_unit')
         must_flag = request.form.get('must_flag')
         teacher_name = request.form.get('teacher_name')
         room = request.form.get('room')
         term = request.form.get('term')
         dmcs = request.form.get('dmcs')
+        print(dmcs)
         data = {
             'name': class_name,
-            'day': class_day, 'piriod': class_time,
+            'day': class_day, 'period': class_time,
             'unit': class_unit, 'must': must_flag,
             'teacher': teacher_name, 'room': room,
-            'term': term, 'Department': dmcs
+            'term': term, 'department': dmcs
         }
         url = 'http://52.69.43.211/registerClass'  # サーバーの実際のURLに置き換えてください
         response = requests.post(url, data=data)
@@ -152,4 +154,4 @@ def index_timetable_sharing():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(host = '0.0.0.0', port = '80', debug=False)
