@@ -23,7 +23,7 @@ func showMyFriends(c echo.Context) error {
 	defer db.Close()
 
 	// SQLの実行
-	rows, err := db.Query("SELECT DISTINCT * FROM Friends WHERE my_name=?", name)
+	rows, err := db.Query("SELECT f.my_id, f.your_id FROM Friends f JOIN Person p ON f.my_id = p.id WHERE p.name = ?;", name)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
