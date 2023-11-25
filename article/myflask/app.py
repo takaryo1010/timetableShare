@@ -158,4 +158,4 @@ def index_timetable_sharing():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(host = '0.0.0.0', port = '80', debug=False)
+    app.run(host = '0.0.0.0', port = '80', debug=True)
