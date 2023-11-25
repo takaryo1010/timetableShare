@@ -60,21 +60,21 @@ def index():
     saturday = ["", "", "", "", ""]
     ondemand = ["", "", "", "", ""]
     for class_ in json_response:
-        match class_['day']:
-            case 'Monday':
-                monday[int(class_['period'])] = class_['name']
-            case 'Tuesday':
-                tuesday[int(class_['period'])] = class_['name']
-            case 'Wednesday':
-                wednesday[int(class_['period'])] = class_['name']
-            case 'Thursday':
-                thursday[int(class_['period'])] = class_['name']
-            case 'Friday':
-                friday[int(class_['period'])] = class_['name']
-            case 'Saturday':
-                saturday[int(class_['period'])] = class_['name']
-            case 'Ondemand':
-                ondemand[int(class_['period'])] = class_['name']
+        if class_['day'] == 'Monday':
+            monday[int(class_['period'])] = class_['name']
+        elif class_['day'] == 'Tuesday':
+            tuesday[int(class_['period'])] = class_['name']
+        elif class_['day'] == 'Wednesday':
+            wednesday[int(class_['period'])] = class_['name']
+        elif class_['day'] == 'Thursday':
+            thursday[int(class_['period'])] = class_['name']
+        elif class_['day'] == 'Friday':
+            friday[int(class_['period'])] = class_['name']
+        elif class_['day'] == 'Saturday':
+            saturday[int(class_['period'])] = class_['name']
+        elif class_['day'] == 'Ondemand':
+            ondemand[int(class_['period'])] = class_['name']
+
     lectures = {
         "Monday": monday,
         "Tuesday": tuesday,
