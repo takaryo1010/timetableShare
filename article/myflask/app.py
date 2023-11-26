@@ -102,7 +102,7 @@ def index():
     return render_template('lectures.html', timetable=lectures)
 
 
-@app.route('/home')
+@app.route('/test')
 def index():
 
     
