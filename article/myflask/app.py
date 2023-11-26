@@ -102,6 +102,25 @@ def index():
     return render_template('lectures.html', timetable=lectures)
 
 
+@app.route('/home')
+def index():
+
+    
+    # end test
+    # ここで講義のデータを取得する
+    lectures = {
+       "Monday": ["微積文法の応用", "", "プログラミング (C/C++)", "プログラミング (C/C++)", "人工知能"],
+       "Tuesday": ["西洋近現代史", "科学英語", "", "", "最適化"],
+       "Wednesday": ["", "時事英語", "", "", "データ構造とアルゴリズム 2"],
+       "Thursday": ["", "", "", "", ""],
+       "Friday": ["", "", "プロジェクト", "データベース", ""],
+       "Friday": ["", "", "プロジェクト", "データベース", ""],
+       "Saturday": ["", "", "", "", ""],
+       "Ondemand": ["CF 特論", "IS 特論", "", "", ""],
+    }
+
+    return render_template('lectures.html', timetable=lectures)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
