@@ -103,7 +103,7 @@ def index():
 
 
 @app.route('/test')
-def index():
+def test():
 
     
     # end test
