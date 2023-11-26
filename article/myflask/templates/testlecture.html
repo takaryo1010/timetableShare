@@ -50,19 +50,23 @@
             {% set lecture = timetable.get(day)[i] if timetable.get(day) else 'フリー' %}
             <td>
                 {% if lecture != 'フリー' %}
-                <!-- 授業が存在する場合 -->
-                <div class="lecture" onclick="showMessage()">{{ lecture }}</div>
+                <!-- 授業が存在する場合、データ属性を使用して識別 -->
+                <div class="lecture" onclick="handleClick(true)">{{ lecture }}</div>
                 {% else %}
-                <!-- 授業が存在しない場合 -->
-                <a href="/timetable_registration" class="free-slot">登録</a>
+                <!-- 授業が存在しない場合、データ属性を使用して識別 -->
+                <div class="free-slot" onclick="handleClick(false)">{{ lecture }}</div>
                 {% endif %}
             </td>
             {% endfor %}
         </tr>
         {% endfor %}
         <script>
-            function showMessage() {
-                alert('Class has already exist');
+            function handleClick(hasClass) {
+                if (hasClass) {
+                    alert('Class has already exist');
+                } else {
+                    window.location.href = '/timetable_registration';
+                }
             }
         </script>
     </table>
