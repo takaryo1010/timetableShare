@@ -119,7 +119,7 @@ def test():
        "Ondemand": ["CF 特論", "IS 特論", "", "", ""],
     }
 
-    return render_template('lectures.html', timetable=lectures)
+    return render_template('testlecture.html', timetable=lectures)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
