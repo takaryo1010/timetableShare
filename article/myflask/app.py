@@ -99,8 +99,21 @@ def logout():
 
 @app.route("/timetable_registration")
 def index_timetable_registration():
-    return render_template('timetable_registration.html')
+    # サーバーのエンドポイントURLを設定
+    url = 'http://52.69.43.211/showClassInfoTimeSpecification'  # サーバーの実際のURLに置き換えてください
+    
+    data = {"day":"Monday"}
+    
+    # HTTP POSTリクエストを送信
+    response = requests.post(url, data=data)
 
+    # レスポンスをJSONとしてパース
+    json_response = response.json()
+
+    # レスポンスを出力
+    print(json_response)
+
+    return render_template('timetable_registration.html', json=json_response)
 
 @app.route("/lecture_list")
 def index_lecture_list():
