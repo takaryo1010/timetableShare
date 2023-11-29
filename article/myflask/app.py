@@ -27,26 +27,99 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+
 @app.route('/')
 @login_required
 def index():
-    # ここで講義のデータを取得する
+    url = 'http://52.69.43.211/showMyClassInfo'
+    # test
+
+    # サーバーのエンドポイントURLを設定
+    url = 'http://52.69.43.211/showMyClassInfo'  # サーバーの実際のURLに置き換えてください
+
+# 送信するデータを準備
+    data = {'name': current_user.username}  # 送信するデータをここで設定
+    print(data)
+
+# HTTP POSTリクエストを送信
+    response = requests.post(url, data=data)
+
+
+# レスポンスをJSONとしてパース
+    json_response = response.json()
+    monday = ["", "", "", "", ""]
+    tuesday = ["", "", "", "", ""]
+    wednesday = ["", "", "", "", ""]
+    thursday = ["", "", "", "", ""]
+    friday = ["", "", "", "", ""]
+    saturday = ["", "", "", "", ""]
+    ondemand = ["", "", "", "", ""]
+    for class_ in json_response:
+        if class_['day'] == 'Monday':
+            monday[int(class_['period'])] = class_['name']
+        elif class_['day'] == 'Tuesday':
+            tuesday[int(class_['period'])] = class_['name']
+        elif class_['day'] == 'Wednesday':
+            wednesday[int(class_['period'])] = class_['name']
+        elif class_['day'] == 'Thursday':
+            thursday[int(class_['period'])] = class_['name']
+        elif class_['day'] == 'Friday':
+            friday[int(class_['period'])] = class_['name']
+        elif class_['day'] == 'Saturday':
+            saturday[int(class_['period'])] = class_['name']
+        elif class_['day'] == 'Ondemand':
+            ondemand[int(class_['period'])] = class_['name']
+
     lectures = {
-        "Monday": ["微積文法の応用", "", "プログラミング (C/C++)", "プログラミング (C/C++)", "人工知能"],
-        "Tuesday": ["西洋近現代史", "科学英語", "", "", "最適化"],
-        "Wednesday": ["", "時事英語", "", "", "データ構造とアルゴリズム 2"],
-        "Thursday": ["", "", "", "", ""],
-        "Friday": ["", "", "プロジェクト", "データベース", ""],
-        "Friday": ["", "", "プロジェクト", "データベース", ""],
-        "Saturday": ["", "", "", "", ""],
-        "Ondemand": ["CF 特論", "IS 特論", "", "", ""],
+        "Monday": monday,
+        "Tuesday": tuesday,
+        "Wednesday": wednesday,
+        "Thursday": thursday,
+        "Friday": friday,
+        "Saturday": saturday,
+        "Ondemand": ondemand
     }
+    print (lectures)
+    
+    # end test
+    # ここで講義のデータを取得する
+    #lectures = {
+    #    "Monday": ["微積文法の応用", "", "プログラミング (C/C++)", "プログラミング (C/C++)", "人工知能"],
+    #    "Tuesday": ["西洋近現代史", "科学英語", "", "", "最適化"],
+    #    "Wednesday": ["", "時事英語", "", "", "データ構造とアルゴリズム 2"],
+    #    "Thursday": ["", "", "", "", ""],
+    #    "Friday": ["", "", "プロジェクト", "データベース", ""],
+    #    "Friday": ["", "", "プロジェクト", "データベース", ""],
+    #    "Saturday": ["", "", "", "", ""],
+    #    "Ondemand": ["CF 特論", "IS 特論", "", "", ""],
+    #}
+
     return render_template('lectures.html', timetable=lectures)
 
+
+@app.route('/test')
+def test():
+
+    
+    # end test
+    # ここで講義のデータを取得する
+    lectures = {
+       "Monday": ["微積文法の応用", "", "プログラミング (C/C++)", "プログラミング (C/C++)", "人工知能"],
+       "Tuesday": ["西洋近現代史", "科学英語", "", "", "最適化"],
+       "Wednesday": ["", "時事英語", "", "", "データ構造とアルゴリズム 2"],
+       "Thursday": ["", "", "", "", ""],
+       "Friday": ["", "", "プロジェクト", "データベース", ""],
+       "Friday": ["", "", "プロジェクト", "データベース", ""],
+       "Saturday": ["", "", "", "", ""],
+       "Ondemand": ["CF 特論", "IS 特論", "", "", ""],
+    }
+
+    return render_template('testlecture.html', timetable=lectures)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -61,6 +134,7 @@ def login():
         else:
             flash('Invalid username or password.')
     return render_template('login.html')
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -90,12 +164,14 @@ def signup():
             flash('このユーザー名は既に存在します。')
     return render_template('signup.html')
 
+
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     flash('ログアウトしました。')
     return redirect(url_for('login'))
+
 
 @app.route("/timetable_registration")
 def index_timetable_registration():
@@ -138,18 +214,20 @@ def index_lecture_creation():
         class_name = request.form.get('class_name')
         class_day = request.form.get('class_day')
         class_time = request.form.get('class_time')
+        print(class_time)
         class_unit = request.form.get('class_unit')
         must_flag = request.form.get('must_flag')
         teacher_name = request.form.get('teacher_name')
         room = request.form.get('room')
         term = request.form.get('term')
         dmcs = request.form.get('dmcs')
+        print(dmcs)
         data = {
             'name': class_name,
-            'day': class_day, 'piriod': class_time,
+            'day': class_day, 'period': class_time,
             'unit': class_unit, 'must': must_flag,
             'teacher': teacher_name, 'room': room,
-            'term': term, 'Department': dmcs
+            'term': term, 'department': dmcs
         }
         url = 'http://52.69.43.211/registerClass'  # サーバーの実際のURLに置き換えてください
         response = requests.post(url, data=data)
@@ -163,6 +241,5 @@ def index_timetable_sharing():
 
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True)
+    # with app.app_context():
+    app.run(host='0.0.0.0', port='80', debug=True)

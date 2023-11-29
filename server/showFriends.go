@@ -12,7 +12,7 @@ import (
 var Friends []Friend
 
 func showMyFriends(c echo.Context) error {
-	myID := c.FormValue("my_id")
+	name := c.FormValue("name")
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
@@ -23,7 +23,7 @@ func showMyFriends(c echo.Context) error {
 	defer db.Close()
 
 	// SQLの実行
-	rows, err := db.Query("SELECT DISTINCT * FROM Friends WHERE my_id=?", myID)
+	rows, err := db.Query("SELECT f.my_id, f.your_id FROM Friends f JOIN Person p ON f.my_id = p.id WHERE p.name = ?;", name)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
@@ -37,7 +37,7 @@ func showMyFriends(c echo.Context) error {
 	for rows.Next() {
 		var f Friend
 
-		err := rows.Scan(&f.My_id, &f.Your_id)
+		err := rows.Scan(&f.My_name, &f.Your_name)
 		if err != nil {
 			log.Fatal(err)
 			return err // エラーを返す

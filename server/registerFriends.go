@@ -27,15 +27,31 @@ func registerFriends(c echo.Context) error {
 	}
 	defer db.Close()
 
+	// my_nameに対応するmy_idを取得するクエリ
+	query := "SELECT id FROM Person WHERE name = ?"
+	var my_id, your_id int
+	err = db.QueryRow(query, my_name).Scan(&my_id)
+	if err != nil {
+		log.Fatal(err)
+		return err // エラーを返す
+	}
+
+	// your_nameに対応するyour_idを取得するクエリ
+	err = db.QueryRow(query, your_name).Scan(&your_id)
+	if err != nil {
+		log.Fatal(err)
+		return err // エラーを返す
+	}
+
 	// SQLの準備
-	ins, err := db.Prepare("INSERT INTO Friends (my_name,your_name) VALUES(?,?)")
+	ins, err := db.Prepare("INSERT INTO Friends (my_id, your_id) VALUES (?, ?)")
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
 	}
 
 	// SQLの実行
-	_, err = ins.Exec(my_name, your_name)
+	_, err = ins.Exec(my_id, your_id)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
