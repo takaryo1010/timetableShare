@@ -20,6 +20,7 @@ func main() {
 	e.GET("/", connect_check) // ローカル環境の場合、http://localhost:80/をGETするとDBと接続できたか返す
 	e.POST("/registerPerson", registerPerson)
 	e.GET("/showClassInfoAll", showClassInfoAll)
+	e.GET("/showPeopleInfoAll", showPeopleInfoAll)
 	e.POST("/showClassInfoTimeSpecification", showClassInfoTimeSpecification)
 	e.POST("/registerClass", registerClass)
 	e.POST("/registerFriends", registerFriends)
