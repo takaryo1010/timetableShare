@@ -9,7 +9,7 @@ flag = sys.argv[1]
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ca448a98'
-if int(flag) == 0 or 2:
+if int(flag) == 0 or int(flag) == 2:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////root/instance/user.db'
     db = SQLAlchemy(app)
 elif int(flag) == 1:
