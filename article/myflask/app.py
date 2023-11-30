@@ -173,23 +173,35 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route("/timetable_registration")
+@app.route("/timetable_registration", methods=['GET', 'POST'])
 def index_timetable_registration():
-    # サーバーのエンドポイントURLを設定
-    url = 'http://52.69.43.211/showClassInfoTimeSpecification'  # サーバーの実際のURLに置き換えてください
-    
-    data = {"day":"Monday"}
-    
-    # HTTP POSTリクエストを送信
-    response = requests.post(url, data=data)
+    if request.method == 'POST':
+        data = {}
+        if(request.form.get('class_name') != None):
+            data['name'] = request.form.get('class_name')
+        if(request.form.get('class_day') != None):
+            data['day'] = request.form.get('class_day')
+        if(request.form.get('class_time') != None):
+            data['period'] = request.form.get('class_time')
+        if(request.form.get('class_unit') != None):
+            data['unit'] = request.form.get('class_unit')
+        if(request.form.get('must_flag') != None):
+            data['must'] = request.form.get('must_flag')
+        if(request.form.get('teacher_name') != None):
+            data['teacher'] = request.form.get('teacher_name')
+        if(request.form.get('room') != None):
+            data['room'] = request.form.get('room')
+        if(request.form.get('term') != None):
+            data['term'] = request.form.get('term')
+        if(request.form.get('department') != None):
+            data['department'] = request.form.get('department')
+        url = 'http://52.69.43.211/showClassInfoTimeSpecification'  # サーバーの実際のURLに置き換えてください
+        response = requests.post(url, data=data)
+        json_response = response.json()
+        print(json_response)
+        return render_template('timetable_registration.html', data=data, json=json_response)
+    return render_template('timetable_registration.html')
 
-    # レスポンスをJSONとしてパース
-    json_response = response.json()
-
-    # レスポンスを出力
-    print(json_response)
-
-    return render_template('timetable_registration.html', json=json_response)
 
 @app.route("/lecture_list")
 def index_lecture_list():
