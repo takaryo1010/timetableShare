@@ -9,13 +9,9 @@ flag = sys.argv[1]
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ca448a98'
-if int(flag) == 0:
+if int(flag) == 0 or 2:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////root/instance/user.db'
     db = SQLAlchemy(app)
-elif int(flag) == 2:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////root/instance/user.db'
-    db = SQLAlchemy(app)
-    db.create_all()
 elif int(flag) == 1:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
     db = SQLAlchemy(app)
@@ -258,5 +254,7 @@ def index_timetable_sharing():
 
 
 if __name__ == '__main__':
-    # with app.app_context():
+    with app.app_context():
+        if int(flag) == 2:
+            db.create_all()
     app.run(host='0.0.0.0', port='80', debug=True)
