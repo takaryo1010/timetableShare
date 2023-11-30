@@ -11,11 +11,19 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ca448a98'
 if int(flag) == 0:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////root/instance/user.db'
-else:
+    db = SQLAlchemy(app)
+elif int(flag) == 2:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////root/instance/user.db'
+    db = SQLAlchemy(app)
+    db.create_all()
+elif int(flag) == 1:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+    db = SQLAlchemy(app)
+else:
+    pass
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
