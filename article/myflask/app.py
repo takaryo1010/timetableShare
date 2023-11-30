@@ -4,9 +4,14 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, login_
 from werkzeug.security import generate_password_hash, check_password_hash
 import requests
 
+flag = input("test? \nYes > 1\nNo > 0\n>>>")
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ca448a98'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+if flag:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////root/instance/user.db'
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
