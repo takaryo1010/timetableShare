@@ -190,23 +190,23 @@ def logout():
 def index_timetable_registration():
     if request.method == 'POST':
         data = {}
-        if(request.form.get('class_name') != None):
+        if(request.form.get('class_name') != ""):
             data['name'] = request.form.get('class_name')
-        if(request.form.get('class_day') != None):
+        if(request.form.get('class_day') != ""):
             data['day'] = request.form.get('class_day')
-        if(request.form.get('class_time') != None):
+        if(request.form.get('class_time') != ""):
             data['period'] = request.form.get('class_time')
-        if(request.form.get('class_unit') != None):
+        if(request.form.get('class_unit') != ""):
             data['unit'] = request.form.get('class_unit')
-        if(request.form.get('must_flag') != None):
+        if(request.form.get('must_flag') != ""):
             data['must'] = request.form.get('must_flag')
-        if(request.form.get('teacher_name') != None):
+        if(request.form.get('teacher_name') != ""):
             data['teacher'] = request.form.get('teacher_name')
-        if(request.form.get('room') != None):
+        if(request.form.get('room') != ""):
             data['room'] = request.form.get('room')
-        if(request.form.get('term') != None):
+        if(request.form.get('term') != ""):
             data['term'] = request.form.get('term')
-        if(request.form.get('department') != None):
+        if(request.form.get('department') != ""):
             data['department'] = request.form.get('department')
         url = 'http://52.69.43.211/showClassInfoTimeSpecification'  # サーバーの実際のURLに置き換えてください
         response = requests.post(url, data=data)
