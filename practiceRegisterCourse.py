@@ -8,7 +8,7 @@ calssid = input("calssid>>")
 data = {'person_name': name, 'class_id' : int(calssid)}  # 送信するデータをここで設定
 
 # HTTP POSTリクエストを送信
-response = requests.post(url, data=data)
+response = requests.post(url, data)
 
 # レスポンスをJSONとしてパース
 json_response = response.json()
