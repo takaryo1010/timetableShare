@@ -129,6 +129,7 @@ def test():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    print(User.query.all())
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
