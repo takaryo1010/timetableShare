@@ -4,10 +4,10 @@ import requests
 url = 'http://52.69.43.211/registerPerson'  # サーバーの実際のURLに置き換えてください
 
 # 送信するデータを準備
-data = {'name': 'example'}  # 送信するデータをここで設定
+data = {'name': 'example1201'}  # 送信するデータをここで設定
 
 # HTTP POSTリクエストを送信
-response = requests.post(url, data=data)
+response = requests.post(url, data)
 
 # レスポンスをJSONとしてパース
 json_response = response.json()

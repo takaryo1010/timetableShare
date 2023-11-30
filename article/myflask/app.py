@@ -3,13 +3,23 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import requests
+import sys
+
+flag = sys.argv[1]
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ca448a98'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+if int(flag) == 0 or int(flag) == 2:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////root/instance/user.db'
+    db = SQLAlchemy(app)
+elif int(flag) == 1:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+    db = SQLAlchemy(app)
+else:
+    pass
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -123,6 +133,9 @@ def test():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    users = User.query.all()
+    for user in users:
+        print(user.username)
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -253,5 +266,7 @@ def index_timetable_sharing():
 
 
 if __name__ == '__main__':
-    # with app.app_context():
+    with app.app_context():
+        if int(flag) == 2:
+            db.create_all()
     app.run(host='0.0.0.0', port='80', debug=True)
