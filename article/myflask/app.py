@@ -72,19 +72,19 @@ def index():
     ondemand = ["", "", "", "", ""]
     for class_ in json_response:
         if class_['day'] == 'Monday':
-            monday[int(class_['period'])] = class_['name']
+            monday[int(class_['period']) - 1]  = class_['name']
         elif class_['day'] == 'Tuesday':
-            tuesday[int(class_['period'])] = class_['name']
+            tuesday[int(class_['period']) - 1] = class_['name']
         elif class_['day'] == 'Wednesday':
-            wednesday[int(class_['period'])] = class_['name']
+            wednesday[int(class_['period']) - 1] = class_['name']
         elif class_['day'] == 'Thursday':
-            thursday[int(class_['period'])] = class_['name']
+            thursday[int(class_['period']) - 1] = class_['name']
         elif class_['day'] == 'Friday':
-            friday[int(class_['period'])] = class_['name']
+            friday[int(class_['period']) - 1] = class_['name']
         elif class_['day'] == 'Saturday':
-            saturday[int(class_['period'])] = class_['name']
+            saturday[int(class_['period']) - 1] = class_['name']
         elif class_['day'] == 'Ondemand':
-            ondemand[int(class_['period'])] = class_['name']
+            ondemand[int(class_['period']) - 1] = class_['name']
 
     lectures = {
         "Monday": monday,
