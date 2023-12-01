@@ -10,10 +10,9 @@ import (
 
 type (
 	course struct {
-		Course_id   int    `json:"course_id"`
-		Person_id   int    `json:"person_id"`
-		Class_id    int    `json:"class_id"`
-		Person_name string `json:"person_name"`
+		Course_id int `json:"course_id"`
+		Person_id int `json:"person_id"`
+		Class_id  int `json:"class_id"`
 	}
 )
 
