@@ -24,14 +24,14 @@ func registerCourse(e echo.Context) error {
 	class_id, err := strconv.Atoi(e.FormValue("classid"))
 	if err != nil {
 		log.Fatal(err)
-		return err // エラーを返す
+		return e.JSON(http.StatusCreated, err) // エラーを返す
 	}
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
 	if err != nil {
 		log.Fatal(err)
-		return err // エラーを返す
+		return e.JSON(http.StatusCreated, err) // エラーを返す
 	}
 	defer db.Close()
 
@@ -41,14 +41,14 @@ func registerCourse(e echo.Context) error {
 	err = row.Scan(&id)
 	if err != nil {
 		log.Fatal(err)
-		return err // エラーを返す
+		return e.JSON(http.StatusCreated, err) // エラーを返す
 	}
 
 	// INSERT INTO Course ステートメントの準備
 	ins, err := db.Prepare("INSERT INTO Course (person_id, class_id) VALUES (?, ?)")
 	if err != nil {
 		log.Fatal(err)
-		return err // エラーを返す
+		return e.JSON(http.StatusCreated, err) // エラーを返す
 	}
 
 	// SQLの実行（Courseへの挿入）
