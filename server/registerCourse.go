@@ -10,16 +10,17 @@ import (
 
 type (
 	course struct {
-		Course_id int `json:"course_id"`
-		Person_id int `json:"person_id"`
-		Class_id  int `json:"class_id"`
+		Course_id   int    `json:"course_id"`
+		Person_id   int    `json:"person_id"`
+		Class_id    int    `json:"class_id"`
+		Person_name string `json:"person_name"`
 	}
 )
 
 var courses []course
 
 func registerCourse(e echo.Context) error {
-	name := e.FormValue("name")
+	name := e.FormValue("person_name")
 	class_id := e.FormValue("class_id")
 
 	// データベースのハンドルを取得する
