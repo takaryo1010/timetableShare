@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
@@ -20,7 +21,11 @@ var courses []course
 
 func registerCourse(e echo.Context) error {
 	name := e.FormValue("person_name")
-	class_id := e.FormValue("class_id")
+	class_id, err := strconv.Atoi(e.FormValue("class_id"))
+	if err != nil {
+		log.Fatal(err)
+		return err // エラーを返す
+	}
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
