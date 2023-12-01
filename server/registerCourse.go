@@ -20,8 +20,8 @@ type (
 var courses []course
 
 func registerCourse(e echo.Context) error {
-	name := e.FormValue("person_name")
-	class_id, err := strconv.Atoi(e.FormValue("class_id"))
+	name := e.FormValue("name")
+	class_id, err := strconv.Atoi(e.FormValue("classid"))
 	if err != nil {
 		log.Fatal(err)
 		return e.JSON(http.StatusCreated, err) // エラーを返す
