@@ -55,14 +55,14 @@ func registerCourse(e echo.Context) error {
 	_, err = ins.Exec(id, class_id)
 	if err != nil {
 		log.Fatal(err)
-		return err // エラーを返す
+		return e.JSON(http.StatusCreated, err) // エラーを返す
 	}
 
 	// データベースから全ての時間割を取得
 	rows, err := db.Query("SELECT * FROM Course")
 	if err != nil {
 		log.Fatal(err)
-		return err // エラーを返す
+		return e.JSON(http.StatusCreated, err) // エラーを返す
 	}
 	defer rows.Close()
 
@@ -77,7 +77,7 @@ func registerCourse(e echo.Context) error {
 
 		if err != nil {
 			log.Fatal(err)
-			return err // エラーを返す
+			return e.JSON(http.StatusCreated, err) // エラーを返す
 		}
 
 		courses = append(courses, c)
@@ -89,5 +89,5 @@ func registerCourse(e echo.Context) error {
 		return e.JSON(http.StatusCreated, lastCourse)
 	}
 
-	return e.JSON(http.StatusCreated, nil)
+	return e.JSON(http.StatusCreated, err)
 }

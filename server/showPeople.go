@@ -18,7 +18,7 @@ type (
 var personInfos []personInfo
 
 func showPeopleInfoAll(c echo.Context) error {
-	// DB上にある授業の情報をすべてだす
+	// DB上にある個人の情報をすべてだす
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
 	if err != nil {
