@@ -62,6 +62,7 @@ def index():
 
 # レスポンスをJSONとしてパース
     json_response = response.json()
+    print(json_response)
     monday = ["", "", "", "", ""]
     tuesday = ["", "", "", "", ""]
     wednesday = ["", "", "", "", ""]
@@ -71,19 +72,19 @@ def index():
     ondemand = ["", "", "", "", ""]
     for class_ in json_response:
         if class_['day'] == 'Monday':
-            monday[int(class_['period'])] = class_['name']
+            monday[int(class_['period']) - 1]  = class_['name']
         elif class_['day'] == 'Tuesday':
-            tuesday[int(class_['period'])] = class_['name']
+            tuesday[int(class_['period']) - 1] = class_['name']
         elif class_['day'] == 'Wednesday':
-            wednesday[int(class_['period'])] = class_['name']
+            wednesday[int(class_['period']) - 1] = class_['name']
         elif class_['day'] == 'Thursday':
-            thursday[int(class_['period'])] = class_['name']
+            thursday[int(class_['period']) - 1] = class_['name']
         elif class_['day'] == 'Friday':
-            friday[int(class_['period'])] = class_['name']
+            friday[int(class_['period']) - 1] = class_['name']
         elif class_['day'] == 'Saturday':
-            saturday[int(class_['period'])] = class_['name']
+            saturday[int(class_['period']) - 1] = class_['name']
         elif class_['day'] == 'Ondemand':
-            ondemand[int(class_['period'])] = class_['name']
+            ondemand[int(class_['period']) - 1] = class_['name']
 
     lectures = {
         "Monday": monday,
@@ -96,19 +97,6 @@ def index():
     }
     print (lectures)
     
-    # end test
-    # ここで講義のデータを取得する
-    #lectures = {
-    #    "Monday": ["微積文法の応用", "", "プログラミング (C/C++)", "プログラミング (C/C++)", "人工知能"],
-    #    "Tuesday": ["西洋近現代史", "科学英語", "", "", "最適化"],
-    #    "Wednesday": ["", "時事英語", "", "", "データ構造とアルゴリズム 2"],
-    #    "Thursday": ["", "", "", "", ""],
-    #    "Friday": ["", "", "プロジェクト", "データベース", ""],
-    #    "Friday": ["", "", "プロジェクト", "データベース", ""],
-    #    "Saturday": ["", "", "", "", ""],
-    #    "Ondemand": ["CF 特論", "IS 特論", "", "", ""],
-    #}
-
     return render_template('lectures.html', timetable=lectures)
 
 
