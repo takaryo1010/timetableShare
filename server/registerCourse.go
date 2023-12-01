@@ -10,9 +10,9 @@ import (
 
 type (
 	course struct {
-		Course_id   int    `json:"course_id"`
-		Person_name string `json:"name"`
-		Class_id    int    `json:"class_id"`
+		Course_id int `json:"course_id"`
+		Person_id int `json:"person_id"`
+		Class_id  int `json:"class_id"`
 	}
 )
 
@@ -30,15 +30,24 @@ func registerCourse(e echo.Context) error {
 	}
 	defer db.Close()
 
-	// SQLの準備
-	ins, err := db.Prepare("INSERT INTO Course (person_id, class_id) SELECT id AS person_id, ? AS class_id FROM Person WHERE name = ?")
+	// SQLの準備（Personからnameに一致するidを取得する）
+	row := db.QueryRow("SELECT id FROM Person WHERE name = ?", name)
+	var id int
+	err = row.Scan(&id)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
 	}
 
-	// SQLの実行
-	_, err = ins.Exec(class_id, name)
+	// INSERT INTO Course ステートメントの準備
+	ins, err := db.Prepare("INSERT INTO Course (person_id, class_id) VALUES (?, ?)")
+	if err != nil {
+		log.Fatal(err)
+		return err // エラーを返す
+	}
+
+	// SQLの実行（Courseへの挿入）
+	_, err = ins.Exec(id, class_id)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
@@ -59,7 +68,7 @@ func registerCourse(e echo.Context) error {
 	for rows.Next() {
 		var c course
 
-		err := rows.Scan(&c.Course_id, &c.Person_name, &c.Class_id)
+		err := rows.Scan(&c.Course_id, &c.Person_id, &c.Class_id)
 
 		if err != nil {
 			log.Fatal(err)
