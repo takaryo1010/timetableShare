@@ -25,8 +25,8 @@ func main() {
 	e.GET("/showPeopleInfoAll", showPeopleInfoAll)
 	e.GET("/showClassInfoAll", showClassInfoAll)
 	e.GET("/showMyClassInfo", showMyClassInfo)
-	e.GET("/showClassInfoTimeSpecification", showClassInfoTimeSpecification)
-	e.GET("/showMyFriends", showMyFriends)
+	e.POST("/showClassInfoTimeSpecification", showClassInfoTimeSpecification)
+	e.POST("/showMyFriends", showMyFriends)
 
 	// サーバーをポート番号80で起動
 	e.Logger.Fatal(e.Start(":80"))

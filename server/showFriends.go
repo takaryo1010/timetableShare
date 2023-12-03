@@ -16,7 +16,7 @@ type (
 	}
 )
 
-var friendsInfo []friendInfo
+var friendInfos []friendInfo
 
 func showMyFriends(c echo.Context) error {
 	name := c.FormValue("my_name")
@@ -30,7 +30,8 @@ func showMyFriends(c echo.Context) error {
 	defer db.Close()
 
 	// SQLの実行
-	rows, err := db.Query("SELECT f.my_id, f.your_id FROM Friends f JOIN Person p ON f.my_id = p.id WHERE p.name = ?;", name)
+	query := "SELECT f.my_id, f.your_id FROM Friends f JOIN Person p ON f.my_id = p.id WHERE p.name = ?;"
+	rows, err := db.Query(query, name)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
