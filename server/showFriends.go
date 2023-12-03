@@ -9,10 +9,17 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-var Friends []Friend
+type (
+	friendInfo struct {
+		My_id   int `json:"my_id"`
+		Your_id int `json:"your_id"`
+	}
+)
+
+var friendsInfo []friendInfo
 
 func showMyFriends(c echo.Context) error {
-	name := c.FormValue("name")
+	name := c.FormValue("my_name")
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
@@ -31,20 +38,20 @@ func showMyFriends(c echo.Context) error {
 	defer rows.Close()
 
 	// Friendsスライスをクリア
-	Friends = nil
+	friends = nil
 
 	// データベースから人物を取得
 	for rows.Next() {
-		var f Friend
+		var f friend
 
-		err := rows.Scan(&f.My_name, &f.Your_name)
+		err := rows.Scan(&f.My_id, &f.Your_id)
 		if err != nil {
 			log.Fatal(err)
 			return err // エラーを返す
 		}
 
-		Friends = append(Friends, f)
+		friends = append(friends, f)
 	}
 
-	return c.JSON(http.StatusOK, Friends)
+	return c.JSON(http.StatusOK, friends)
 }
