@@ -4,7 +4,8 @@ import requests
 url = 'http://52.69.43.211/registerPerson'  # サーバーの実際のURLに置き換えてください
 
 # 送信するデータを準備
-data = {'name': 'example1201'}  # 送信するデータをここで設定
+name = input("name:")
+data = {'name': name}  # 送信するデータをここで設定
 
 # HTTP POSTリクエストを送信
 response = requests.post(url, data)
