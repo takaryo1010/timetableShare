@@ -19,19 +19,19 @@ type (
 
 var courses []course
 
-func registerCourse(e echo.Context) error {
-	name := e.FormValue("name")
-	class_id, err := strconv.Atoi(e.FormValue("classid"))
+func registerCourse(c echo.Context) error {
+	name := c.FormValue("name")
+	class_id, err := strconv.Atoi(c.FormValue("classid"))
 	if err != nil {
 		log.Fatal(err)
-		return e.JSON(http.StatusCreated, err) // エラーを返す
+		return c.JSON(http.StatusCreated, err) // エラーを返す
 	}
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
 	if err != nil {
 		log.Fatal(err)
-		return e.JSON(http.StatusCreated, err) // エラーを返す
+		return c.JSON(http.StatusCreated, err) // エラーを返す
 	}
 	defer db.Close()
 
@@ -41,7 +41,7 @@ func registerCourse(e echo.Context) error {
 	err = db.QueryRow(query1, name).Scan(&id)
 	if err != nil {
 		log.Fatal(err)
-		return e.JSON(http.StatusCreated, err) // エラーを返す
+		return c.JSON(http.StatusCreated, err) // エラーを返す
 	}
 
 	// INSERT INTO Course ステートメントの準備
@@ -49,14 +49,14 @@ func registerCourse(e echo.Context) error {
 	ins, err := db.Prepare(query2)
 	if err != nil {
 		log.Fatal(err)
-		return e.JSON(http.StatusCreated, err) // エラーを返す
+		return c.JSON(http.StatusCreated, err) // エラーを返す
 	}
 
 	// SQLの実行（Courseへの挿入）
 	_, err = ins.Exec(id, class_id)
 	if err != nil {
 		log.Fatal(err)
-		return e.JSON(http.StatusCreated, err) // エラーを返す
+		return c.JSON(http.StatusCreated, err) // エラーを返す
 	}
 
 	// データベースから全ての時間割を取得
@@ -64,7 +64,7 @@ func registerCourse(e echo.Context) error {
 	rows, err := db.Query(query3)
 	if err != nil {
 		log.Fatal(err)
-		return e.JSON(http.StatusCreated, err) // エラーを返す
+		return c.JSON(http.StatusCreated, err) // エラーを返す
 	}
 	defer rows.Close()
 
@@ -73,23 +73,23 @@ func registerCourse(e echo.Context) error {
 
 	// データベースから個人の時間割を取得
 	for rows.Next() {
-		var c course
+		var cc course
 
-		err := rows.Scan(&c.Course_id, &c.Person_id, &c.Class_id)
+		err := rows.Scan(&cc.Course_id, &cc.Person_id, &cc.Class_id)
 
 		if err != nil {
 			log.Fatal(err)
-			return e.JSON(http.StatusCreated, err) // エラーを返す
+			return c.JSON(http.StatusCreated, err) // エラーを返す
 		}
 
-		courses = append(courses, c)
+		courses = append(courses, cc)
 	}
 
 	// coursesスライスが空でない場合、最後の個人の時間割（c）を取得して返す
 	if len(courses) > 0 {
 		lastCourse := courses[len(courses)-1]
-		return e.JSON(http.StatusCreated, lastCourse)
+		return c.JSON(http.StatusCreated, lastCourse)
 	}
 
-	return e.JSON(http.StatusCreated, err)
+	return c.JSON(http.StatusCreated, err)
 }
