@@ -36,7 +36,8 @@ func registerCourse(e echo.Context) error {
 	defer db.Close()
 
 	// SQLの準備（Personからnameに一致するidを取得する）
-	row := db.QueryRow("SELECT id FROM Person WHERE name = ?", name)
+	query1 := "SELECT id FROM Person WHERE name = ?"
+	row := db.QueryRow(query1, name)
 	var id int
 	err = row.Scan(&id)
 	if err != nil {
@@ -45,7 +46,8 @@ func registerCourse(e echo.Context) error {
 	}
 
 	// INSERT INTO Course ステートメントの準備
-	ins, err := db.Prepare("INSERT INTO Course (person_id, class_id) VALUES (?, ?)")
+	query2 := "INSERT INTO Course (person_id, class_id) VALUES (?, ?)"
+	ins, err := db.Prepare(query2)
 	if err != nil {
 		log.Fatal(err)
 		return e.JSON(http.StatusCreated, err) // エラーを返す
@@ -59,7 +61,8 @@ func registerCourse(e echo.Context) error {
 	}
 
 	// データベースから全ての時間割を取得
-	rows, err := db.Query("SELECT * FROM Course")
+	query3 := "SELECT * FROM Course"
+	rows, err := db.Query(query3)
 	if err != nil {
 		log.Fatal(err)
 		return e.JSON(http.StatusCreated, err) // エラーを返す
