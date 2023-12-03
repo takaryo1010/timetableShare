@@ -37,9 +37,8 @@ func registerCourse(e echo.Context) error {
 
 	// SQLの準備（Personからnameに一致するidを取得する）
 	query1 := "SELECT id FROM Person WHERE name = ?"
-	row := db.QueryRow(query1, name)
 	var id int
-	err = row.Scan(&id)
+	err = db.QueryRow(query1, name).Scan(&id)
 	if err != nil {
 		log.Fatal(err)
 		return e.JSON(http.StatusCreated, err) // エラーを返す
