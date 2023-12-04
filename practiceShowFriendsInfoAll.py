@@ -1,7 +1,7 @@
 import requests
 
 # サーバーのエンドポイントURLを設定
-url = 'http://52.69.43.211/showMyFriends'  # サーバーの実際のURLに置き換えてください
+url = 'http://52.69.43.211/showFriends'  # サーバーの実際のURLに置き換えてください
 
 # 送信するデータを準備
 my_name = input("my_name:")

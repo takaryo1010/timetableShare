@@ -18,7 +18,7 @@ type (
 
 var friendInfos []friendInfo
 
-func showMyFriends(c echo.Context) error {
+func showFriends(c echo.Context) error {
 	name := c.FormValue("my_name")
 
 	// データベースのハンドルを取得する
