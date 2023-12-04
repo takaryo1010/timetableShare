@@ -25,6 +25,7 @@ func main() {
 	e.GET("/showPeopleInfoAll", showPeopleInfoAll)
 	e.GET("/showClassInfoAll", showClassInfoAll)
 	e.GET("/showMyClassInfo", showMyClassInfo)
+	e.GET("/showCourseInfoAll", showCourseInfoAll)
 	e.POST("/showClassInfoTimeSpecification", showClassInfoTimeSpecification)
 	e.POST("/showFriends", showFriends)
 
