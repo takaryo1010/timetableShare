@@ -5,18 +5,17 @@ url = 'http://52.69.43.211/registerClass'  # サーバーの実際のURLに置�
 
 # 送信するデータを準備
 
-class_id = 10000
-class_name = '線形代数の応用 100'
-class_day = 'Monday'
-class_time = 5
-class_unit = 2
-must_flag = 1
-teacher_name = 'zempo'
-room = 'W103'
-term = 'Fall'
-dmcs = 'DM'
+class_name = input("class_name:")
+class_day = input("day:")
+class_time = int(input("period:"))
+class_unit = int(input("unit:"))
+must_flag = int(input("must:"))
+teacher_name = input("teacher_name:")
+room = input("room:")
+term = input("term:")
+dmcs = input("department:")
 data = {
-        'class_id' : class_id, 'name' : class_name, 
+        'name' : class_name, 
         'day' : class_day, 'period' : class_time, 
         'unit' : class_unit, 'must' : must_flag,
         'teacher' : teacher_name, 'room' : room, 
