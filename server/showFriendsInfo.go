@@ -9,10 +9,17 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-var Friends []Friend
+type (
+	friendInfo struct {
+		My_id   int `json:"my_id"`
+		Your_id int `json:"your_id"`
+	}
+)
 
-func showMyFriends(c echo.Context) error {
-	name := c.FormValue("name")
+var friendInfos []friendInfo
+
+func showFriends(c echo.Context) error {
+	name := c.FormValue("my_name")
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
@@ -23,7 +30,8 @@ func showMyFriends(c echo.Context) error {
 	defer db.Close()
 
 	// SQLの実行
-	rows, err := db.Query("SELECT f.my_id, f.your_id FROM Friends f JOIN Person p ON f.my_id = p.id WHERE p.name = ?;", name)
+	query := "SELECT f.my_id, f.your_id FROM Friends f JOIN Person p ON f.my_id = p.id WHERE p.name = ?;"
+	rows, err := db.Query(query, name)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
@@ -31,20 +39,20 @@ func showMyFriends(c echo.Context) error {
 	defer rows.Close()
 
 	// Friendsスライスをクリア
-	Friends = nil
+	friends = nil
 
 	// データベースから人物を取得
 	for rows.Next() {
-		var f Friend
+		var f friend
 
-		err := rows.Scan(&f.My_name, &f.Your_name)
+		err := rows.Scan(&f.My_id, &f.Your_id)
 		if err != nil {
 			log.Fatal(err)
 			return err // エラーを返す
 		}
 
-		Friends = append(Friends, f)
+		friends = append(friends, f)
 	}
 
-	return c.JSON(http.StatusOK, Friends)
+	return c.JSON(http.StatusOK, friends)
 }

@@ -4,51 +4,67 @@ import (
 	"database/sql"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
 
 type (
 	course struct {
-		Course_id   int    `json:"course_id"`
-		Person_name string `json:"name"`
-		Class_id    int    `json:"class_id"`
+		Course_id int `json:"course_id"`
+		Person_id int `json:"person_id"`
+		Class_id  int `json:"class_id"`
 	}
 )
 
 var courses []course
 
-func registerCourse(e echo.Context) error {
-	name := e.FormValue("name")
-	class_id := e.FormValue("class_id")
+func registerCourse(c echo.Context) error {
+	name := c.FormValue("name")
+	class_id, err := strconv.Atoi(c.FormValue("classid"))
+	if err != nil {
+		log.Fatal(err)
+		return c.JSON(http.StatusCreated, err) // エラーを返す
+	}
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
 	if err != nil {
 		log.Fatal(err)
-		return err // エラーを返す
+		return c.JSON(http.StatusCreated, err) // エラーを返す
 	}
 	defer db.Close()
 
-	// SQLの準備
-	ins, err := db.Prepare("INSERT INTO Course (person_id, class_id) SELECT id AS person_id, ? AS class_id FROM Person WHERE name = ?")
+	// SQLの準備（Personからnameに一致するidを取得する）
+	query1 := "SELECT id FROM Person WHERE name = ?"
+	var id int
+	err = db.QueryRow(query1, name).Scan(&id)
 	if err != nil {
 		log.Fatal(err)
-		return err // エラーを返す
+		return c.JSON(http.StatusCreated, err) // エラーを返す
 	}
 
-	// SQLの実行
-	_, err = ins.Exec(class_id, name)
+	// INSERT INTO Course ステートメントの準備
+	query2 := "INSERT INTO Course (person_id, class_id) VALUES (?, ?)"
+	ins, err := db.Prepare(query2)
 	if err != nil {
 		log.Fatal(err)
-		return err // エラーを返す
+		return c.JSON(http.StatusCreated, err) // エラーを返す
+	}
+
+	// SQLの実行（Courseへの挿入）
+	_, err = ins.Exec(id, class_id)
+	if err != nil {
+		log.Fatal(err)
+		return c.JSON(http.StatusCreated, err) // エラーを返す
 	}
 
 	// データベースから全ての時間割を取得
-	rows, err := db.Query("SELECT * FROM Course")
+	query3 := "SELECT * FROM Course"
+	rows, err := db.Query(query3)
 	if err != nil {
 		log.Fatal(err)
-		return err // エラーを返す
+		return c.JSON(http.StatusCreated, err) // エラーを返す
 	}
 	defer rows.Close()
 
@@ -57,23 +73,23 @@ func registerCourse(e echo.Context) error {
 
 	// データベースから個人の時間割を取得
 	for rows.Next() {
-		var c course
+		var cc course
 
-		err := rows.Scan(&c.Course_id, &c.Person_name, &c.Class_id)
+		err := rows.Scan(&cc.Course_id, &cc.Person_id, &cc.Class_id)
 
 		if err != nil {
 			log.Fatal(err)
-			return err // エラーを返す
+			return c.JSON(http.StatusCreated, err) // エラーを返す
 		}
 
-		courses = append(courses, c)
+		courses = append(courses, cc)
 	}
 
 	// coursesスライスが空でない場合、最後の個人の時間割（c）を取得して返す
 	if len(courses) > 0 {
 		lastCourse := courses[len(courses)-1]
-		return e.JSON(http.StatusCreated, lastCourse)
+		return c.JSON(http.StatusCreated, lastCourse)
 	}
 
-	return e.JSON(http.StatusCreated, nil)
+	return c.JSON(http.StatusCreated, err)
 }

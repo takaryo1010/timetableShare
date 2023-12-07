@@ -35,7 +35,7 @@ func registerClass(e echo.Context) error {
 	teacher := e.FormValue("teacher")
 	room := e.FormValue("room")
 	term := e.FormValue("term")
-	Department := e.FormValue("department")
+	department := e.FormValue("department")
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
@@ -53,7 +53,7 @@ func registerClass(e echo.Context) error {
 	}
 
 	// SQLの実行
-	_, err = ins.Exec(name, day, period, unit, must, teacher, room, term, Department)
+	_, err = ins.Exec(name, day, period, unit, must, teacher, room, term, department)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す

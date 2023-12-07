@@ -88,7 +88,7 @@ func showClassInfoTimeSpecification(c echo.Context) error {
 	conditions["teacher"] = c.FormValue("teacher")
 	conditions["room"] = c.FormValue("room")
 	conditions["term"] = c.FormValue("term")
-	conditions["Department"] = c.FormValue("Department")
+	conditions["Department"] = c.FormValue("department")
 	conditions["day"] = c.FormValue("day")
 	conditions["period"] = c.FormValue("period")
 
