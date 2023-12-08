@@ -1,3 +1,6 @@
+# 事情がない限り、このコードではなくサイトの方からサインアップをしてください
+# サーバーが落ちているときには @fukuda_taichi か @takahashi_ryota に連絡をください
+
 import requests
 
 # サーバーのエンドポイントURLを設定
