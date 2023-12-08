@@ -87,8 +87,8 @@ func registerFriends(c echo.Context) error {
 
 	// friendsスライスが空でない場合、最後の個人の友達情報（f）を取得して返す
 	if len(friends) > 0 {
-		lastCourse := friends[len(friends)-1]
-		return c.JSON(http.StatusCreated, lastCourse)
+		lastFriends := friends[len(friends)-1]
+		return c.JSON(http.StatusCreated, lastFriends)
 	}
 
 	return c.JSON(http.StatusCreated, err)
