@@ -11,17 +11,23 @@ import (
 
 func removeCourse(e echo.Context) error {
 	res1 := e.FormValue("class_id")
-	res2 := e.FormValue("person_id")
+	name := e.FormValue("name")
 	class_id ,err:= strconv.Atoi(res1)
+	
+	
+	
 	if err != nil {
 		log.Fatal(err)
 		return e.JSON(http.StatusCreated, err) // エラーを返す
 	}
-	person_id ,err:= strconv.Atoi(res2)
+
+
+
 	if err != nil {
 		log.Fatal(err)
 		return e.JSON(http.StatusCreated, err) // エラーを返す
 	}
+	
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
 	if err != nil {
@@ -31,7 +37,15 @@ func removeCourse(e echo.Context) error {
 	defer db.Close()
 
 	// SQLの準備（Personからnameに一致するidを取得する）
-	db.QueryRow("DELETE FROM Course WHERE class_id = ? AND person_id = ?", class_id,person_id)
+	query1 := "SELECT id FROM Person WHERE name = ?"
+	var id int
+	err = db.QueryRow(query1, name).Scan(&id)
+	if err != nil {
+		log.Fatal(err)
+		return e.JSON(http.StatusCreated, err) // エラーを返す
+	}
+	// SQLの準備（Personからnameに一致するidを取得する）
+	db.QueryRow("DELETE FROM Course WHERE class_id = ? AND person_id = ?", class_id,id)
 	
 
 	// データベースから全ての時間割を取得
