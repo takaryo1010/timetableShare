@@ -10,8 +10,14 @@ import (
 )
 
 func removeCourse(e echo.Context) error {
-	res := e.FormValue("class_id")
-	class_id ,err:= strconv.Atoi(res)
+	res1 := e.FormValue("class_id")
+	res2 := e.FormValue("person_id")
+	class_id ,err:= strconv.Atoi(res1)
+	if err != nil {
+		log.Fatal(err)
+		return e.JSON(http.StatusCreated, err) // エラーを返す
+	}
+	person_id ,err:= strconv.Atoi(res2)
 	if err != nil {
 		log.Fatal(err)
 		return e.JSON(http.StatusCreated, err) // エラーを返す
@@ -25,7 +31,7 @@ func removeCourse(e echo.Context) error {
 	defer db.Close()
 
 	// SQLの準備（Personからnameに一致するidを取得する）
-	row := db.QueryRow("DELETE FROM Course WHERE class_id = ?", class_id)
+	row := db.QueryRow("DELETE FROM Course WHERE class_id = ? AND person_id = ?", class_id,person_id)
 	var id int
 	err = row.Scan(&id)
 	if err != nil {
