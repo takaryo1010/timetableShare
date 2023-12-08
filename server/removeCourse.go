@@ -10,23 +10,13 @@ import (
 )
 
 func removeCourse(e echo.Context) error {
-	res1 := e.FormValue("class_id")
+	class_id := e.FormValue("class_id")
 	name := e.FormValue("name")
-	class_id ,err:= strconv.Atoi(res1)
 	
 	
 	
-	if err != nil {
-		log.Fatal(err)
-		return e.JSON(http.StatusCreated, err) // エラーを返す
-	}
-
-
-
-	if err != nil {
-		log.Fatal(err)
-		return e.JSON(http.StatusCreated, err) // エラーを返す
-	}
+	
+	
 	
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
