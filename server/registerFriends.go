@@ -60,7 +60,7 @@ func registerFriends(c echo.Context) error {
 	}
 
 	// データベースから全ての友達情報を取得
-	query3 := "SELECT * FROM Course"
+	query3 := "SELECT * FROM Friends"
 	rows, err := db.Query(query3)
 	if err != nil {
 		log.Fatal(err)
