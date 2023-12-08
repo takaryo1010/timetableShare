@@ -45,7 +45,21 @@ func registerClass(e echo.Context) error {
 	}
 	defer db.Close()
 
-	// SQLの準備
+	// 名前と期間が既に存在するか確認するクエリ
+	existsQuery := "SELECT COUNT(*) FROM Class WHERE Name = ? AND Term = ?"
+	var count int
+	err = db.QueryRow(existsQuery, name, term).Scan(&count)
+	if err != nil {
+		log.Fatal(err)
+		return err // エラーを返す
+	}
+
+	// 既に存在する場合
+	if count > 0 {
+		return e.JSON(http.StatusConflict, "Already Registered") // ステータスコード409: Conflict
+	}
+
+	// 存在しない場合は授業を登録する
 	ins, err := db.Prepare("INSERT INTO Class (Name, Day, Period, Unit, Must, Teacher, Room,Term,Department) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)")
 	if err != nil {
 		log.Fatal(err)
