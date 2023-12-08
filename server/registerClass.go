@@ -42,11 +42,47 @@ func registerClass(c echo.Context) error {
 	term := c.FormValue("term")
 	department := c.FormValue("department")
 
+	// 入力データが足りているかどうかを示す。
+	missingFields := []string{}
+	if name == "" {
+		missingFields = append(missingFields, "name")
+	}
+	if day == "" {
+		missingFields = append(missingFields, "day")
+	}
+	if period == "" {
+		missingFields = append(missingFields, "period")
+	}
+	if unit == "" {
+		missingFields = append(missingFields, "unit")
+	}
+	if must == "" {
+		missingFields = append(missingFields, "must")
+	}
+	if teacher == "" {
+		missingFields = append(missingFields, "teacher")
+	}
+	if room == "" {
+		missingFields = append(missingFields, "room")
+	}
+	if term == "" {
+		missingFields = append(missingFields, "term")
+	}
+	if department == "" {
+		missingFields = append(missingFields, "department")
+	}
+
+	if len(missingFields) > 0 {
+		// 値が足りないときに足りないことを示す
+		errMsg := fmt.Sprintf("Missing fields: %v", missingFields)
+		return c.JSON(http.StatusBadRequest, errMsg)
+	}
+
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
 	if err != nil {
 		log.Fatal(err)
-		return c.JSON(http.StatusCreated, err) // エラーを返す
+		return err // エラーを返す
 	}
 	defer db.Close()
 
@@ -56,7 +92,7 @@ func registerClass(c echo.Context) error {
 	err = db.QueryRow(existsQuery, name, term).Scan(&count)
 	if err != nil {
 		log.Fatal(err)
-		return c.JSON(http.StatusBadRequest, "Incorrect Registered") // ステータスコード400: Bad Request
+		return err
 	}
 
 	// 既に存在する場合
@@ -68,20 +104,20 @@ func registerClass(c echo.Context) error {
 	ins, err := db.Prepare("INSERT INTO Class (Name, Day, Period, Unit, Must, Teacher, Room,Term,Department) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)")
 	if err != nil {
 		log.Fatal(err)
-		return c.JSON(http.StatusBadRequest, "Incorrect Registered") // ステータスコード400: Bad Request
+		return err
 	}
 
 	// SQLの実行
 	result, err := ins.Exec(name, day, period, unit, must, teacher, room, term, department)
 	if err != nil {
 		log.Fatal(err)
-		return c.JSON(http.StatusBadRequest, "Incorrect Registered") // ステータスコード400: Bad Request
+		return err
 	}
 
 	// 登録が成功したかどうかを確認
 	affected, _ := result.RowsAffected()
 	if affected == 0 {
-		return c.JSON(http.StatusBadRequest, "Incorrect Registered") // ステータスコード400: Bad Request
+		return err
 	}
 
 	// データベースから全ての授業を取得
