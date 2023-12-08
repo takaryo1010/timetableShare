@@ -23,7 +23,7 @@
         </nav>
     </header>
     <h1>時間割登録</h1>
-    <form action="/timetable_registration" method="search">
+    <form action="/timetable_registration" method="POST">
         <input type="text" name="class_name" placeholder="Class Name">
         <select name="class_day">
             <option value="">Select class day</option>
@@ -93,7 +93,7 @@
         </tr>
         {% endfor %}
     </table>
-    <form action="/timetable_registration" method="register">
+    <form action="/timetable_registration" method="POST">
         <input type="number" name="class_id" placeholder="Class ID">
         <button type="submit">登録</button>
     </form>

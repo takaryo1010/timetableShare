@@ -174,76 +174,39 @@ def logout():
     return redirect(url_for('login'))
 
 
-@app.route("/timetable_registration", methods=['search', 'register'])
+@app.route("/timetable_registration", methods=['GET', 'POST'])
 def index_timetable_registration():
-    if request.method == 'search':
-        data = {}
-        """
-        class_name = request.form.get('class_name')
-        class_day = request.form.get('class_day')
-        class_time = request.form.get('class_time')
-        class_unit = request.form.get('class_unit')
-        must_flag = request.form.get('must_flag')
-        teacher_name = request.form.get('teacher_name')
-        room = request.form.get('room')
-        term = request.form.get('term')
-        department = request.form.get('department')
-        class_id = request.form.get('class_id')
-        if(class_name == ""):
-            class_name = None
-        elif(class_name != "" or class_name != None):
-            data['name'] = request.form.get('class_name')
-        if(class_day == ""):
-            class_day = None
-        if(class_time == ""):
-            class_time = None
-        if(class_unit == ""):
-            class_unit = None
-        if(must_flag == ""):
-            must_flag = None
-        if(teacher_name == ""):
-            teacher_name = None
-        if(room == ""):
-            room = None
-        if(term == ""):
-            term = None
-        if(department == ""):
-            department = None
-        if(class_id == ""):
-            class_id = None
-        """
-        if(request.form.get('class_name') != "" and request.form.get('class_name') != None):
-            data['name'] = request.form.get('class_name')
-        if(request.form.get('class_day') != "" and request.form.get('class_day') != None):
-            data['day'] = request.form.get('class_day')
-        if(request.form.get('class_time') != "" and request.form.get('class_time') != None):
-            data['period'] = request.form.get('class_time')
-        if(request.form.get('class_unit') != "" and request.form.get('class_unit') != None):
-            data['unit'] = request.form.get('class_unit')
-        if(request.form.get('must_flag') != "" and request.form.get('must_flag') != None):
-            data['must'] = request.form.get('must_flag')
-        if(request.form.get('teacher_name') != "" and request.form.get('teacher_name') != None):
-            data['teacher'] = request.form.get('teacher_name')
-        if(request.form.get('room') != "" and request.form.get('room') != None):
-            data['room'] = request.form.get('room')
-        if(request.form.get('term') != "" and request.form.get('term') != None):
-            data['term'] = request.form.get('term')
-        if(request.form.get('department') != "" and request.form.get('department') != None):
-            data['department'] = request.form.get('department')
-        url = 'http://52.69.43.211/showClassInfoTimeSpecification'
-        response = requests.post(url, data=data)
-        json_response = response.json()
-        print(json_response)
-        return render_template('timetable_registration.html', data=data, json=json_response)
-    elif request.method == 'register':
-        url = 'http://52.69.43.211/showPeopleInfoAll'
-        response = requests.get(url)
-        json_response = response.json()
-        name = json_response['name']
-        url = 'http://52.69.43.211/registerCourse'
-        classid = request.form.get('class_id')
-        if(classid != "" and classid != None):
-            data = {'person_name': name, 'class_id': calssid}
+    if request.method == 'POST':
+        if request.form.get('class_id') == "" or request.form.get('class_id') == None:
+            data = {}
+            if request.form.get('class_name') != "" and request.form.get('class_name') != None:
+                data['name'] = request.form.get('class_name')
+            if request.form.get('class_day') != "" and request.form.get('class_day') != None:
+                data['day'] = request.form.get('class_day')
+            if request.form.get('class_time') != "" and request.form.get('class_time') != None:
+                data['period'] = request.form.get('class_time')
+            if request.form.get('class_unit') != "" and request.form.get('class_unit') != None:
+                data['unit'] = request.form.get('class_unit')
+            if request.form.get('must_flag') != "" and request.form.get('must_flag') != None:
+                data['must'] = request.form.get('must_flag')
+            if request.form.get('teacher_name') != "" and request.form.get('teacher_name') != None:
+                data['teacher'] = request.form.get('teacher_name')
+            if request.form.get('room') != "" and request.form.get('room') != None:
+                data['room'] = request.form.get('room')
+            if request.form.get('term') != "" and request.form.get('term') != None:
+                data['term'] = request.form.get('term')
+            if request.form.get('department') != "" and request.form.get('department') != None:
+                data['department'] = request.form.get('department')
+            url = 'http://52.69.43.211/showClassInfoTimeSpecification'
+            response = requests.post(url, data=data)
+            json_response = response.json()
+            print(json_response)
+            return render_template('timetable_registration.html', data=data, json=json_response)
+        else:
+            url = 'http://52.69.43.211/registerCourse'
+            name = current_user.username
+            classid = request.form.get('class_id')
+            data = {'person_name': name, 'class_id': classid}
             response = requests.post(url, data)
             json_response = response.json()
             print(json_response)
