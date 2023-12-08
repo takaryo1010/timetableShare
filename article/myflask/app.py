@@ -243,7 +243,7 @@ def index_timetable_registration():
         url = 'http://52.69.43.211/registerCourse'
         classid = request.form.get('class_id')
         if(classid != "" and classid != None):
-            data = {'person_name': name, 'class_id': calssid}
+            data = {'person_name': name, 'class_id': classid}
             response = requests.post(url, data)
             json_response = response.json()
             print(json_response)
