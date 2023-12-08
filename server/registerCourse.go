@@ -21,11 +21,8 @@ var courses []course
 
 func registerCourse(c echo.Context) error {
 	name := c.FormValue("name")
-	class_id, err := strconv.Atoi(c.FormValue("classid"))
-	if err != nil {
-		log.Fatal(err)
-		return c.JSON(http.StatusCreated, err) // エラーを返す
-	}
+	class_id:=c.FormValue("classid")
+	
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
