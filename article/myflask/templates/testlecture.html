@@ -49,20 +49,14 @@
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
             {% set lecture = timetable.get(day)[i] if timetable.get(day) else 'フリー' %}
             <td>
-                {% if lecture != 'フリー' %}
-                <!-- 授業が存在する場合、データ属性を使用して識別 -->
-                <div class="lecture" onclick="handleClick(true)">{{ lecture }}</div>
-                {% else %}
-                <!-- 授業が存在しない場合、データ属性を使用して識別 -->
-                <div class="free-slot" onclick="handleClick(false)">{{ lecture }}</div>
-                {% endif %}
+                <div class="cell" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
             </td>
             {% endfor %}
         </tr>
         {% endfor %}
         <script>
-            function handleClick(hasClass) {
-                if (hasClass) {
+            function handleClick(lecture) {
+                if (lecture != 'フリー') {
                     alert('Class has already exist');
                 } else {
                     window.location.href = '/timetable_registration';

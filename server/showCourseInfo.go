@@ -52,7 +52,7 @@ func showCourseInfoAll(c echo.Context) error {
 	defer rows.Close()
 
 	// classInfosスライスをクリア
-	personInfos = nil
+	courseInfos = nil
 
 	// データベースから登録情報を取得
 	for rows.Next() {

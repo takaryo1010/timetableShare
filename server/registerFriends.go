@@ -30,23 +30,38 @@ func registerFriends(c echo.Context) error {
 	defer db.Close()
 
 	// my_nameに対応するmy_idを取得するクエリ
-	query := "SELECT id FROM Person WHERE name = ?"
+	searchQuery := "SELECT id FROM Person WHERE name = ?"
 	var my_id, your_id int
-	err = db.QueryRow(query, my_name).Scan(&my_id)
+	err = db.QueryRow(searchQuery, my_name).Scan(&my_id)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
 	}
 
 	// your_nameに対応するyour_idを取得するクエリ
-	err = db.QueryRow(query, your_name).Scan(&your_id)
+	err = db.QueryRow(searchQuery, your_name).Scan(&your_id)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
 	}
 
-	// SQLの準備
-	ins, err := db.Prepare("INSERT INTO Friends (my_id, your_id) VALUES (?, ?)")
+	// SQLの実行
+	existsQuery := "SELECT COUNT(*) FROM Friends WHERE (my_id = ? AND your_id = ?) OR (my_id = ? AND your_id = ?)"
+	var count int
+	err = db.QueryRow(existsQuery, my_id, your_id, your_id, my_id).Scan(&count)
+	if err != nil {
+		log.Fatal(err)
+		return err // エラーを返す
+	}
+
+	// 指定された組み合わせが既に存在する場合
+	if count > 0 {
+		return c.JSON(http.StatusConflict, "Already Registered") // ステータスコード409: Conflict
+	}
+
+	// 存在しない場合は友達を追加する
+	insertQuery := "INSERT INTO Friends (my_id, your_id) VALUES (?, ?)"
+	ins, err := db.Prepare(insertQuery)
 	if err != nil {
 		log.Fatal(err)
 		return err // エラーを返す
@@ -60,8 +75,8 @@ func registerFriends(c echo.Context) error {
 	}
 
 	// データベースから全ての友達情報を取得
-	query3 := "SELECT * FROM Course"
-	rows, err := db.Query(query3)
+	selectQuery := "SELECT * FROM Friends"
+	rows, err := db.Query(selectQuery)
 	if err != nil {
 		log.Fatal(err)
 		return c.JSON(http.StatusCreated, err) // エラーを返す
@@ -87,8 +102,8 @@ func registerFriends(c echo.Context) error {
 
 	// friendsスライスが空でない場合、最後の個人の友達情報（f）を取得して返す
 	if len(friends) > 0 {
-		lastCourse := friends[len(friends)-1]
-		return c.JSON(http.StatusCreated, lastCourse)
+		lastFriends := friends[len(friends)-1]
+		return c.JSON(http.StatusCreated, lastFriends)
 	}
 
 	return c.JSON(http.StatusCreated, err)
