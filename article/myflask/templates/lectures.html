@@ -47,10 +47,10 @@
             <td class="time">5限<br>17:00 - 18:40</td>
             {% endif %}
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
-            {% set lecture = timetable.get(day)[i] if timetable.get(day) else 'フリー' %}
+            {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
             <td>
                 {% if lecture != 'フリー' %}
-                <div class="lecture">{{ lecture }}</div>
+                <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
                 {% else %}
                 {{ lecture }}
                 {% endif %}
@@ -58,6 +58,16 @@
             {% endfor %}
         </tr>
         {% endfor %}
+        <script>
+            function handleClick(lecture) {
+                // alert(lecture);
+                if (lecture != '') {
+                    alert('Class has already exist');
+                } else {
+                    alert('Class has not exist yet');
+                }
+            }
+        </script>
     </table>
 </body>
 
