@@ -74,8 +74,13 @@ func registerClass(c echo.Context) error {
 
 	if len(missingFields) > 0 {
 		// 値が足りないときに足りないことを示す
-		errMsg := fmt.Sprintf("Missing fields: %v", missingFields)
+		errMsg := fmt.Sprintf("入力データが足りません。\n以下は足りないデータの一覧です。\ns: %v", missingFields)
 		return c.JSON(http.StatusBadRequest, errMsg)
+	}
+
+	// must の値が 0 か 1 以外のときに 0 か 1 である必要があることを示す
+	if must != "0" && must != "1" {
+		return c.JSON(http.StatusBadRequest, "must に 0 と 1 以外の値が入っています。")
 	}
 
 	// データベースのハンドルを取得する
@@ -97,7 +102,7 @@ func registerClass(c echo.Context) error {
 
 	// 既に存在する場合
 	if count > 0 {
-		return c.JSON(http.StatusConflict, "Already Registered") // ステータスコード409: Conflict
+		return c.JSON(http.StatusConflict, ("すでに登録されています。")) // ステータスコード409: Conflict
 	}
 
 	// 存在しない場合は授業を登録する
@@ -111,13 +116,13 @@ func registerClass(c echo.Context) error {
 	result, err := ins.Exec(name, day, period, unit, must, teacher, room, term, department)
 	if err != nil {
 		log.Fatal(err)
-		return err
+		return c.JSON(http.StatusBadRequest, "登録が間違っています") // ステータスコード400: Bad Request
 	}
 
 	// 登録が成功したかどうかを確認
 	affected, _ := result.RowsAffected()
 	if affected == 0 {
-		return err
+		return c.JSON(http.StatusBadRequest, "登録が間違っています") // ステータスコード400: Bad Request
 	}
 
 	// データベースから全ての授業を取得
