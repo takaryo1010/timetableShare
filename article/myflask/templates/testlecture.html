@@ -47,19 +47,20 @@
             <td class="time">5限<br>17:00 - 18:40</td>
             {% endif %}
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
-            {% set lecture = timetable.get(day)[i] if timetable.get(day) else 'フリー' %}
+            {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
             <td>
-                <div class="cell" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
             </td>
             {% endfor %}
         </tr>
         {% endfor %}
         <script>
             function handleClick(lecture) {
-                if (lecture != 'フリー') {
+                alert(lecture);
+                if (lecture != '') {
                     alert('Class has already exist');
                 } else {
-                    window.location.href = '/timetable_registration';
+                    alert('Class has not exist yet');
                 }
             }
         </script>
