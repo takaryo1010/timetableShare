@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -18,10 +17,6 @@ type (
 )
 
 var courses []course
-
-func errorByFmtErrorF() error {
-	return fmt.Errorf("Error: %s", "fmt.Errorf")
-}
 
 func registerCourse(c echo.Context) error {
 	name := c.FormValue("name")
@@ -56,7 +51,7 @@ func registerCourse(c echo.Context) error {
 	_, err = ins.Exec(id, class_id)
 	if err != nil {
 		log.Fatal(err)
-		return c.JSON(http.StatusBadRequest, errorByFmtErrorF()) // ステータスコード400: Bad Request
+		return c.JSON(http.StatusBadRequest, err) // ステータスコード400: Bad Request
 	}
 
 	// データベースから全ての時間割を取得
