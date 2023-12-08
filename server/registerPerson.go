@@ -28,7 +28,21 @@ func registerPerson(c echo.Context) error {
 	}
 	defer db.Close()
 
-	// SQLの準備
+	// 名前が既に存在するか確認するクエリ
+	existsQuery := "SELECT COUNT(*) FROM Person WHERE Name = ?"
+	var count int
+	err = db.QueryRow(existsQuery, name).Scan(&count)
+	if err != nil {
+		log.Fatal(err)
+		return err // エラーを返す
+	}
+
+	// 既に存在する場合
+	if count > 0 {
+		return c.JSON(http.StatusConflict, "Already Registered") // ステータスコード409: Conflict
+	}
+
+	// 存在しない場合は人物を登録する
 	ins, err := db.Prepare("INSERT INTO Person (Name) VALUES(?)")
 	if err != nil {
 		log.Fatal(err)
