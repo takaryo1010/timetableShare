@@ -2,9 +2,9 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"net/http"
-	
 
 	"github.com/labstack/echo/v4"
 )
@@ -19,10 +19,13 @@ type (
 
 var courses []course
 
+func errorByFmtErrorF() error {
+	return fmt.Errorf("Error: %s", "fmt.Errorf")
+}
+
 func registerCourse(c echo.Context) error {
 	name := c.FormValue("name")
-	class_id:=c.FormValue("classid")
-	
+	class_id := c.FormValue("classid")
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
@@ -53,7 +56,7 @@ func registerCourse(c echo.Context) error {
 	_, err = ins.Exec(id, class_id)
 	if err != nil {
 		log.Fatal(err)
-		return c.JSON(http.StatusCreated, err) // エラーを返す
+		return c.JSON(http.StatusBadRequest, errorByFmtErrorF()) // ステータスコード400: Bad Request
 	}
 
 	// データベースから全ての時間割を取得
