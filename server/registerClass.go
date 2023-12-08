@@ -72,10 +72,16 @@ func registerClass(c echo.Context) error {
 	}
 
 	// SQLの実行
-	_, err = ins.Exec(name, day, period, unit, must, teacher, room, term, department)
+	result, err := ins.Exec(name, day, period, unit, must, teacher, room, term, department)
 	if err != nil {
 		log.Fatal(err)
-		return c.JSON(http.StatusCreated, err) // エラーを返す
+		return c.JSON(http.StatusBadRequest, "Incorrect Registered") // ステータスコード400: Bad Request
+	}
+
+	// 登録が成功したかどうかを確認
+	affected, _ := result.RowsAffected()
+	if affected == 0 {
+		return c.JSON(http.StatusBadRequest, "Incorrect Registered") // ステータスコード400: Bad Request
 	}
 
 	// データベースから全ての授業を取得
