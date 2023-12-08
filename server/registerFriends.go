@@ -9,11 +9,13 @@ import (
 )
 
 type (
-	Friend struct {
-		My_name   string `json:"my_name"`
-		Your_name string `json:"your_name"`
+	friend struct {
+		My_id   int `json:"my_id"`
+		Your_id int `json:"your_id"`
 	}
 )
+
+var friends []friend
 
 func registerFriends(c echo.Context) error {
 	my_name := c.FormValue("my_name")
@@ -57,5 +59,37 @@ func registerFriends(c echo.Context) error {
 		return err // エラーを返す
 	}
 
-	return c.String(http.StatusOK, err.Error())
+	// データベースから全ての友達情報を取得
+	query3 := "SELECT * FROM Friends"
+	rows, err := db.Query(query3)
+	if err != nil {
+		log.Fatal(err)
+		return c.JSON(http.StatusCreated, err) // エラーを返す
+	}
+	defer rows.Close()
+
+	// friendsスライスをクリア
+	friends = nil
+
+	// データベースから個人の友達情報を取得
+	for rows.Next() {
+		var f friend
+
+		err := rows.Scan(&f.My_id, &f.Your_id)
+
+		if err != nil {
+			log.Fatal(err)
+			return c.JSON(http.StatusCreated, err) // エラーを返す
+		}
+
+		friends = append(friends, f)
+	}
+
+	// friendsスライスが空でない場合、最後の個人の友達情報（f）を取得して返す
+	if len(friends) > 0 {
+		lastCourse := friends[len(friends)-1]
+		return c.JSON(http.StatusCreated, lastCourse)
+	}
+
+	return c.JSON(http.StatusCreated, err)
 }

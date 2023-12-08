@@ -19,15 +19,16 @@ func main() {
 	// ルートを設定
 	e.GET("/", connect_check) // ローカル環境の場合、http://localhost:80/をGETするとDBと接続できたか返す
 	e.POST("/registerPerson", registerPerson)
-	e.GET("/showClassInfoAll", showClassInfoAll)
-	e.GET("/showPeopleInfoAll", showPeopleInfoAll)
-	e.POST("/showClassInfoTimeSpecification", showClassInfoTimeSpecification)
+	e.POST("/registerCourse", registerCourse)
 	e.POST("/registerClass", registerClass)
 	e.POST("/registerFriends", registerFriends)
-	e.POST("/showMyFriends", showMyFriends)
-	e.POST("/registerCourse", registerCourse)
+	e.GET("/showPeopleInfoAll", showPeopleInfoAll)
+	e.POST("/showPeopleTakingSpecificClasses", showPeopleTakingSpecificClasses)
+	e.GET("/showClassInfoAll", showClassInfoAll)
+	e.POST("/showClassInfoTimeSpecification", showClassInfoTimeSpecification)
 	e.POST("/showMyClassInfo", showMyClassInfo)
-	e.POST("/removeCourse",removeCourse)
+	e.GET("/showCourseInfoAll", showCourseInfoAll)
+	e.POST("/showFriends", showFriends)
 
 	// サーバーをポート番号80で起動
 	e.Logger.Fatal(e.Start(":80"))
