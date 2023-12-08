@@ -4,13 +4,24 @@ import (
 	"database/sql"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
 
 func removeCourse(e echo.Context) error {
-	class_id := e.FormValue("class_id")
-
+	res1 := e.FormValue("class_id")
+	res2 := e.FormValue("person_id")
+	class_id ,err:= strconv.Atoi(res1)
+	if err != nil {
+		log.Fatal(err)
+		return e.JSON(http.StatusCreated, err) // エラーを返す
+	}
+	person_id ,err:= strconv.Atoi(res2)
+	if err != nil {
+		log.Fatal(err)
+		return e.JSON(http.StatusCreated, err) // エラーを返す
+	}
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
 	if err != nil {
@@ -20,7 +31,7 @@ func removeCourse(e echo.Context) error {
 	defer db.Close()
 
 	// SQLの準備（Personからnameに一致するidを取得する）
-	row := db.QueryRow("DELETE FROM Course WHERE class_id = ?", class_id)
+	row := db.QueryRow("DELETE FROM Course WHERE class_id = ? AND person_id = ?", class_id,person_id)
 	var id int
 	err = row.Scan(&id)
 	if err != nil {
