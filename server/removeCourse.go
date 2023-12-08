@@ -4,13 +4,18 @@ import (
 	"database/sql"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
 
 func removeCourse(e echo.Context) error {
-	class_id := e.FormValue("class_id")
-
+	res := e.FormValue("class_id")
+	class_id ,err:= strconv.Atoi(res)
+	if err != nil {
+		log.Fatal(err)
+		return e.JSON(http.StatusCreated, err) // エラーを返す
+	}
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
 	if err != nil {
