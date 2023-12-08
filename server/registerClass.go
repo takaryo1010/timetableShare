@@ -56,7 +56,7 @@ func registerClass(c echo.Context) error {
 	err = db.QueryRow(existsQuery, name, term).Scan(&count)
 	if err != nil {
 		log.Fatal(err)
-		return c.JSON(http.StatusCreated, err) // エラーを返す
+		return c.JSON(http.StatusBadRequest, "Incorrect Registered") // ステータスコード400: Bad Request
 	}
 
 	// 既に存在する場合
@@ -68,7 +68,7 @@ func registerClass(c echo.Context) error {
 	ins, err := db.Prepare("INSERT INTO Class (Name, Day, Period, Unit, Must, Teacher, Room,Term,Department) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)")
 	if err != nil {
 		log.Fatal(err)
-		return c.JSON(http.StatusCreated, err) // エラーを返す
+		return c.JSON(http.StatusBadRequest, "Incorrect Registered") // ステータスコード400: Bad Request
 	}
 
 	// SQLの実行
