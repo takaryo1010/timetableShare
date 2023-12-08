@@ -45,7 +45,21 @@ func registerFriends(c echo.Context) error {
 		return err // エラーを返す
 	}
 
-	// SQLの準備
+	// SQLの実行
+	existsQuery := "SELECT COUNT(*) FROM Friends WHERE (my_id = ? AND your_id = ?) OR (my_id = ? AND your_id = ?)"
+	var count int
+	err = db.QueryRow(existsQuery, my_id, your_id, your_id, my_id).Scan(&count)
+	if err != nil {
+		log.Fatal(err)
+		return err // エラーを返す
+	}
+
+	// 指定された組み合わせが既に存在する場合
+	if count > 0 {
+		return c.JSON(http.StatusConflict, "Already Registered") // ステータスコード409: Conflict
+	}
+
+	// 存在しない場合は友達を追加する
 	ins, err := db.Prepare("INSERT INTO Friends (my_id, your_id) VALUES (?, ?)")
 	if err != nil {
 		log.Fatal(err)
@@ -87,8 +101,8 @@ func registerFriends(c echo.Context) error {
 
 	// friendsスライスが空でない場合、最後の個人の友達情報（f）を取得して返す
 	if len(friends) > 0 {
-		lastCourse := friends[len(friends)-1]
-		return c.JSON(http.StatusCreated, lastCourse)
+		lastFriends := friends[len(friends)-1]
+		return c.JSON(http.StatusCreated, lastFriends)
 	}
 
 	return c.JSON(http.StatusCreated, err)
