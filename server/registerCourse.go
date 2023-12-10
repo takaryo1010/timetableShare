@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"log"
 	"net/http"
-	"strconv"
 
 	"github.com/labstack/echo/v4"
 )
@@ -21,11 +20,7 @@ var courses []course
 
 func registerCourse(c echo.Context) error {
 	name := c.FormValue("name")
-	class_id, err := strconv.Atoi(c.FormValue("classid"))
-	if err != nil {
-		log.Fatal(err)
-		return c.JSON(http.StatusCreated, err) // エラーを返す
-	}
+	class_id := c.FormValue("classid")
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
@@ -56,7 +51,7 @@ func registerCourse(c echo.Context) error {
 	_, err = ins.Exec(id, class_id)
 	if err != nil {
 		log.Fatal(err)
-		return c.JSON(http.StatusCreated, err) // エラーを返す
+		return c.JSON(http.StatusBadRequest, err) // ステータスコード400: Bad Request
 	}
 
 	// データベースから全ての時間割を取得

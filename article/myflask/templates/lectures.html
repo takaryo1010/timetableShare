@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -62,3 +63,79 @@
 </body>
 
 </html>
+=======
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>時間割</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>週間時間割</h1>
+        <nav>
+            <ul>
+                <li><a href="/">ホーム</a></li>
+                <li><a href="/login">ログイン</a></li>
+                <li><a href="/logout">ログアウト</a></li>
+                <li><a href="/timetable_registration">時間割登録</a></li>
+                <li><a href="/timetable_sharing">時間割共有</a></li>
+                <li><a href="/lecture_list">授業一覧</a></li>
+                <li><a href="/lecture_creation">授業作成</a></li>
+            </ul>
+        </nav>
+    </header>
+    <table>
+        <tr>
+            <th>時間</th>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th>土</th>
+            <th>オンデマンド</th>
+        </tr>
+        {% for i in range(5) %}
+        <tr>
+            {% if i == 0 %}
+            <td class="time">1限<br>9:00 - 10:40</td>
+            {% elif i == 1 %}
+            <td class="time">2限<br>10:50 - 12:30</td>
+            {% elif i == 2 %}
+            <td class="time">3限<br>13:20 - 15:00</td>
+            {% elif i == 3 %}
+            <td class="time">4限<br>15:10 - 16:50</td>
+            {% elif i == 4 %}
+            <td class="time">5限<br>17:00 - 18:40</td>
+            {% endif %}
+            {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
+            {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
+            <td>
+                {% if lecture != 'フリー' %}
+                <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                {% else %}
+                {{ lecture }}
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        <script>
+            function handleClick(lecture) {
+                // alert(lecture);
+                if (lecture != '') {
+                    alert('Class has already exist');
+                } else {
+                    alert('Class has not exist yet');
+                }
+            }
+        </script>
+    </table>
+</body>
+
+</html>
+>>>>>>> e034e8de057ad674a31532a47fa0fc72ec07f351
