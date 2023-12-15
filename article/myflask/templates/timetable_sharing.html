@@ -23,5 +23,53 @@
             </ul>
         </nav>
     </header>
-    this is timetable_sharing
+    <table>
+        <tr>
+            <th>時間</th>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th>土</th>
+            <th>オンデマンド</th>
+        </tr>
+        {% for i in range(5) %}
+        <tr>
+            {% if i == 0 %}
+            <td class="time">1限<br>9:00 - 10:40</td>
+            {% elif i == 1 %}
+            <td class="time">2限<br>10:50 - 12:30</td>
+            {% elif i == 2 %}
+            <td class="time">3限<br>13:20 - 15:00</td>
+            {% elif i == 3 %}
+            <td class="time">4限<br>15:10 - 16:50</td>
+            {% elif i == 4 %}
+            <td class="time">5限<br>17:00 - 18:40</td>
+            {% endif %}
+            {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
+            {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
+            <td>
+                {% if lecture != 'フリー' %}
+                <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                {% else %}
+                {{ lecture }}
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        <script>
+            function handleClick(lecture) {
+                // alert(lecture);
+                if (lecture != '') {
+                    alert('Class has already exist');
+                } else {
+                    alert('Class has not exist yet');
+                }
+            }
+        </script>
+    </table>
 </body>
+
+</html>
