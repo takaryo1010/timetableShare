@@ -257,7 +257,7 @@ def index_lecture_creation():
     return render_template('lecture_creation.html')
 
 
-@app.route('/timetable_sharering')
+@app.route('/timetable_sharing')
 @login_required
 def share_index():
     
