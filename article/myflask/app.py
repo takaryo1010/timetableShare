@@ -268,6 +268,7 @@ def share_index():
     friendsTimetables = {}
     response = requests.post('http://52.69.43.211/showFriends', data=data)
     json_response = response.json()
+    print(json_response)
     friends.append(current_user.username)
     for y in json_response:
         friends.append( y['your_name'])

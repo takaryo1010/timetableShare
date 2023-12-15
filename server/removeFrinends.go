@@ -55,11 +55,11 @@ func removeFriends(e echo.Context) error {
 	defer rows.Close()
 
 	// friendInfosスライスをクリア
-	friendInfos = nil
+	friends = nil
 
 	// データベースから個人の時間割を取得
 	for rows.Next() {
-		var c friendInfo
+		var c friend
 
 		err := rows.Scan(&c.My_id, &c.Your_id)
 
@@ -68,10 +68,10 @@ func removeFriends(e echo.Context) error {
 			return e.JSON(http.StatusCreated, err) // エラーを返す
 		}
 
-		friendInfos = append(friendInfos, c)
+		friends = append(friends, c)
 	}
 
 	
 
-	return e.JSON(http.StatusCreated, friendInfos)
+	return e.JSON(http.StatusCreated, friends)
 }
