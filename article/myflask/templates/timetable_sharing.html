@@ -48,7 +48,7 @@
             <td class="time">5限<br>17:00 - 18:40</td>
             {% endif %}
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
-            {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
+            {% comment %} {% set lecture = timetable.get(day)[i] if timetable.get(day)%} {% endcomment %}
             <td>
                 {% if lecture != 'フリー' %}
                 <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
