@@ -4,6 +4,7 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, login_
 from werkzeug.security import generate_password_hash, check_password_hash
 import requests
 import sys
+from .import sharetable
 flag = sys.argv[1]
 
 app = Flask(__name__)
