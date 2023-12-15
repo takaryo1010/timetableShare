@@ -48,17 +48,15 @@
             <td class="time">5限<br>17:00 - 18:40</td>
             {% endif %}
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
-            {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
-            <td>
-                {% if lecture != 'フリー' %}
-                <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
-                {% else %}
-                {{ lecture }}
-                {% endif %}
-            </td>
-            {% endfor %}
+           
         </tr>
         {% endfor %}
+        <select id="friendsDropdown">
+            <option value="" selected disabled>友達を選択</option>
+            {% for name, lectures in timetable.items() %}
+            <option value="{{ name }}">{{ name }}</option>
+            {% endfor %}
+        </select>
         <script>
             function handleClick(lecture) {
                 // alert(lecture);
@@ -69,12 +67,6 @@
                 }
             }
         </script>
-        <select id="friendsDropdown">
-            <option value="" selected disabled>友達を選択</option>
-            {% for friend in friends_list %}
-            <option value="{{ friend }}">{{ friend }}</option>
-            {% endfor %}
-        </select>
     </table>
 </body>
 
