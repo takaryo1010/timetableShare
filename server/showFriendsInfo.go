@@ -29,7 +29,7 @@ func showFriends(c echo.Context) error {
 	defer db.Close()
 
 	// SQLの実行
-	query := "SELECT DISTINCT Friend.name AS friend_name FROM Person AS You JOIN Friends ON You.id = Friends.my_id OR You.id = Friends.your_id JOIN Person AS Friend ON (You.id = Friends.my_id AND Friend.id = Friends.your_id) OR (You.id = Friends.your_id AND Friend.id = Friends.my_id WHERE You.name = ?';"
+	query := "SELECT DISTINCT Friend.name AS friend_name FROM Person AS You JOIN Friends ON You.id = Friends.my_id OR You.id = Friends.your_id JOIN Person AS Friend ON (You.id = Friends.my_id AND Friend.id = Friends.your_id) OR (You.id = Friends.your_id AND Friend.id = Friends.my_id WHERE You.name = ?"
 	rows, err := db.Query(query, name)
 	if err != nil {
 		log.Fatal(err)
