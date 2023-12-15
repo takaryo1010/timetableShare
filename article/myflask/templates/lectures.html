@@ -17,6 +17,7 @@
                 <li><a href="/logout">ログアウト</a></li>
                 <li><a href="/timetable_registration">時間割登録</a></li>
                 <li><a href="/timetable_sharing">時間割共有</a></li>
+                <li><a href="/add_friends">友達追加</a></li>
                 <li><a href="/lecture_list">授業一覧</a></li>
                 <li><a href="/lecture_creation">授業作成</a></li>
             </ul>
@@ -47,10 +48,10 @@
             <td class="time">5限<br>17:00 - 18:40</td>
             {% endif %}
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
-            {% set lecture = timetable.get(day)[i] if timetable.get(day) else 'フリー' %}
+            {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
             <td>
                 {% if lecture != 'フリー' %}
-                <div class="lecture">{{ lecture }}</div>
+                <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
                 {% else %}
                 {{ lecture }}
                 {% endif %}
@@ -58,6 +59,16 @@
             {% endfor %}
         </tr>
         {% endfor %}
+        <script>
+            function handleClick(lecture) {
+                // alert(lecture);
+                if (lecture != '') {
+                    alert('Class has already exist');
+                } else {
+                    alert('Class has not exist yet');
+                }
+            }
+        </script>
     </table>
 </body>
 

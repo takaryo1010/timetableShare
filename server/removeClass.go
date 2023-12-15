@@ -10,7 +10,6 @@ import (
 
 func removeClass(e echo.Context) error {
 	class_id := e.FormValue("class_id")
-	
 
 	// データベースのハンドルを取得する
 	db, err := sql.Open("mysql", db_state)
@@ -20,7 +19,6 @@ func removeClass(e echo.Context) error {
 	}
 	defer db.Close()
 
-	
 	// SQLの準備（Personからnameに一致するidを取得する）
 	db.QueryRow("DELETE FROM Class WHERE class_id = ? ", class_id)
 
@@ -31,9 +29,6 @@ func removeClass(e echo.Context) error {
 		return e.JSON(http.StatusCreated, err) // エラーを返す
 	}
 	defer rows.Close()
-
-	
-	
 
 	// classInfosスライスをクリア
 	classInfos := []classInfo{}

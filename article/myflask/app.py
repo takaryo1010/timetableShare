@@ -4,7 +4,6 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, login_
 from werkzeug.security import generate_password_hash, check_password_hash
 import requests
 import sys
-from . import sharetable
 flag = sys.argv[1]
 
 app = Flask(__name__)
@@ -206,7 +205,7 @@ def index_timetable_registration():
             url = 'http://52.69.43.211/registerCourse'
             name = current_user.username
             classid = request.form.get('class_id')
-            data = {'person_name': name, 'class_id': classid}
+            data = {'name': name, 'classid': classid}
             response = requests.post(url, data)
             json_response = response.json()
             print(json_response)
