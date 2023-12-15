@@ -60,7 +60,7 @@
         {% endfor %}
         <select id="friendsDropdown">
             <option value="" selected disabled>友達を選択</option>
-            {% for name, lectures in timetable.items() %}
+            {% for name, lectures in friendstimetable.items() %}
             <option value="{{ name }}">{{ name }}</option>
             {% endfor %}
         </select>
