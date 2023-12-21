@@ -216,7 +216,7 @@ def index_timetable_registration():
 def index_timetable_registration_designation():
     if request.method == 'POST':
         if request.form.get('class_id') == "" or request.form.get('class_id') == None:
-            data = {}
+            data = {'day' : request.args.get('day', default=None), 'period' : request.args.get('period', default=None)}
             if request.form.get('class_name') != "" and request.form.get('class_name') != None:
                 data['name'] = request.form.get('class_name')
             if request.form.get('class_unit') != "" and request.form.get('class_unit') != None:
@@ -240,7 +240,7 @@ def index_timetable_registration_designation():
             url = 'http://52.69.43.211/registerCourse'
             name = current_user.username
             classid = request.form.get('class_id')
-            data = {'name': name, 'classid': classid, 'day' : request.args.get('day', default=None), 'period' : request.args.get('period', default=None)}
+            data = {'name': name, 'classid': classid}
             response = requests.post(url, data)
             json_response = response.json()
             print(json_response)
