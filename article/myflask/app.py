@@ -215,6 +215,7 @@ def index_timetable_registration():
 @app.route("/timetable_registration_designation", methods=['GET', 'POST'])
 def index_timetable_registration_designation():
     if request.method == 'POST':
+        print(request.args.get('day', default=None), request.args.get('period', default=None))
         if request.form.get('class_id') == "" or request.form.get('class_id') == None:
             data = {'day' : request.args.get('day', default=None), 'period' : request.args.get('period', default=None)}
             if request.form.get('class_name') != "" and request.form.get('class_name') != None:
