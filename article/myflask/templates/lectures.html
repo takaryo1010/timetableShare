@@ -51,7 +51,7 @@
             {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
             <td>
                 {% if lecture != 'フリー' %}
-                <div class="lecture" onclick="handleClick('{{ lecture }}', '{{ day }}', '{{ i+1 }}')">{{ lecture }}
+                <div class="lecture" onclick="handleClick('{{ lecture }}', '{{ day }}', '{{ i+1 }}')">{{ lecture }}</div>
                 {% else %}
                 {{ lecture }}
                 {% endif %}
