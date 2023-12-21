@@ -214,38 +214,13 @@ def index_timetable_registration():
 
 @app.route("/timetable_registration_designation", methods=['GET', 'POST'])
 def index_timetable_registration_designation():
-    if request.method == 'POST':
-        print(request.args.get('day', default=None), request.args.get('period', default=None))
-        if request.form.get('class_id') == "" or request.form.get('class_id') == None:
-            data = {'day' : request.args.get('day', default=None), 'period' : request.args.get('period', default=None)}
-            if request.form.get('class_name') != "" and request.form.get('class_name') != None:
-                data['name'] = request.form.get('class_name')
-            if request.form.get('class_unit') != "" and request.form.get('class_unit') != None:
-                data['unit'] = request.form.get('class_unit')
-            if request.form.get('must_flag') != "" and request.form.get('must_flag') != None:
-                data['must'] = request.form.get('must_flag')
-            if request.form.get('teacher_name') != "" and request.form.get('teacher_name') != None:
-                data['teacher'] = request.form.get('teacher_name')
-            if request.form.get('room') != "" and request.form.get('room') != None:
-                data['room'] = request.form.get('room')
-            if request.form.get('term') != "" and request.form.get('term') != None:
-                data['term'] = request.form.get('term')
-            if request.form.get('department') != "" and request.form.get('department') != None:
-                data['department'] = request.form.get('department')
-            url = 'http://52.69.43.211/showClassInfoTimeSpecification'
-            response = requests.post(url, data=data)
-            json_response = response.json()
-            print(json_response)
-            return render_template('timetable_registration.html', data=data, json=json_response)
-        else:
-            url = 'http://52.69.43.211/registerCourse'
-            name = current_user.username
-            classid = request.form.get('class_id')
-            data = {'name': name, 'classid': classid}
-            response = requests.post(url, data)
-            json_response = response.json()
-            print(json_response)
-    return render_template('timetable_registration.html')
+    print(request.args.get('day', default=None), request.args.get('period', default=None))
+    url = 'http://52.69.43.211/showClassInfoTimeSpecification'
+    data = {'day': request.args.get('day', default=None), 'period': request.args.get('period', default=None)}
+    response = requests.post(url, data)
+    json_response = response.json()
+    print(json_response)
+    return render_template('timetable_registration.html', data=data, json=json_response)
 
 
 @app.route("/lecture_list")
