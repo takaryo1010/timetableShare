@@ -264,7 +264,20 @@ def index_lecture_creation():
         url = 'http://52.69.43.211/registerClass'  # サーバーの実際のURLに置き換えてください
         response = requests.post(url, data=data)
         print(response)  # test
-    return render_template('lecture_creation.html')
+        
+        
+    # サーバーのエンドポイントURLを設定
+    url = 'http://52.69.43.211/showClassInfoAll'  # サーバーの実際のURLに置き換えてください
+
+    # HTTP POSTリクエストを送信
+    response = requests.get(url)
+
+    # レスポンスをJSONとしてパース
+    json_response = response.json()
+
+    # レスポンスを出力
+    print(json_response)
+    return render_template('lecture_creation.html',json=json_response)
 
 
 @app.route('/timetable_sharing')
