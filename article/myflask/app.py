@@ -279,7 +279,7 @@ def share_index():
     json_response = response.json()
     print(json_response)
     friends.append(current_user.username)
-    if(json_response=="null"):
+    if(json_response==None):
             friends.append[current_user.username]
 
     else:
