@@ -4,7 +4,7 @@ main {
     padding: 15px; /* コンテンツに余白を追加 */
     box-sizing: border-box; /* 幅と高さの計算にパディングを含める */
     width: calc(100% - 240px); /* sidebarの幅を考慮したmainの幅 */
-    float: left; /* 左寄せ */
+    float: right; /* 右寄せ */
 }
 
 /* sidebar */
