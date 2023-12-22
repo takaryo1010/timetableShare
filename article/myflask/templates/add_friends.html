@@ -8,8 +8,10 @@
 </head>
 
 <body>
-    <header>
-        <h1>週間時間割</h1>
+    <div class="sidebar">
+        <header>
+            <h1>週間時間割</h1>
+        </header>
         <nav>
             <ul>
                 <li><a href="/">ホーム</a></li>
@@ -22,26 +24,28 @@
                 <li><a href="/lecture_creation">授業作成</a></li>
             </ul>
         </nav>
-    </header>
-    <h1>友達追加</h1>
-    <table>
-        <tr>
-            <th>友達</th>
-        </tr>
-        {% for friend in json %}
-        <tr>
-            <td>{{ friend.your_name }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <form action="/add_friends" method="POST">
-        <input type="txt" name="friend_name" placeholder="Friend Name">
-        <button type="submit">追加</button>
-    </form>
-    <form action="/add_friends" method="POST">
-        <input type="txt" name="remove_friend" placeholder="Friend Name">
-        <button type="submit">削除</button>
-    </form>
+    </div>
+    <main>
+        <h1>友達追加</h1>
+        <table>
+            <tr>
+                <th>友達</th>
+            </tr>
+            {% for friend in json %}
+            <tr>
+                <td>{{ friend.your_name }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <form action="/add_friends" method="POST">
+            <input type="txt" name="friend_name" placeholder="Friend Name">
+            <button type="submit">追加</button>
+        </form>
+        <form action="/add_friends" method="POST">
+            <input type="txt" name="remove_friend" placeholder="Friend Name">
+            <button type="submit">削除</button>
+        </form>
+    </main>
 </body>
 
 </html>

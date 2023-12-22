@@ -8,8 +8,10 @@
 </head>
 
 <body>
-    <header>
-        <h1>週間時間割</h1>
+    <div class="sidebar">
+        <header>
+            <h1>週間時間割</h1>
+        </header>
         <nav>
             <ul>
                 <li><a href="/">ホーム</a></li>
@@ -22,81 +24,82 @@
                 <li><a href="/lecture_creation">授業作成</a></li>
             </ul>
         </nav>
-    </header>
+    </div>
+    <main>
+        <h1>授業作成</h1>
 
-    <h1>授業作成</h1>
+        <form action="/lecture_creation" method="post">
+            <input type="text" name="class_name" placeholder="Class Name" required>
+            <select name="class_day" required>
+                <option value="Sunday">Sunday</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Ondemand">Ondemand</option>
+            </select>
+            <select name="class_time" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <input type="number" name="class_unit" placeholder="Class Unit" required>
+            <select name="must_flag" required>
+                <option value=0>選択</option>
+                <option value=1>必修</option>
+            </select>
+            <input type="text" name="teacher_name" placeholder="Teacher Name" required>
+            <input type="text" name="room" placeholder="Room" required>
+            <select name="term" required>
+                <option value="Spring">Spring</option>
+                <option value="Fall">Fall</option>
+            </select>
+            <select name="dmcs" required>
+                <option value="CS">All</option>
+                <option value="CS">CS</option>
+                <option value="DM">DM</option>
+                
+            </select>
+            <button type="submit">登録</button>
+        </form>
 
-    <form action="/lecture_creation" method="post">
-        <input type="text" name="class_name" placeholder="Class Name" required>
-        <select name="class_day" required>
-            <option value="Sunday">Sunday</option>
-            <option value="Monday">Monday</option>
-            <option value="Tuesday">Tuesday</option>
-            <option value="Wednesday">Wednesday</option>
-            <option value="Thursday">Thursday</option>
-            <option value="Friday">Friday</option>
-            <option value="Saturday">Saturday</option>
-            <option value="Ondemand">Ondemand</option>
-        </select>
-        <select name="class_time" required>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <input type="number" name="class_unit" placeholder="Class Unit" required>
-        <select name="must_flag" required>
-            <option value=0>選択</option>
-            <option value=1>必修</option>
-        </select>
-        <input type="text" name="teacher_name" placeholder="Teacher Name" required>
-        <input type="text" name="room" placeholder="Room" required>
-        <select name="term" required>
-            <option value="Spring">Spring</option>
-            <option value="Fall">Fall</option>
-        </select>
-        <select name="dmcs" required>
-            <option value="CS">All</option>
-            <option value="CS">CS</option>
-            <option value="DM">DM</option>
-            
-        </select>
-        <button type="submit">登録</button>
-    </form>
-
-    <table>
-        <thead>
-            <tr>
-                <th>授業名</th>
-                <th>授業ID</th>
-                <th>曜日</th>
-                <th>時限</th>
-                <th>単位</th>
-                <th>必修</th>
-                <th>先生</th>
-                <th>教室</th>
-                <th>学期</th>
-                <th>学科</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for lecture in json %}
-            <tr>
-                <td>{{ lecture.name }}</td>
-                <td>{{ lecture.class_id }}</td>
-                <td>{{ lecture.day }}</td>
-                <td>{{ lecture.period }}</td>
-                <td>{{ lecture.unit }}</td>
-                <td>{{ lecture.must }}</td>
-                <td>{{ lecture.teacher }}</td>
-                <td>{{ lecture.room }}</td>
-                <td>{{ lecture.term }}</td>
-                <td>{{ lecture.department }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>授業名</th>
+                    <th>授業ID</th>
+                    <th>曜日</th>
+                    <th>時限</th>
+                    <th>単位</th>
+                    <th>必修</th>
+                    <th>先生</th>
+                    <th>教室</th>
+                    <th>学期</th>
+                    <th>学科</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lecture in json %}
+                <tr>
+                    <td>{{ lecture.name }}</td>
+                    <td>{{ lecture.class_id }}</td>
+                    <td>{{ lecture.day }}</td>
+                    <td>{{ lecture.period }}</td>
+                    <td>{{ lecture.unit }}</td>
+                    <td>{{ lecture.must }}</td>
+                    <td>{{ lecture.teacher }}</td>
+                    <td>{{ lecture.room }}</td>
+                    <td>{{ lecture.term }}</td>
+                    <td>{{ lecture.department }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
 </body>
 
 </html>
