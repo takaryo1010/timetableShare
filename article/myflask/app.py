@@ -340,7 +340,8 @@ def remove_class():
         class_id = request.form.get('class_id')
 
         # 授業IDに基づいてデータベースから授業を検索し、削除する
-        # ここにデータベースからの授業削除のコードを追加する
+        # HTTP POSTリクエストを送信
+        response = requests.post('http://52.69.43.211/removeClass', data=class_id)
 
         # 削除が成功した場合、成功メッセージをフラッシュし、リダイレクトする
         flash('授業が削除されました。')
