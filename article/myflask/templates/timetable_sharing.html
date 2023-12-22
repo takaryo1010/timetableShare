@@ -53,9 +53,9 @@
             {% elif i == 4 %}
             <td class="time">5限<br>17:00 - 18:40</td>
             {% endif %}
-            {% set my_schedule = friendstimetable[myusername][day] %}
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
             <td>
+                {% set my_schedule = friendstimetable[myusername][day] %}
                 {% set selected_friend = request.args.get('selected_friend') %}
                 {% if selected_friend and selected_friend in friendstimetable %}
                     {% set friend_schedule = friendstimetable[selected_friend][day] %}
