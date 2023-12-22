@@ -86,17 +86,39 @@ td .free {
     margin: 4px;
 }
 
-/* .sidebar nav ul li a:hover {
-    background-color: rgb(31, 113, 106);  
-} */
+.sidebar {
+    background-color: rgb(31, 113, 106);
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Display items vertically */
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh; /* Adjust the height of the sidebar */
+}
 
-.sidebar{
-    background-color: rgb(31, 113, 106); 
-    padding: 10px 20px; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
+.sidebar header {
+    margin-bottom: 20px; /* Add some space between header and nav */
+}
+
+.sidebar nav ul {
+    list-style: none; /* Remove default list styles */
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar nav ul li {
+    margin: 5px 0;
+}
+
+.sidebar nav ul li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar nav ul li a:hover {
+    text-decoration: underline; /* Add underline on hover */
 }
 
 
