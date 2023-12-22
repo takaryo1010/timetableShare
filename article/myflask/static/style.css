@@ -86,11 +86,11 @@ td .free {
     margin: 4px;
 }
 
-.sidebar nav ul li a:hover {
-    background-color: #e7f1ff; 
-}
+/* .sidebar nav ul li a:hover {
+    background-color: rgb(31, 113, 106);  
+} */
 
-.sidebar header {
+.sidebar{
     background-color: rgb(31, 113, 106); 
     padding: 10px 20px; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
@@ -100,32 +100,6 @@ td .free {
 }
 
 
-.sidebar header h1 {
-    margin: 0; 
-    font-size: 1.5em; 
-    color: #ffffff; 
-}
-
-.sidebar header nav ul {
-    list-style: none; /* リストのマーカーを非表示にする */
-    padding: 0;
-    margin: 0;
-    display: flex; 
-}
-
-.sidebar header nav ul li {
-    margin-bottom: 8px; /* 各リンクの間に余白を追加 */
-}
-
-.sidebar header nav ul li a {
-    display: block; /* リンクをブロック要素として表示 */
-    text-decoration: none; 
-    color: rgb(255, 255, 255); 
-    font-weight: bold; 
-    padding: 5px 10px; 
-    border-radius: 5px; 
-    transition: background-color 0.3s; 
-}
 
 
 @media (max-width: 768px) {
