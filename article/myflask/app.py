@@ -63,28 +63,28 @@ def index():
 # レスポンスをJSONとしてパース
     json_response = response.json()
     print(json_response)
-    monday = ["", "", "", "", ""]
-    tuesday = ["", "", "", "", ""]
-    wednesday = ["", "", "", "", ""]
-    thursday = ["", "", "", "", ""]
-    friday = ["", "", "", "", ""]
-    saturday = ["", "", "", "", ""]
-    ondemand = ["", "", "", "", ""]
+    monday = [{}, {}, {}, {}, {}]
+    tuesday = [{}, {}, {}, {}, {}]
+    wednesday = [{}, {}, {}, {}, {}]
+    thursday = [{}, {}, {}, {}, {}]
+    friday = [{}, {}, {}, {}, {}]
+    saturday = [{}, {}, {}, {}, {}]
+    ondemand = [{}, {}, {}, {}, {}]
     for class_ in json_response:
         if class_['day'] == 'Monday':
-            monday[int(class_['period']) - 1]  = class_['name']
+            monday[int(class_['period']) - 1]  = class_
         elif class_['day'] == 'Tuesday':
-            tuesday[int(class_['period']) - 1] = class_['name']
+            tuesday[int(class_['period']) - 1] = class_
         elif class_['day'] == 'Wednesday':
-            wednesday[int(class_['period']) - 1] = class_['name']
+            wednesday[int(class_['period']) - 1] = class_
         elif class_['day'] == 'Thursday':
-            thursday[int(class_['period']) - 1] = class_['name']
+            thursday[int(class_['period']) - 1] = class_
         elif class_['day'] == 'Friday':
-            friday[int(class_['period']) - 1] = class_['name']
+            friday[int(class_['period']) - 1] = class_
         elif class_['day'] == 'Saturday':
-            saturday[int(class_['period']) - 1] = class_['name']
+            saturday[int(class_['period']) - 1] = class_
         elif class_['day'] == 'Ondemand':
-            ondemand[int(class_['period']) - 1] = class_['name']
+            ondemand[int(class_['period']) - 1] = class_
 
     lectures = {
         "Monday": monday,
