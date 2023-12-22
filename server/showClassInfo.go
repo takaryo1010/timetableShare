@@ -83,6 +83,7 @@ func showClassInfoTimeSpecification(c echo.Context) error {
 
 	// 任意の条件を取得
 	conditions := make(map[string]interface{})
+	conditions["name"] = c.FormValue("name")
 	conditions["unit"] = c.FormValue("unit")
 	conditions["must"] = c.FormValue("must")
 	conditions["teacher"] = c.FormValue("teacher")
