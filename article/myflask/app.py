@@ -107,7 +107,7 @@ def test():
     # end test
     # ここで講義のデータを取得する
     lectures = {
-       "Monday": ["微積文法の応用", "", "プログラミング (C/C++)", "プログラミング (C/C++)", "人工知能"],
+       "Monday": ["微積文法の応用", "", "プログラミング (C/C++)", "プログラミング (C/C++)"],
        "Tuesday": ["西洋近現代史", "科学英語", "", "", "最適化"],
        "Wednesday": ["", "時事英語", "", "", "データ構造とアルゴリズム 2"],
        "Thursday": ["", "", "", "", ""],
@@ -212,6 +212,16 @@ def index_timetable_registration():
             print(json_response)
     return render_template('timetable_registration.html')
 
+@app.route("/timetable_registration_designation", methods=['GET', 'POST'])
+def index_timetable_registration_designation():
+    print(request.args.get('day', default=None), request.args.get('period', default=None))
+    url = 'http://52.69.43.211/showClassInfoTimeSpecification'
+    data = {'day': request.args.get('day', default=None), 'period': request.args.get('period', default=None)}
+    response = requests.post(url, data)
+    json_response = response.json()
+    print(json_response)
+    return render_template('timetable_registration.html', data=data, json=json_response)
+
 
 @app.route("/lecture_list")
 def index_lecture_list():
@@ -258,7 +268,6 @@ def index_lecture_creation():
 
 
 @app.route('/timetable_sharing')
-@login_required
 def share_index():
     
     # サーバーのエンドポイントURLを設定
@@ -268,9 +277,11 @@ def share_index():
     friendsTimetables = {}
     response = requests.post('http://52.69.43.211/showFriends', data=data)
     json_response = response.json()
+    print(json_response)
     friends.append(current_user.username)
-    for y in json_response:
-        friends.append( y['your_name'])
+    if(json_response!=None):
+        for y in json_response:
+            friends.append( y['your_name'])
         
     for y in friends:
     # 送信するデータを準備
@@ -320,7 +331,8 @@ def share_index():
         print (lectures)
         friendsTimetables[y]=lectures
     
-    return render_template('timetable_sharing.html', friendstimetable=friendsTimetables)
+    return render_template('timetable_sharing.html', friendstimetable=friendsTimetables, myusername=current_user.username)
+
 
 
 if __name__ == '__main__':

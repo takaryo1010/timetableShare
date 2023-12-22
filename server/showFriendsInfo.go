@@ -11,8 +11,7 @@ import (
 
 type (
 	friendInfo struct {
-		My_id   int `json:"my_id"`
-		Your_id int `json:"your_id"`
+		Your_name string `json:"your_name"`
 	}
 )
 
@@ -30,7 +29,7 @@ func showFriends(c echo.Context) error {
 	defer db.Close()
 
 	// SQLの実行
-	query := "SELECT f.my_id, f.your_id FROM Friends f JOIN Person p ON f.my_id = p.id WHERE p.name = ?;"
+	query := "SELECT DISTINCT Friend.name AS friend_name FROM Person AS You JOIN Friends ON You.id = Friends.my_id OR You.id = Friends.your_id JOIN Person AS Friend ON (You.id = Friends.my_id AND Friend.id = Friends.your_id) OR (You.id = Friends.your_id AND Friend.id = Friends.my_id) WHERE BINARY You.name = ?"
 	rows, err := db.Query(query, name)
 	if err != nil {
 		log.Fatal(err)
@@ -39,20 +38,20 @@ func showFriends(c echo.Context) error {
 	defer rows.Close()
 
 	// Friendsスライスをクリア
-	friends = nil
+	friendInfos = nil
 
 	// データベースから人物を取得
 	for rows.Next() {
-		var f friend
+		var f friendInfo
 
-		err := rows.Scan(&f.My_id, &f.Your_id)
+		err := rows.Scan(&f.Your_name)
 		if err != nil {
 			log.Fatal(err)
 			return err // エラーを返す
 		}
 
-		friends = append(friends, f)
+		friendInfos = append(friendInfos, f)
 	}
 
-	return c.JSON(http.StatusOK, friends)
+	return c.JSON(http.StatusOK, friendInfos)
 }

@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <title>時間割</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .myLecture {
+            background-color: #ffcc00;
+            color: black; 
+        }
+    </style>
 </head>
 
 <body>
@@ -48,34 +54,38 @@
             <td class="time">5限<br>17:00 - 18:40</td>
             {% endif %}
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
-            {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
             <td>
-                {% if lecture != 'フリー' %}
-                <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                {% set selected_friend = request.args.get('selected_friend') %}
+                {% if selected_friend and selected_friend in friendstimetable %}
+                    {% set friend_schedule = friendstimetable[selected_friend][day] %}
+                    {% if friend_schedule and i < friend_schedule|length %}
+                        {% set lecture = friend_schedule[i] %}
+                        {% if lecture != 'フリー' %}
+                            {% if lecture == myusername %}
+                                <div class="lecture myLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                            {% else %}
+                                <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                            {% endif %}
+                        {% else %}
+                            {{ lecture }}
+                        {% endif %}
+                    {% endif %}
                 {% else %}
-                {{ lecture }}
+                    友達が選択されていません
                 {% endif %}
             </td>
             {% endfor %}
         </tr>
         {% endfor %}
-        <script>
-            function handleClick(lecture) {
-                // alert(lecture);
-                if (lecture != '') {
-                    alert('Class has already exist');
-                } else {
-                    alert('Class has not exist yet');
-                }
-            }
-        </script>
-        <select id="friendsDropdown">
+    </table>
+    <form>
+        <select id="friendsDropdown" name="selected_friend" onchange="this.form.submit()">
             <option value="" selected disabled>友達を選択</option>
-            {% for friend in friends_list %}
-            <option value="{{ friend }}">{{ friend }}</option>
+            {% for name, _ in friendstimetable.items() %}
+            <option value="{{ name }}">{{ name }}</option>
             {% endfor %}
         </select>
-    </table>
+    </form>
 </body>
 
 </html>
