@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         .myLecture {
-            background-color: #ffcc00;
+            background-color: #00ff00;
             color: black;
         }
         .notMyLecture{
@@ -72,11 +72,12 @@
                         {% if lecture != 'フリー' %}
                             {% if lecture in my_schedule %}
                                 <div class="lecture myLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
-                            {% else%}
-                            <div class="lecture notMyLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                            {% else %}
+                                <div class="lecture notMyLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
                             {% endif %}
                         {% else %}
                             <div class="lecture emptyClass"></div>
+                        {% endif %}
                     {% endif %}
                 {% else %}
                     <div class="lecture notSelected">友達が選択されていません</div>
