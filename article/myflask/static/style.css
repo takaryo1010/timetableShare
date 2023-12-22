@@ -86,9 +86,11 @@ td .free {
     margin: 4px;
 }
 
+.sidebar nav ul li a:hover {
+    background-color: #e7f1ff; 
+}
 
-
-header {
+.sidebar header {
     background-color: rgb(31, 113, 106); 
     padding: 10px 20px; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
@@ -98,37 +100,31 @@ header {
 }
 
 
-header h1 {
+.sidebar header h1 {
     margin: 0; 
     font-size: 1.5em; 
     color: #ffffff; 
 }
 
-
-nav ul {
-    list-style: none; 
-    padding: 0; 
-    margin: 0; 
+.sidebar header nav ul {
+    list-style: none; /* リストのマーカーを非表示にする */
+    padding: 0;
+    margin: 0;
     display: flex; 
 }
 
-
-nav ul li {
-    margin-left: 20px; 
+.sidebar header nav ul li {
+    margin-bottom: 8px; /* 各リンクの間に余白を追加 */
 }
 
-nav ul li a {
+.sidebar header nav ul li a {
+    display: block; /* リンクをブロック要素として表示 */
     text-decoration: none; 
     color: rgb(255, 255, 255); 
     font-weight: bold; 
     padding: 5px 10px; 
     border-radius: 5px; 
     transition: background-color 0.3s; 
-}
-
-
-nav ul li a:hover {
-    background-color: #e7f1ff; 
 }
 
 
@@ -178,21 +174,7 @@ nav ul li a:hover {
     margin-right: 20px; /* フォームと他のコンテンツとの間にスペースを追加します */
 }
 
-.sidebar header nav ul {
-    list-style: none; /* リストのマーカーを非表示にする */
-    padding: 0;
-    margin: 0;
-}
 
-.sidebar header nav ul li {
-    margin-bottom: 8px; /* 各リンクの間に余白を追加 */
-}
-
-.sidebar header nav ul li a {
-    display: block; /* リンクをブロック要素として表示 */
-    text-decoration: none; /* 下線を削除 */
-    color: #333; /* リンクの色 */
-}
 
 main {
     margin-left: 220px; /* サイドバーとの間にマージンを設定 */
