@@ -57,7 +57,7 @@
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
             {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
             <td>
-                <div class="lecture" onclick="handleClick('{{ lecture }}', '{{ day }}', '{{ i+1 }}')">{{"lecture['name']"}}</div>
+                <div class="lecture" onclick="handleClick('{{ lecture }}', '{{ day }}', '{{ i+1 }}')">{{ lecture['name'] }}</div>
             </td>
             {% endfor %}
         </tr>
