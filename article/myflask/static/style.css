@@ -177,3 +177,15 @@ nav ul li a:hover {
     float: left; /* コンテナを左側に配置します */
     margin-right: 20px; /* フォームと他のコンテンツとの間にスペースを追加します */
 }
+
+.sidebar {
+    width: 200px; /* サイドバーの幅 */
+    height: 100%; /* ページの高さいっぱいにする */
+    background-color: #f2f2f2; /* サイドバーの背景色 */
+    float: left; /* 左側に配置 */
+}
+
+main {
+    margin-left: 220px; /* サイドバーとの間にマージンを設定 */
+    /* 必要に応じてマージンを調整してください */
+}
