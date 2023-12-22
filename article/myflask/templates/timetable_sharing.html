@@ -68,11 +68,13 @@
                         {% if lecture != 'フリー' %}
                             {% if lecture in my_schedule %}
                                 <div class="lecture myLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                            {% elif my_schedule == [] %}
+                                <div class="lecture notRegistered"></div>
                             {% else %}
-                                <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                                <div class="lecture"></div>
                             {% endif %}
                         {% else %}
-                        <div class="lecture notRegistered"></div>
+                            <div class="lecture notRegistered"></div>
                         {% endif %}
                     {% endif %}
                 {% else %}
