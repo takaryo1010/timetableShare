@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         .myAndYourLecture {
-            background-color: #0f0000;
+            background-color: #ffdcf6;
             color: black;
         }
         .MyLecture{
-            background-color: #000f00;
+            background-color: #b9f8cc;
             color: black;
         }
         .YourLecture{
-            background-color: #00000f;
+            background-color: #d7ffff;
             color: black;
         }
         .emptyLecture{
-            background-color: #f0f0f0;
+            background-color: #e8e8e8;
             color: black;
         }
 
@@ -111,10 +111,10 @@
         </tr>
         {% endfor %}
     </table>
-    <p>赤色 : どちらも授業を取っている</p>
-    <p>緑色 : 自分だけ授業を取っている</p>
-    <p>青色 : 友達だけ授業を取っている</p>
-    <p>灰色 : どちらも授業を取っていない</p>
+    <p><span style="background-color: #ffdcf6;">どちらも授業を取っている　</span></p>
+    <p><span style="background-color: #b9f8cc;">自分だけ授業を取っている　</span></p>
+    <p><span style="background-color: #d7ffff;">友達だけ授業を取っている　</span></p>
+    <p><span style="background-color: #e8e8e8;">どちらも授業を取っていない</span></p>
 </body>
 
 </html>
