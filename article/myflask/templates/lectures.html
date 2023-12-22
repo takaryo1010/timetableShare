@@ -60,7 +60,7 @@
                 {% if lecture != '{}' %}
                 <div class="lecture" onclick="handleClick('{{ lecture }}', '{{ day }}', '{{ i+1 }}')">{{ lecture }}</div>
                 {% else %}
-                <div class="lecture" onclick="handleClick('{{ lecture }}', '{{ day }}', '{{ i+1 }}')">{{}}</div>
+                <div class="lecture" onclick="handleClick('{{ lecture }}', '{{ day }}', '{{ i+1 }}')">{{ "" }}</div>
                 {% endif %}
             </td>
             {% endfor %}
