@@ -57,28 +57,30 @@
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
             {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
             <td>
-                <div class="lecture" onclick="handleClick('{{ lecture | tojson | safe }}', '{{ day }}', '{{ i+1 }}')">{{ lecture.get('name', '') }}</div>
+                {% set name = lecture["name"] %}
+                {% set name = lecture["room"] %}
+                {% set name = lecture["teacher"] %}
+                <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}')">{{ name }}</div>
             </td>
             {% endfor %}
         </tr>
         {% endfor %}
         <script>
-            function showModal(lecture, day, period) {
+            function showModal(name, day, period, room, teacher) {
                 alert("test")
-                // var infoText = '授業名: ' + lecture['name'] + '\n曜日: ' + day + '\n時限: ' + period;
-                var infoText = lecture;
+                var infoText = '授業名: ' + name + '\n曜日: ' + day + '\n時限: ' + period + "\n部屋: " +  room + "\n担当教師: " + teacher;
                 document.getElementById('lectureInfo').innerText = infoText;
                 document.getElementById('popupContainer').style.display = 'flex';
             }
             function closePopup() {
                 document.getElementById('popupContainer').style.display = 'none';
             }
-           function handleClick(lecture, day, period) {
-            if (lecture == "{}") {
+           function handleClick(name, day, period, room, teacher) {
+            if (name == "") {
                 location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
             } else {
                 // alert(lecture['name']+"\n"+lecture['room']+"\n"+lecture[unit])
-                showModal(lecture, day, period);
+                showModal(name, day, period, room, teacher);
                 
             }
             }
