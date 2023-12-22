@@ -321,28 +321,6 @@ def share_index():
         print (lectures)
         friendsTimetables[y]=lectures
     
-    # friendsTimetablestest = {}
-    # friends_list = ['友達1', '友達2', '友達3']  # 仮の友達リスト（実際のデータに置き換える必要があります）
-    # monday = ["", "", "", "", ""]
-    # tuesday = ["", "", "", "", ""]
-    # wednesday = ["", "", "", "", ""]
-    # thursday = ["", "", "", "", ""]
-    # friday = ["", "", "", "", ""]
-    # saturday = ["", "", "", "", ""]
-    # ondemand = ["", "", "", "", ""]
-    # for y in friends_list:
-    #     lectures = {
-    #             "Monday": monday,
-    #             "Tuesday": tuesday,
-    #             "Wednesday": wednesday,
-    #             "Thursday": thursday,
-    #             "Friday": friday,
-    #             "Saturday": saturday,
-    #             "Ondemand": ondemand
-    #         }
-    #     friendsTimetablestest[y]=lectures
-    
-    # return render_template('timetable_sharing.html', friendstimetable=friendsTimetablestest)
     return render_template('timetable_sharing.html', friendstimetable=friendsTimetables)
 
 
