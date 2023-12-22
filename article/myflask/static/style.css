@@ -17,7 +17,7 @@ main {
     justify-content: flex-start; /* 要素を上端に揃える */
     align-items: center;
     height: 100vh; /* サイドバーの高さを調整 */
-    width: 240px; /* サイドバーの幅 */
+    width: 200px; /* サイドバーの幅 */
     float: left; /* 左寄せ */
 }
 
