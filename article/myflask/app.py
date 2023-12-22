@@ -183,6 +183,7 @@ def index_timetable_registration():
             if request.form.get('class_name') != "" and request.form.get('class_name') != None:
                 print("aaaaaaaaa")
                 data['name'] = request.form.get('class_name')
+                print(data['name'])
             if request.form.get('class_day') != "" and request.form.get('class_day') != None:
                 data['day'] = request.form.get('class_day')
             if request.form.get('class_time') != "" and request.form.get('class_time') != None:
@@ -203,7 +204,6 @@ def index_timetable_registration():
             response = requests.post(url, data=data)
             json_response = response.json()
             print(json_response)
-            print(request.form.get('class_name'))
             return render_template('timetable_registration.html', data=data, json=json_response)
         else:
             url = 'http://52.69.43.211/registerCourse'

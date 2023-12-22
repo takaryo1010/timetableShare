@@ -10,8 +10,12 @@
             background-color: #ffcc00;
             color: black;
         }
-        .notRegistered{
+        .notMyRegistered{
             background-color: #c0c0c0;
+            color: black;
+        }
+        .emptyClass{
+            background-color: #0000ff;
             color: black;
         }
     </style>
@@ -68,13 +72,11 @@
                         {% if lecture != 'フリー' %}
                             {% if lecture in my_schedule %}
                                 <div class="lecture myLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
-                            {% elif my_schedule == [] %}
-                                <div class="lecture notRegistered"></div>
-                            {% else %}
-                                <div class="lecture"></div>
+                            {% else%}
+                                <div class="lecture notMyRegistered"></div>
                             {% endif %}
                         {% else %}
-                            <div class="lecture notRegistered"></div>
+                            <div class="lecture emptyClass"></div>
                         {% endif %}
                     {% endif %}
                 {% else %}
