@@ -72,10 +72,10 @@
                 document.getElementById('popupContainer').style.display = 'none';
             }
            function handleClick(lecture, day, period) {
-                alert(lecture)
                 if (lecture != "{}") {
                     showModal(lecture, day, period);
                 } else {
+                    alert(lecture)
                     location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
                 }
             }
