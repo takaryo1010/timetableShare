@@ -270,7 +270,11 @@ def share_index():
     json_response = response.json()
     print(json_response)
     friends.append(current_user.username)
+    
     for y in json_response:
+        if(y=="null"):
+            friends.append[current_user.username]
+            break
         friends.append( y['your_name'])
         
     for y in friends:
