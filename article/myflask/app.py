@@ -323,6 +323,16 @@ def share_index():
     return render_template('timetable_sharing.html', friendstimetable=friendsTimetables)
 
 
+@app.route('/add_friends', methods=['GET', 'POST'])
+@login_required
+def index_friend_add():
+    if request.method == 'GET':
+        url = 'http://52.69.43.211/registerFriends'
+        data = {'my_name': current_user.username, 'your_name': request.form.get('friend_name')}
+        response = requests.post(url, data)
+        json_response = response.json()
+        print(json_response)
+    return render_template('lecture_creation.html')
 
 
 if __name__ == '__main__':
