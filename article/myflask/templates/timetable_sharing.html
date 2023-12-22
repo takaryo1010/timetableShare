@@ -68,30 +68,27 @@
             {% endif %}
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
             <td>
-                {% set my_schedule = friendstimetable.get(myusername, {}).get(day, []) %}
                 {% set selected_friend = request.args.get('selected_friend') %}
                 {% if selected_friend and selected_friend in friendstimetable %}
+                    {% set my_schedule = friendstimetable[myusername].get(day, []) %}
                     {% set friend_schedule = friendstimetable[selected_friend].get(day, []) %}
                     {% if friend_schedule and i < friend_schedule|length %}
-                        {% set lecture = friend_schedule[i] %}
-                        {% if lecture != 'フリー' %}
-                            {% set is_my_lecture = lecture in my_schedule %}
-                            {% set is_friend_lecture = lecture in friend_schedule %}
-                            {% if is_my_lecture and is_friend_lecture %}
+                        {% set myLecture = my_schedule[i] %}
+                        {% set yourLecture = friend_schedule[i] %}
+                        {% if myLecture != 'フリー' %}
+                            {% if myLecture == yourLecture %}
                                 <div class="lecture myAndYourLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
-                            {% elif is_my_lecture and not is_friend_lecture%}
-                                <div class="lecture myLecture" onclick="handleClick('{{ lecture }}')">わたしの授業</div>
-                            {% elif not is_my_lecture and is_friend_lecture %}
-                                <div class="lecture YourLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
                             {% else %}
-                                <div class="lecture emptyLecture" onclick="handleClick('{{ lecture }}')">フリー</div>
+                                <div class="lecture MyLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
                             {% endif %}
+                        {% elif yourLecture != 'フリー' %}
+                            <div class="lecture YourLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
                         {% else %}
-                            <div class="lecture emptyLecture" onclick="handleClick('{{ lecture }}')">フリー</div>
+                            <div class="lecture emptyLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
                         {% endif %}
                     {% endif %}
                 {% else %}
-                    <div class="lecture notSelected">友達が選択されていません</div
+                    <div class="lecture notSelected">友達が選択されていません</div>
                 {% endif %}
             </td>
             {% endfor %}
