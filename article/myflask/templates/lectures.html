@@ -72,7 +72,7 @@
                 document.getElementById('popupContainer').style.display = 'none';
             }
            function handleClick(lecture, day, period) {
-            var lecture = JSON.parse(lectureStr);
+            var lecture = JSON.parse(lecture);
             if (Object.keys(lecture).length > 0) {
                 showModal(lecture, day, period);
             } else {
