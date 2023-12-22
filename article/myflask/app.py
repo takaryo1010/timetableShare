@@ -201,6 +201,7 @@ def index_timetable_registration():
             url = 'http://52.69.43.211/showClassInfoTimeSpecification'
             response = requests.post(url, data=data)
             json_response = response.json()
+            print(data['name'])
             print(json_response)
             return render_template('timetable_registration.html', data=data, json=json_response)
         else:
