@@ -10,7 +10,7 @@
             background-color: #ffcc00;
             color: black;
         }
-        .notMyRegistered{
+        .notMyLecture{
             background-color: #c0c0c0;
             color: black;
         }
@@ -73,11 +73,10 @@
                             {% if lecture in my_schedule %}
                                 <div class="lecture myLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
                             {% else%}
-                                <div class="lecture notMyRegistered"></div>
+                            <div class="lecture notMyLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
                             {% endif %}
                         {% else %}
                             <div class="lecture emptyClass"></div>
-                        {% endif %}
                     {% endif %}
                 {% else %}
                     <div class="lecture notSelected">友達が選択されていません</div>
