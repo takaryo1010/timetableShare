@@ -171,3 +171,9 @@ nav ul li a:hover {
 .free-slot:hover {
     background-color: #e0d0f0; /* ホバー時の色 */
 }
+
+.form-container {
+    width: 300px; /* 必要に応じて幅を調整してください */
+    float: left; /* コンテナを左側に配置します */
+    margin-right: 20px; /* フォームと他のコンテンツとの間にスペースを追加します */
+}
