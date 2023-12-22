@@ -334,23 +334,9 @@ def share_index():
         print (lectures)
         friendsTimetables[y]=lectures
     
-    return render_template('timetable_sharing.html', friendstimetable=friendsTimetables)
+    return render_template('timetable_sharing.html', friendstimetable=friendsTimetables, myusername=current_user.username)
 
-@app.route('/removeClass', methods=['POST'])
-def remove_class():
-    if request.method == 'POST':
-        class_id = request.form.get('class_id')
 
-        # 授業IDに基づいてデータベースから授業を検索し、削除する
-        # HTTP POSTリクエストを送信
-        response = requests.post('http://52.69.43.211/removeClass', data=class_id)
-
-        # 削除が成功した場合、成功メッセージをフラッシュし、リダイレクトする
-        flash('授業が削除されました。')
-        return redirect(url_for('index'))  # indexページにリダイレクトする場合
-
-    # POST以外のリクエストが来た場合は、何もしない
-    return redirect(url_for('index'))  # エラー処理または適切なリダイレクトを記述
 
 
 
