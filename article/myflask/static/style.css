@@ -1,6 +1,6 @@
 /* main */
 main {
-    margin-left: 240px; /* サイドバーに合わせてマージンを設定 */
+    margin-left: 200px; /* サイドバーに合わせてマージンを設定 */
     padding: 15px; /* コンテンツに余白を追加 */
     box-sizing: border-box; /* 幅と高さの計算にパディングを含める */
 }
