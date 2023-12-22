@@ -327,11 +327,18 @@ def share_index():
 @login_required
 def index_friend_add():
     if request.method == 'POST':
-        url = 'http://52.69.43.211/registerFriends'
-        data = {'my_name': current_user.username, 'your_name': request.form.get('friend_name')}
-        response = requests.post(url, data)
-        json_response = response.json()
-        print(json_response)
+        if request.form.get('remove_friend') == "" or request.form.get('remove_friend') == None:
+            url = 'http://52.69.43.211/registerFriends'
+            data = {'my_name': current_user.username, 'your_name': request.form.get('friend_name')}
+            response = requests.post(url, data)
+            json_response = response.json()
+            print(json_response)
+        else:
+            url = 'http://52.69.43.211/removeFriends'
+            data = {'your_name': request.form.get('remove_friend'),'my_name': current_user.username}
+            response = requests.post(url, data)
+            json_response = response.json()
+            print(json_response)
     return render_template('add_friends.html')
 
 
