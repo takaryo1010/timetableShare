@@ -64,7 +64,7 @@
         {% endfor %}
         <script>
             function showModal(lecture, day, period) {
-                var infoText = '授業名: ' + lecture + '\n曜日: ' + day + '\n時限: ' + period;
+                var infoText = '授業名: ' + lecture['name'] + '\n曜日: ' + day + '\n時限: ' + period;
                 document.getElementById('lectureInfo').innerText = infoText;
                 document.getElementById('popupContainer').style.display = 'flex';
             }
