@@ -48,28 +48,7 @@
             <td>{{ lecture.room }}</td>
             <td>{{ lecture.term }}</td>
             <td>{{ lecture.department }}</td>
-            <td>
-                <!-- 削除ボタン -->
-                <form id="deleteForm{{ lecture.class_id }}" method="post" action="/removeClass">
-                    <input type="hidden" name="class_id" value="{{ lecture.class_id }}">
-                    <button type="button" onclick="confirmDelete('{{ lecture.class_id }}')">削除</button>
-                </form>
-
-            </td>
         </tr>
         {% endfor %}
     </table>
-
-    <script>
-        function confirmDelete(classId) {
-            var result = confirm("本当に削除しますか？");
-            if (result) {
-                // OKがクリックされた場合、対応するフォームを送信
-                document.getElementById("deleteForm" + classId).submit();
-            } else {
-                // キャンセルされた場合、何もしない
-                return false;
-            }
-        }
-    </script>
 </body>
