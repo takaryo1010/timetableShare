@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         .myAndYourLecture {
-            background-color: #ff0000;
+            background-color: #ffdcf6;
             color: black;
         }
         .MyLecture{
-            background-color: #00ff00;
+            background-color: #b9f8cc;
             color: black;
         }
         .YourLecture{
-            background-color: #0000ff;
+            background-color: #d7ffff;
             color: black;
         }
         .emptyLecture{
-            background-color: #c0c0c0;
+            background-color: #e8e8e8;
             color: black;
         }
 
@@ -42,6 +42,22 @@
             </ul>
         </nav>
     </header>
+    <h2>
+        {% set selected_friend = request.args.get('selected_friend') %}
+        {% if selected_friend in friendstimetable %}
+            選択された友達: {{ selected_friend }}
+        {% else %}
+            友達が選択されていません
+        {% endif %}
+    </h2>
+    <form>
+        <select id="friendsDropdown" name="selected_friend" onchange="this.form.submit()">
+            <option value="" selected disabled>友達を選択</option>
+            {% for name, _ in friendstimetable.items() %}
+            <option value="{{ name }}">{{ name }}</option>
+            {% endfor %}
+        </select>
+    </form>
     <table>
         <tr>
             <th>時間</th>
@@ -75,16 +91,16 @@
                     {% if friend_schedule and i < friend_schedule|length %}
                         {% set myLecture = my_schedule[i] %}
                         {% set yourLecture = friend_schedule[i] %}
-                        {% if myLecture != 'フリー' %}
+                        {% if myLecture != '' %}
                             {% if myLecture == yourLecture %}
                                 <div class="lecture myAndYourLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
                             {% else %}
-                                <div class="lecture MyLecture"></div>
+                                <div class="lecture MyLecture" onclick="handleClick('{{ myLecture }}')">{{ myLecture }}</div>
                             {% endif %}
-                        {% elif yourLecture != 'フリー' %}
-                            <div class="lecture YourLecture" onclick="handleClick('{{ yourlecture }}')">{{ yourLecture }}</div>
+                        {% elif yourLecture != '' %}
+                            <div class="lecture YourLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
                         {% else %}
-                            <div class="lecture emptyLecture"></div>
+                            <div class="lecture emptyLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
                         {% endif %}
                     {% endif %}
                 {% else %}
@@ -95,14 +111,10 @@
         </tr>
         {% endfor %}
     </table>
-    <form>
-        <select id="friendsDropdown" name="selected_friend" onchange="this.form.submit()">
-            <option value="" selected disabled>友達を選択</option>
-            {% for name, _ in friendstimetable.items() %}
-            <option value="{{ name }}">{{ name }}</option>
-            {% endfor %}
-        </select>
-    </form>
+    <p><span style="background-color: #ffdcf6;">どちらも授業を取っている　</span></p>
+    <p><span style="background-color: #b9f8cc;">自分だけ授業を取っている　</span></p>
+    <p><span style="background-color: #d7ffff;">友達だけ授業を取っている　</span></p>
+    <p><span style="background-color: #e8e8e8;">どちらも授業を取っていない</span></p>
 </body>
 
 </html>
