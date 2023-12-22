@@ -73,14 +73,17 @@
             function closePopup() {
                 document.getElementById('popupContainer').style.display = 'none';
             }
-           function handleClick(lecture, day, period) {
-            if (lecture == "{}") {
-                location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
-            } else {
-                // alert(lecture['name']+"\n"+lecture['room']+"\n"+lecture[unit])
-                showModal(lecture, day, period);
-                
-            }
+           function handleClick(lectureStr, day, period) {
+                try {
+                    var lecture = JSON.parse(lectureStr);
+                    if (Object.keys(lecture).length > 0) {
+                        showModal(lecture, day, period);
+                    } else {
+                        location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
+                    }
+                } catch (e) {
+                    console.error("JSON parsing error:", e);
+                }
             }
         </script>
     </table>
