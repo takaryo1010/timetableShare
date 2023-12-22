@@ -95,7 +95,7 @@
                                 <div class="lecture MyLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
                             {% endif %}
                         {% elif yourLecture != '' %}
-                            <div class="lecture YourLecture" onclick="handleClick('{{ yourlecture }}')">{{ yourLecture }}</div>
+                            <div class="lecture YourLecture" onclick="handleClick('{{ myLecture }}')">{{ myLecture }}</div>
                         {% else %}
                             <div class="lecture emptyLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
                         {% endif %}
