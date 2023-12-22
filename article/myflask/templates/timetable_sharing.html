@@ -43,6 +43,7 @@
         </nav>
     </header>
     <h2>
+        {% set selected_friend = request.args.get('selected_friend') %}
         {% if selected_friend in friendstimetable %}
             選択された友達: {{ selected_friend }}
         {% else %}
@@ -92,10 +93,10 @@
                             {% if myLecture == yourLecture %}
                                 <div class="lecture myAndYourLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
                             {% else %}
-                                <div class="lecture MyLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
+                                <div class="lecture MyLecture" onclick="handleClick('{{ myLecture }}')">{{ myLecture }}</div>
                             {% endif %}
                         {% elif yourLecture != '' %}
-                            <div class="lecture YourLecture" onclick="handleClick('{{ myLecture }}')">{{ myLecture }}</div>
+                            <div class="lecture YourLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
                         {% else %}
                             <div class="lecture emptyLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
                         {% endif %}
