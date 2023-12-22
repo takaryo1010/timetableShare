@@ -57,7 +57,8 @@
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
             {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
             <td>
-                <div class="lecture" onclick="handleClick('{{ lecture }}', '{{ day }}', '{{ i+1 }}')">{{ lecture['name'] }}</div>
+                <!--<div class="lecture" onclick="handleClick('{{ lecture }}', '{{ day }}', '{{ i+1 }}')">{{ lecture['name'] }}</div>-->
+                <div class="lecture" onclick="handleClick('{{ lecture | tojson }}', '{{ day }}', '{{ i+1 }}')">{{ lecture.get('name', '') }}</div>
             </td>
             {% endfor %}
         </tr>
@@ -73,6 +74,12 @@
             }
            function handleClick(lecture, day, period) {
             var lecture = JSON.parse(lecture);
+            // if (Object.keys(lecture).length > 0) {
+            //     showModal(lecture, day, period);
+            // } else {
+            //     location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
+            // }
+            var lecture = JSON.parse(lectureStr);
             if (Object.keys(lecture).length > 0) {
                 showModal(lecture, day, period);
             } else {
