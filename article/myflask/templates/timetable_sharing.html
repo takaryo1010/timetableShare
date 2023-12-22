@@ -61,7 +61,7 @@
                     {% if friend_schedule and i < friend_schedule|length %}
                         {% set lecture = friend_schedule[i] %}
                         {% if lecture != 'フリー' %}
-                            {% if lecture == friendstimetable[myusername][day] %}
+                            {% if lecture == friendstimetable[myusername][day][i] %}
                                 <div class="lecture myLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
                             {% else %}
                                 <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
