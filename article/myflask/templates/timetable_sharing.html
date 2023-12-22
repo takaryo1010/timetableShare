@@ -42,6 +42,13 @@
             </ul>
         </nav>
     </header>
+    <h2>
+        {% if selected_friend %}
+            選択された友達: {{ selected_friend }}
+        {% else %}
+            友達が選択されていません
+        {% endif %}
+    </h2>
     <table>
         <tr>
             <th>時間</th>
