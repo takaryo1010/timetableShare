@@ -268,7 +268,6 @@ def index_lecture_creation():
 
 
 @app.route('/timetable_sharing')
-@login_required
 def share_index():
     
     # サーバーのエンドポイントURLを設定
@@ -334,7 +333,6 @@ def share_index():
     return render_template('timetable_sharing.html', friendstimetable=friendsTimetables)
 
 @app.route('/removeClass', methods=['POST'])
-@login_required
 def remove_class():
     if request.method == 'POST':
         class_id = request.form.get('class_id')
