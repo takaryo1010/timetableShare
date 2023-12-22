@@ -77,14 +77,14 @@
                         {% set yourLecture = friend_schedule[i] %}
                         {% if myLecture != 'フリー' %}
                             {% if myLecture == yourLecture %}
-                                <div class="lecture myAndYourLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                                <div class="lecture myAndYourLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
                             {% else %}
-                                <div class="lecture MyLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                                <div class="lecture MyLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
                             {% endif %}
                         {% elif yourLecture != 'フリー' %}
-                            <div class="lecture YourLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                            <div class="lecture YourLecture" onclick="handleClick('{{ yourlecture }}')">{{ yourLecture }}</div>
                         {% else %}
-                            <div class="lecture emptyLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                            <div class="lecture emptyLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
                         {% endif %}
                     {% endif %}
                 {% else %}
