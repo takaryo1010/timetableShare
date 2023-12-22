@@ -6,18 +6,23 @@
     <title>時間割</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        .myLecture {
-            background-color: #ffcc00;
+        .myAndYourLecture {
+            background-color: #ff0000;
             color: black;
         }
-        .notMyRegistered{
-            background-color: #c0c0c0;
+        .MyLecture{
+            background-color: #00ff00;
             color: black;
         }
-        .emptyClass{
+        .YourLecture{
             background-color: #0000ff;
             color: black;
         }
+        .emptyLecture{
+            background-color: #c0c0c0;
+            color: black;
+        }
+
     </style>
 </head>
 
@@ -70,17 +75,23 @@
                     {% if friend_schedule and i < friend_schedule|length %}
                         {% set lecture = friend_schedule[i] %}
                         {% if lecture != 'フリー' %}
-                            {% if lecture in my_schedule %}
-                                <div class="lecture myLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
-                            {% else%}
-                                <div class="lecture notMyRegistered"></div>
+                            {% set is_my_lecture = lecture in my_schedule %}
+                            {% set is_friend_lecture = lecture in friend_schedule %}
+                            {% if is_my_lecture and is_friend_lecture %}
+                                <div class="lecture myAndYourLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                            {% elif is_my_lecture and not is_friend_lecture%}
+                                <div class="lecture myLecture" onclick="handleClick('{{ lecture }}')">わたしの授業</div>
+                            {% elif not is_my_lecture and is_friend_lecture %}
+                                <div class="lecture YourLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                            {% else %}
+                                <div class="lecture emptyLecture" onclick="handleClick('{{ lecture }}')">フリー</div>
                             {% endif %}
                         {% else %}
-                            <div class="lecture emptyClass"></div>
+                            <div class="lecture emptyLecture" onclick="handleClick('{{ lecture }}')">フリー</div>
                         {% endif %}
                     {% endif %}
                 {% else %}
-                    <div class="lecture notSelected">友達が選択されていません</div>
+                    <div class="lecture notSelected">友達が選択されていません</div
                 {% endif %}
             </td>
             {% endfor %}

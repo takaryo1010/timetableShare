@@ -143,6 +143,7 @@ func showClassInfoTimeSpecification(c echo.Context) error {
 	for rows.Next() {
 		var cl classInfo
 		err := rows.Scan(&cl.Class_id, &cl.Name, &cl.Day, &cl.Period, &cl.Unit, &cl.Must, &cl.Teacher, &cl.Room, &cl.Term, &cl.Department)
+
 		if err != nil {
 			log.Fatal(err)
 			return err // エラーを返す

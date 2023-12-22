@@ -24,10 +24,10 @@
             </ul>
         </nav>
     </header>
-    <div id="modal" class="modal">
+    <div id="popupContainer" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <p id="modal-info">授業情報</p>
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p id="lectureInfo">授業情報</p>
         </div>
     </div>
     <table>
@@ -68,8 +68,12 @@
         {% endfor %}
         <script>
             function showModal(lecture, day, period) {
-                console.log('Showing modal for: ', lecture, day, period);
-                alert('授業名: ' + lecture + '\n曜日: ' + day + '\n時限: ' + period);
+                var infoText = '授業名: ' + lecture + '\n曜日: ' + day + '\n時限: ' + period;
+                document.getElementById('lectureInfo').innerText = infoText;
+                document.getElementById('popupContainer').style.display = 'flex';
+            }
+            function closePopup() {
+                document.getElementById('popupContainer').style.display = 'none';
             }
            function handleClick(lecture, day, period) {
                 if (lecture != '') {

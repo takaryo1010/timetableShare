@@ -201,6 +201,7 @@ def index_timetable_registration():
             if request.form.get('department') != "" and request.form.get('department') != None:
                 data['department'] = request.form.get('department')
             url = 'http://52.69.43.211/showClassInfoTimeSpecification'
+            print(data)
             response = requests.post(url, data=data)
             json_response = response.json()
             print(json_response)
