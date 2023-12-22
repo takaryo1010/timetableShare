@@ -279,12 +279,13 @@ def share_index():
     json_response = response.json()
     print(json_response)
     friends.append(current_user.username)
-    
-    for y in json_response:
-        if(y=="null"):
+    if(json_response=="null"):
             friends.append[current_user.username]
-            break
-        friends.append( y['your_name'])
+
+    else:
+        for y in json_response:
+            
+            friends.append( y['your_name'])
         
     for y in friends:
     # 送信するデータを準備
