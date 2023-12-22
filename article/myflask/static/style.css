@@ -178,11 +178,20 @@ nav ul li a:hover {
     margin-right: 20px; /* フォームと他のコンテンツとの間にスペースを追加します */
 }
 
-.sidebar {
-    width: 200px; /* サイドバーの幅 */
-    height: 100%; /* ページの高さいっぱいにする */
-    background-color: #f2f2f2; /* サイドバーの背景色 */
-    float: left; /* 左側に配置 */
+.sidebar header nav ul {
+    list-style: none; /* リストのマーカーを非表示にする */
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar header nav ul li {
+    margin-bottom: 8px; /* 各リンクの間に余白を追加 */
+}
+
+.sidebar header nav ul li a {
+    display: block; /* リンクをブロック要素として表示 */
+    text-decoration: none; /* 下線を削除 */
+    color: #333; /* リンクの色 */
 }
 
 main {
