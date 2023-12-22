@@ -282,8 +282,9 @@ def share_index():
     response = requests.post('http://52.69.43.211/showFriends', data=data)
     json_response = response.json()
     friends.append(current_user.username)
-    for y in json_response:
-        friends.append( y['your_name'])
+    if(json_response!=None):
+        for y in json_response:
+            friends.append( y['your_name'])
         
     for y in friends:
     # 送信するデータを準備
