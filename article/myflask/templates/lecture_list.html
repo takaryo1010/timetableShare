@@ -50,7 +50,7 @@
             <td>{{ lecture.department }}</td>
             <td>
                 <!-- 削除ボタン -->
-                <form method="post" action="/delete_lecture">
+                <form method="post" action="/removeClass">
                     <input type="hidden" name="class_id" value="{{ lecture.class_id }}">
                     <input type="submit" value="削除">
                 </form>
