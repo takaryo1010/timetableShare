@@ -183,6 +183,7 @@ def index_timetable_registration():
             if request.form.get('class_name') != "" and request.form.get('class_name') != None:
                 print("aaaaaaaaa")
                 data['name'] = request.form.get('class_name')
+                print(data['name'])
             if request.form.get('class_day') != "" and request.form.get('class_day') != None:
                 data['day'] = request.form.get('class_day')
             if request.form.get('class_time') != "" and request.form.get('class_time') != None:
