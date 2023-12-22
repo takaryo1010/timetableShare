@@ -326,7 +326,7 @@ def share_index():
 @app.route('/add_friends', methods=['GET', 'POST'])
 @login_required
 def index_friend_add():
-    if request.method == 'GET':
+    if request.method == 'POST':
         url = 'http://52.69.43.211/registerFriends'
         data = {'my_name': current_user.username, 'your_name': request.form.get('friend_name')}
         response = requests.post(url, data)
