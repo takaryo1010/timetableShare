@@ -52,8 +52,9 @@
                 <!-- 削除ボタン -->
                 <form id="deleteForm{{ lecture.class_id }}" method="post" action="/removeClass">
                     <input type="hidden" name="class_id" value="{{ lecture.class_id }}">
-                    <button onclick="confirmDelete('{{ lecture.class_id }}')">削除</button>
+                    <button type="button" onclick="confirmDelete('{{ lecture.class_id }}')">削除</button>
                 </form>
+
             </td>
         </tr>
         {% endfor %}
