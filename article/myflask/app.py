@@ -370,6 +370,8 @@ def index_friend_add():
     data = {'my_name': current_user.username}
     response = requests.post(url, data)
     json_response = response.json()
+    if(json_response!=None):
+        json_response=[]
     print(json_response)
     return render_template('add_friends.html', json=json_response)
 
