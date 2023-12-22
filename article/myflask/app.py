@@ -357,15 +357,20 @@ def index_friend_add():
             url = 'http://52.69.43.211/registerFriends'
             data = {'my_name': current_user.username, 'your_name': request.form.get('friend_name')}
             response = requests.post(url, data)
-            json_response = response.json()
-            print(json_response)
+            json_response_register = response.json()
+            print(json_response_register)
         else:
             url = 'http://52.69.43.211/removeFriends'
             data = {'your_name': request.form.get('remove_friend'),'my_name': current_user.username}
             response = requests.post(url, data)
-            json_response = response.json()
-            print(json_response)
-    return render_template('add_friends.html')
+            json_response_remove = response.json()
+            print(json_response_remove)
+    url = 'http://52.69.43.211/showFriends'
+    data = {'my_name': current_user.username}
+    response = requests.post(url, data)
+    json_response = response.json()
+    print(json_response)
+    return render_template('add_friends.html', json=json_response)
 
 
 if __name__ == '__main__':
