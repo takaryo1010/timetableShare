@@ -58,8 +58,8 @@
             {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
             <td>
                 {% set name = lecture["name"] %}
-                {% set name = lecture["room"] %}
-                {% set name = lecture["teacher"] %}
+                {% set room = lecture["room"] %}
+                {% set teacher = lecture["teacher"] %}
                 <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}')">{{ name }}</div>
             </td>
             {% endfor %}
