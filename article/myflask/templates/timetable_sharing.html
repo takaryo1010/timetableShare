@@ -79,12 +79,12 @@
                             {% if myLecture == yourLecture %}
                                 <div class="lecture myAndYourLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
                             {% else %}
-                                <div class="lecture MyLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
+                                <div class="lecture MyLecture"></div>
                             {% endif %}
                         {% elif yourLecture != 'フリー' %}
                             <div class="lecture YourLecture" onclick="handleClick('{{ yourlecture }}')">{{ yourLecture }}</div>
                         {% else %}
-                            <div class="lecture emptyLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
+                            <div class="lecture emptyLecture"></div>
                         {% endif %}
                     {% endif %}
                 {% else %}
