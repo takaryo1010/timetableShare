@@ -88,7 +88,7 @@ td .free {
 
 
 
-header {
+/* header {
     background-color: rgb(31, 113, 106); 
     padding: 10px 20px; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
@@ -151,7 +151,7 @@ nav ul li a:hover {
     nav ul li a {
         display: block; 
     }
-}
+} */
 
 .free-slot {
     display: block;
