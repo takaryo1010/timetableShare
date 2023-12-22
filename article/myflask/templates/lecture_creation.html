@@ -23,7 +23,9 @@
             </ul>
         </nav>
     </header>
+
     <h1>授業作成</h1>
+
     <form action="/lecture_creation" method="post">
         <input type="text" name="class_name" placeholder="Class Name" required>
         <select name="class_day" required>
@@ -60,4 +62,39 @@
         </select>
         <button type="submit">登録</button>
     </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>授業名</th>
+                <th>授業ID</th>
+                <th>曜日</th>
+                <th>時限</th>
+                <th>単位</th>
+                <th>必修</th>
+                <th>先生</th>
+                <th>教室</th>
+                <th>学期</th>
+                <th>学科</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lecture in json %}
+            <tr>
+                <td>{{ lecture.name }}</td>
+                <td>{{ lecture.class_id }}</td>
+                <td>{{ lecture.day }}</td>
+                <td>{{ lecture.period }}</td>
+                <td>{{ lecture.unit }}</td>
+                <td>{{ lecture.must }}</td>
+                <td>{{ lecture.teacher }}</td>
+                <td>{{ lecture.room }}</td>
+                <td>{{ lecture.term }}</td>
+                <td>{{ lecture.department }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
+
+</html>
