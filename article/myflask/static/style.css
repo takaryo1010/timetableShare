@@ -1,15 +1,21 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f0f0f0;
+/* main */
+main {
+    margin-left: 240px; /* Adjusted margin to accommodate the sidebar */
+    padding: 20px; /* Add some padding for content */
+    box-sizing: border-box; /* Include padding in the width/height calculation */
+    display: flex; /* Use flexbox to align items */
+    flex-direction: column; /* Display items in a column */
 }
 
-h1 {
-    text-align: center;
+main form {
+    margin-bottom: 20px; /* Add space between form and table */
 }
 
-table {
+main h1 {
+    text-align: center; /* Center align the heading */
+}
+
+main table {
     width: 95%; 
     margin: 20px auto;
     border-collapse: collapse;
@@ -17,6 +23,51 @@ table {
     table-layout: fixed; 
     border-radius: 15px;
 }
+
+/* sidebar */
+.sidebar {
+    background-color: rgb(31, 113, 106);
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Display items vertically */
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh; /* Adjust the height of the sidebar */
+}
+
+.sidebar header {
+    margin-bottom: 20px; /* Add some space between header and nav */
+}
+
+.sidebar nav ul {
+    list-style: none; /* Remove default list styles */
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar nav ul li {
+    margin: 5px 0;
+}
+
+.sidebar nav ul li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar nav ul li a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f0f0;
+}
+
 
 th, td {
     padding: 8px;
@@ -86,40 +137,7 @@ td .free {
     margin: 4px;
 }
 
-.sidebar {
-    background-color: rgb(31, 113, 106);
-    padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column; /* Display items vertically */
-    justify-content: space-between;
-    align-items: center;
-    height: 100vh; /* Adjust the height of the sidebar */
-}
 
-.sidebar header {
-    margin-bottom: 20px; /* Add some space between header and nav */
-}
-
-.sidebar nav ul {
-    list-style: none; /* Remove default list styles */
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar nav ul li {
-    margin: 5px 0;
-}
-
-.sidebar nav ul li a {
-    display: block;
-    color: white;
-    text-decoration: none;
-}
-
-.sidebar nav ul li a:hover {
-    text-decoration: underline; /* Add underline on hover */
-}
 
 
 
@@ -172,7 +190,3 @@ td .free {
 
 
 
-main {
-    margin-left: 220px; /* サイドバーとの間にマージンを設定 */
-    /* 必要に応じてマージンを調整してください */
-}
