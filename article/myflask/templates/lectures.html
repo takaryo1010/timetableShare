@@ -68,8 +68,12 @@
         {% endfor %}
         <script>
             function showModal(lecture, day, period) {
-                console.log('Showing modal for: ', lecture, day, period);
-                alert('授業名: ' + lecture + '\n曜日: ' + day + '\n時限: ' + period);
+                var infoText = '授業名: ' + lecture + '\n曜日: ' + day + '\n時限: ' + period;
+                document.getElementById('lectureInfo').innerText = infoText;
+                document.getElementById('popupContainer').style.display = 'flex';
+            }
+            function closePopup() {
+                document.getElementById('popupContainer').style.display = 'none';
             }
            function handleClick(lecture, day, period) {
                 if (lecture != '') {
