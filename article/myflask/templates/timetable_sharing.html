@@ -10,6 +10,10 @@
             background-color: #ffcc00;
             color: black;
         }
+        .notRegistered{
+            background-color: #c0c0c0;
+            color: black;
+        }
     </style>
 </head>
 
@@ -55,24 +59,26 @@
             {% endif %}
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
             <td>
-                {% set my_schedule = friendstimetable[myusername][day] %}
+                {% set my_schedule = friendstimetable.get(myusername, {}).get(day, []) %}
                 {% set selected_friend = request.args.get('selected_friend') %}
                 {% if selected_friend and selected_friend in friendstimetable %}
-                    {% set friend_schedule = friendstimetable[selected_friend][day] %}
+                    {% set friend_schedule = friendstimetable[selected_friend].get(day, []) %}
                     {% if friend_schedule and i < friend_schedule|length %}
                         {% set lecture = friend_schedule[i] %}
                         {% if lecture != 'フリー' %}
-                            {% if lecture == my_schedule[i] %}
+                            {% if lecture in my_schedule %}
                                 <div class="lecture myLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                            {% elif my_schedule == [] %}
+                                <div class="lecture notRegistered"></div>
                             {% else %}
-                                <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                                <div class="lecture"></div>
                             {% endif %}
                         {% else %}
-                            {{ lecture }}
+                            <div class="lecture notRegistered"></div>
                         {% endif %}
                     {% endif %}
                 {% else %}
-                    友達が選択されていません
+                    <div class="lecture notSelected">友達が選択されていません</div>
                 {% endif %}
             </td>
             {% endfor %}

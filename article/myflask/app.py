@@ -100,6 +100,7 @@ def index():
     return render_template('lectures.html', timetable=lectures)
 
 
+
 @app.route('/test')
 def test():
 
@@ -180,6 +181,7 @@ def index_timetable_registration():
         if request.form.get('class_id') == "" or request.form.get('class_id') == None:
             data = {}
             if request.form.get('class_name') != "" and request.form.get('class_name') != None:
+                print("aaaaaaaaa")
                 data['name'] = request.form.get('class_name')
             if request.form.get('class_day') != "" and request.form.get('class_day') != None:
                 data['day'] = request.form.get('class_day')
@@ -201,6 +203,7 @@ def index_timetable_registration():
             response = requests.post(url, data=data)
             json_response = response.json()
             print(json_response)
+            print(request.form.get('class_name'))
             return render_template('timetable_registration.html', data=data, json=json_response)
         else:
             url = 'http://52.69.43.211/registerCourse'
@@ -212,6 +215,15 @@ def index_timetable_registration():
             print(json_response)
     return render_template('timetable_registration.html')
 
+@app.route("/timetable_registration_designation", methods=['GET', 'POST'])
+def index_timetable_registration_designation():
+    print(request.args.get('day', default=None), request.args.get('period', default=None))
+    url = 'http://52.69.43.211/showClassInfoTimeSpecification'
+    data = {'day': request.args.get('day', default=None), 'period': request.args.get('period', default=None)}
+    response = requests.post(url, data)
+    json_response = response.json()
+    print(json_response)
+    return render_template('timetable_registration.html', data=data, json=json_response)
 
 @app.route("/lecture_list")
 def index_lecture_list():
@@ -334,7 +346,7 @@ def share_index():
         print (lectures)
         friendsTimetables[y]=lectures
     
-    return render_template('timetable_sharing.html', friendstimetable=friendsTimetables)
+    return render_template('timetable_sharing.html', friendstimetable=friendsTimetables, myusername=current_user.username)
 
 
 @app.route('/add_friends', methods=['GET', 'POST'])
