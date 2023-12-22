@@ -15,6 +15,7 @@ table {
     border-collapse: collapse;
     box-shadow: 0 2px 3px #ccc;
     table-layout: fixed; 
+    border-radius: 15px;
 }
 
 th, td {
@@ -29,6 +30,16 @@ th, td {
 th {
     background-color: #f2f2f2;
     color: #333;
+    border-top-left-radius: 15px; /* 左上の角を丸くする */
+    border-top-right-radius: 15px; /* 右上の角を丸くする */
+}
+
+tr:last-child td:first-child {
+    border-bottom-left-radius: 15px;
+}
+
+tr:last-child td:last-child {
+    border-bottom-right-radius: 15px;
 }
 
 td {
