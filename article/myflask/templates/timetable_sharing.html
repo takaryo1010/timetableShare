@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
         .myAndYourLecture {
-            background-color: #ff0000;
+            background-color: #050000;
             color: black;
         }
         .MyLecture{
-            background-color: #00ff00;
+            background-color: #000500;
             color: black;
         }
         .YourLecture{
-            background-color: #0000ff;
+            background-color: #000005;
             color: black;
         }
         .emptyLecture{
-            background-color: #c0c0c0;
+            background-color: #505050;
             color: black;
         }
 
@@ -50,12 +50,14 @@
             友達が選択されていません
         {% endif %}
     </h2>
-
-    <p>赤色 : どちらも授業を取っている</p>
-    <p>緑色 : 自分だけ授業を取っている</p>
-    <p>青色 : 友達だけ授業を取っている</p>
-    <p>灰色 : どちらも授業を取っていない</p>
-
+    <form>
+        <select id="friendsDropdown" name="selected_friend" onchange="this.form.submit()">
+            <option value="" selected disabled>友達を選択</option>
+            {% for name, _ in friendstimetable.items() %}
+            <option value="{{ name }}">{{ name }}</option>
+            {% endfor %}
+        </select>
+    </form>
     <table>
         <tr>
             <th>時間</th>
@@ -109,14 +111,10 @@
         </tr>
         {% endfor %}
     </table>
-    <form>
-        <select id="friendsDropdown" name="selected_friend" onchange="this.form.submit()">
-            <option value="" selected disabled>友達を選択</option>
-            {% for name, _ in friendstimetable.items() %}
-            <option value="{{ name }}">{{ name }}</option>
-            {% endfor %}
-        </select>
-    </form>
+    <p>赤色 : どちらも授業を取っている</p>
+    <p>緑色 : 自分だけ授業を取っている</p>
+    <p>青色 : 友達だけ授業を取っている</p>
+    <p>灰色 : どちらも授業を取っていない</p>
 </body>
 
 </html>
