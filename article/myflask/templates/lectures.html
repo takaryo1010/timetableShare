@@ -51,7 +51,7 @@
             {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
             <td>
                 {% if lecture != 'フリー' %}
-                <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                <div class="lecture" onclick="handleClick('{{ lecture }}', '{{ day }}', '{{ i+1 }}')">{{ lecture }}</div>
                 {% else %}
                 {{ lecture }}
                 {% endif %}
@@ -60,12 +60,14 @@
         </tr>
         {% endfor %}
         <script>
-            function handleClick(lecture) {
+           function handleClick(lecture, day, period) {
                 // alert(lecture);
                 if (lecture != '') {
                     alert('Class has already exist');
                 } else {
-                    alert('Class has not exist yet');
+                    //location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
+                    location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
+
                 }
             }
         </script>

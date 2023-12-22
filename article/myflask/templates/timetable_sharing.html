@@ -49,32 +49,33 @@
             {% endif %}
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
             <td>
-                {% if lecture != 'フリー' %}
-                <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                {% set selected_friend = request.args.get('selected_friend') %}
+                {% if selected_friend and selected_friend in friendstimetable %}
+                    {% set friend_schedule = friendstimetable[selected_friend][day] %}
+                    {% if friend_schedule and i < friend_schedule|length %}
+                        {% set lecture = friend_schedule[i] %}
+                        {% if lecture != 'フリー' %}
+                            <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
+                        {% else %}
+                            {{ lecture }}
+                        {% endif %}
+                    {% endif %}
                 {% else %}
-                {{ lecture }}
+                    友達が選択されていません
                 {% endif %}
             </td>
             {% endfor %}
         </tr>
         {% endfor %}
-        <select id="friendsDropdown">
+    </table>
+    <form>
+        <select id="friendsDropdown" name="selected_friend" onchange="this.form.submit()">
             <option value="" selected disabled>友達を選択</option>
-            {% for name, lectures in friendstimetable.items() %}
+            {% for name, _ in friendstimetable.items() %}
             <option value="{{ name }}">{{ name }}</option>
             {% endfor %}
         </select>
-        <script>
-            function handleClick(lecture) {
-                // alert(lecture);
-                if (lecture != '') {
-                    alert('Class has already exist');
-                } else {
-                    alert('Class has not exist yet');
-                }
-            }
-        </script>
-    </table>
+    </form>
 </body>
 
 </html>
