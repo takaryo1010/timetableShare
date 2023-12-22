@@ -343,7 +343,7 @@ def share_index():
         print (lectures)
         friendsTimetables[y]=lectures
     
-    return render_template('timetable_sharing.html', friendstimetable=friendsTimetables)
+    return render_template('timetable_sharing.html', friendstimetable=friendsTimetables, myusername=current_user.username)
 
 
 @app.route('/add_friends', methods=['GET', 'POST'])
