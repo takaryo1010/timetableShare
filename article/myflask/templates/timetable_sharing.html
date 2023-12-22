@@ -51,8 +51,8 @@
             <td>
                 {% set selected_friend = request.args.get('selected_friend') %}
                 {% if selected_friend and selected_friend in friendstimetable %}
-                    {% set friend_schedule = friendstimetable[selected_friend]['lectures'][day] %}
-                    {% if friend_schedule and i < len(friend_schedule) %}
+                    {% set friend_schedule = friendstimetable[selected_friend][day] %}
+                    {% if friend_schedule and i < friend_schedule|length %}
                         {% set lecture = friend_schedule[i] %}
                         {% if lecture != 'フリー' %}
                             <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
@@ -60,10 +60,10 @@
                             {{ lecture }}
                         {% endif %}
                     {% else %}
-                        {{ "該当する授業がありません" }}
+                        該当する授業がありません
                     {% endif %}
                 {% else %}
-                    {{ "友達が選択されていません" }}
+                    友達が選択されていません
                 {% endif %}
             </td>
             {% endfor %}
