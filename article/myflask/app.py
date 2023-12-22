@@ -107,7 +107,7 @@ def test():
     # end test
     # ここで講義のデータを取得する
     lectures = {
-       "Monday": ["微積文法の応用", "", "プログラミング (C/C++)", "プログラミング (C/C++)", "人工知能"],
+       "Monday": ["微積文法の応用", "", "プログラミング (C/C++)", "プログラミング (C/C++)"],
        "Tuesday": ["西洋近現代史", "科学英語", "", "", "最適化"],
        "Wednesday": ["", "時事英語", "", "", "データ構造とアルゴリズム 2"],
        "Thursday": ["", "", "", "", ""],
@@ -211,6 +211,16 @@ def index_timetable_registration():
             json_response = response.json()
             print(json_response)
     return render_template('timetable_registration.html')
+
+@app.route("/timetable_registration_designation", methods=['GET', 'POST'])
+def index_timetable_registration_designation():
+    print(request.args.get('day', default=None), request.args.get('period', default=None))
+    url = 'http://52.69.43.211/showClassInfoTimeSpecification'
+    data = {'day': request.args.get('day', default=None), 'period': request.args.get('period', default=None)}
+    response = requests.post(url, data)
+    json_response = response.json()
+    print(json_response)
+    return render_template('timetable_registration.html', data=data, json=json_response)
 
 
 @app.route("/lecture_list")
