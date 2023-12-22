@@ -24,12 +24,7 @@
             </ul>
         </nav>
     </header>
-    <div id="popupContainer" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closePopup()">&times;</span>
-            <p id="lectureInfo">授業情報</p>
-        </div>
-    </div>
+    
     <table>
         <tr>
             <th>時間</th>
@@ -60,8 +55,18 @@
                 {% set name = lecture["name"] %}
                 {% set room = lecture["room"] %}
                 {% set teacher = lecture["teacher"] %}
+                {% set id = lecture["class_id"] %}
+
                 <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}')">{{ name }}</div>
+                <div id="popupContainer" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closePopup()">&times;</span>
+                        <p id="lectureInfo">授業情報</p>
+                        <button id="unregisterButton" onclick="unregisterCourse('{{id}}', '{{username}}')">履修解除</button>
+                    </div>
+                </div>
             </td>
+            
             {% endfor %}
         </tr>
         {% endfor %}
@@ -74,14 +79,31 @@
             function closePopup() {
                 document.getElementById('popupContainer').style.display = 'none';
             }
-           function handleClick(name, day, period, room, teacher) {
-            if (name == "") {
-                location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
-            } else {
-                // alert(lecture['name']+"\n"+lecture['room']+"\n"+lecture[unit])
-                showModal(name, day, period, room, teacher);
-                
+            function handleClick(name, day, period, room, teacher) {
+                if (name == "") {
+                    location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
+                } else {
+                    // alert(lecture['name']+"\n"+lecture['room']+"\n"+lecture[unit])
+                    showModal(name, day, period, room, teacher);
+                    
+                }
             }
+            function unregisterCourse(id, username) {
+                // Ajaxを使用してPOSTリクエストを送信
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "http://52.69.43.211/removeCourse", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                xhr.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                    // レスポンス処理
+                    alert("履修解除が完了しました");
+                    }
+                };
+
+                // POSTパラメータとして送信するデータ
+                var data = {class_id : id, name : username}; // ここで適切なデータを設定
+                xhr.send(data);
             }
         </script>
     </table>

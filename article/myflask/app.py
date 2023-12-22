@@ -96,8 +96,9 @@ def index():
         "Ondemand": ondemand
     }
     print (lectures)
+    username = current_user.username
     
-    return render_template('lectures.html', timetable=lectures)
+    return render_template('lectures.html', timetable=lectures, username=username)
 
 
 
