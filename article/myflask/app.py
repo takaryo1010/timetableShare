@@ -100,6 +100,7 @@ def index():
     return render_template('lectures.html', timetable=lectures)
 
 
+
 @app.route('/test')
 def test():
 
@@ -212,6 +213,15 @@ def index_timetable_registration():
             print(json_response)
     return render_template('timetable_registration.html')
 
+@app.route("/timetable_registration_designation", methods=['GET', 'POST'])
+def index_timetable_registration_designation():
+    print(request.args.get('day', default=None), request.args.get('period', default=None))
+    url = 'http://52.69.43.211/showClassInfoTimeSpecification'
+    data = {'day': request.args.get('day', default=None), 'period': request.args.get('period', default=None)}
+    response = requests.post(url, data)
+    json_response = response.json()
+    print(json_response)
+    return render_template('timetable_registration.html', data=data, json=json_response)
 
 @app.route("/lecture_list")
 def index_lecture_list():
