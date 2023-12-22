@@ -8,7 +8,7 @@
     <style>
         .myLecture {
             background-color: #ffcc00;
-            color: black; 
+            color: black;
         }
     </style>
 </head>
@@ -53,6 +53,7 @@
             {% elif i == 4 %}
             <td class="time">5限<br>17:00 - 18:40</td>
             {% endif %}
+            {% set my_schedule = friendstimetable[myusername][day] %}
             {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
             <td>
                 {% set selected_friend = request.args.get('selected_friend') %}
@@ -61,7 +62,7 @@
                     {% if friend_schedule and i < friend_schedule|length %}
                         {% set lecture = friend_schedule[i] %}
                         {% if lecture != 'フリー' %}
-                            {% if lecture == myusername %}
+                            {% if lecture == my_schedule[i] %}
                                 <div class="lecture myLecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>
                             {% else %}
                                 <div class="lecture" onclick="handleClick('{{ lecture }}')">{{ lecture }}</div>

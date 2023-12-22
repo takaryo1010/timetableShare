@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>時間割</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='modal.css') }}">
 </head>
 
 <body>
@@ -23,6 +24,12 @@
             </ul>
         </nav>
     </header>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modal-info">授業情報</p>
+        </div>
+    </div>
     <table>
         <tr>
             <th>時間</th>
@@ -52,6 +59,7 @@
             <td>
                 {% if lecture != 'フリー' %}
                 <div class="lecture" onclick="handleClick('{{ lecture }}', '{{ day }}', '{{ i+1 }}')">{{ lecture }}</div>
+                <div class="lecture" onclick="showModal(this)" data-info="講義名: XXX, 教員: YYY, 教室: ZZZ">{{ lecture }}</div>
                 {% else %}
                 {{ lecture }}
                 {% endif %}
@@ -60,6 +68,16 @@
         </tr>
         {% endfor %}
         <script>
+            function showModal(element) {
+                var info = element.getAttribute('data-info');
+                document.getElementById('modal-info').innerHTML = info;
+                document.getElementById('modal').style.display = 'block';
+            }
+            var modal = document.getElementById('modal');
+            var span = document.getElementsByClassName('close')[0];
+            span.onclick = function() {
+                modal.style.display = 'none';
+            }
            function handleClick(lecture, day, period) {
                 // alert(lecture);
                 if (lecture != '') {
