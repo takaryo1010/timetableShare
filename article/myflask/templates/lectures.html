@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='modal.css') }}">
 </head>
 
-<body>
-    <header>
-        <h1>週間時間割</h1>
+<div class="wrapper">
+    <aside class="sidebar">
+        <header>
+            <h1>週間時間割</h1>
+        </header>
         <nav>
             <ul>
                 <li><a href="/">ホーム</a></li>
@@ -23,90 +25,92 @@
                 <li><a href="/lecture_creation">授業作成</a></li>
             </ul>
         </nav>
-    </header>
+    </aside>
+    <main class="main">
     
-    <table>
-        <tr>
-            <th>時間</th>
-            <th>月</th>
-            <th>火</th>
-            <th>水</th>
-            <th>木</th>
-            <th>金</th>
-            <th>土</th>
-            <th>オンデマンド</th>
-        </tr>
-        {% for i in range(5) %}
-        <tr>
-            {% if i == 0 %}
-            <td class="time">1限<br>9:00 - 10:40</td>
-            {% elif i == 1 %}
-            <td class="time">2限<br>10:50 - 12:30</td>
-            {% elif i == 2 %}
-            <td class="time">3限<br>13:20 - 15:00</td>
-            {% elif i == 3 %}
-            <td class="time">4限<br>15:10 - 16:50</td>
-            {% elif i == 4 %}
-            <td class="time">5限<br>17:00 - 18:40</td>
-            {% endif %}
-            {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
-            {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
-            <td>
-                {% set name = lecture["name"] %}
-                {% set room = lecture["room"] %}
-                {% set teacher = lecture["teacher"] %}
-                {% set id = lecture["class_id"] %}
+        <table>
+            <tr>
+                <th>時間</th>
+                <th>月</th>
+                <th>火</th>
+                <th>水</th>
+                <th>木</th>
+                <th>金</th>
+                <th>土</th>
+                <th>オンデマンド</th>
+            </tr>
+            {% for i in range(5) %}
+            <tr>
+                {% if i == 0 %}
+                <td class="time">1限<br>9:00 - 10:40</td>
+                {% elif i == 1 %}
+                <td class="time">2限<br>10:50 - 12:30</td>
+                {% elif i == 2 %}
+                <td class="time">3限<br>13:20 - 15:00</td>
+                {% elif i == 3 %}
+                <td class="time">4限<br>15:10 - 16:50</td>
+                {% elif i == 4 %}
+                <td class="time">5限<br>17:00 - 18:40</td>
+                {% endif %}
+                {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
+                {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
+                <td>
+                    {% set name = lecture["name"] %}
+                    {% set room = lecture["room"] %}
+                    {% set teacher = lecture["teacher"] %}
+                    {% set id = lecture["class_id"] %}
 
-                <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}')">{{ name }}</div>
-                <div id="popupContainer" class="modal">
-                    <div class="modal-content">
-                        <span class="close" onclick="closePopup()">&times;</span>
-                        <p id="lectureInfo">授業情報</p>
-                        <button id="unregisterButton" onclick="unregisterCourse('{{id}}', '{{username}}')">履修解除</button>
+                    <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}')">{{ name }}</div>
+                    <div id="popupContainer" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closePopup()">&times;</span>
+                            <p id="lectureInfo">授業情報</p>
+                            <button id="unregisterButton" onclick="unregisterCourse('{{id}}', '{{username}}')">履修解除</button>
+                        </div>
                     </div>
-                </div>
-            </td>
-            
+                </td>
+                
+                {% endfor %}
+            </tr>
             {% endfor %}
-        </tr>
-        {% endfor %}
-        <script>
-            function showModal(name, day, period, room, teacher) {
-                var infoText = '授業名: ' + name + '\n曜日: ' + day + '\n時限: ' + period + "\n部屋: " +  room + "\n担当教師: " + teacher;
-                document.getElementById('lectureInfo').innerText = infoText;
-                document.getElementById('popupContainer').style.display = 'flex';
-            }
-            function closePopup() {
-                document.getElementById('popupContainer').style.display = 'none';
-            }
-            function handleClick(name, day, period, room, teacher) {
-                if (name == "") {
-                    location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
-                } else {
-                    // alert(lecture['name']+"\n"+lecture['room']+"\n"+lecture[unit])
-                    showModal(name, day, period, room, teacher);
-                    
+            <script>
+                function showModal(name, day, period, room, teacher) {
+                    var infoText = '授業名: ' + name + '\n曜日: ' + day + '\n時限: ' + period + "\n部屋: " +  room + "\n担当教師: " + teacher;
+                    document.getElementById('lectureInfo').innerText = infoText;
+                    document.getElementById('popupContainer').style.display = 'flex';
                 }
-            }
-            function unregisterCourse(id, username) {
-                // Ajaxを使用してPOSTリクエストを送信
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", "http://52.69.43.211/removeCourse", true);
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-                xhr.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                    // レスポンス処理
-                    alert("履修解除が完了しました");
+                function closePopup() {
+                    document.getElementById('popupContainer').style.display = 'none';
+                }
+                function handleClick(name, day, period, room, teacher) {
+                    if (name == "") {
+                        location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
+                    } else {
+                        // alert(lecture['name']+"\n"+lecture['room']+"\n"+lecture[unit])
+                        showModal(name, day, period, room, teacher);
+                        
                     }
-                };
+                }
+                function unregisterCourse(id, username) {
+                    // Ajaxを使用してPOSTリクエストを送信
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "http://52.69.43.211/removeCourse", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-                // POSTパラメータとして送信するデータ
-                var data = {class_id : id, name : username}; // ここで適切なデータを設定
-                xhr.send(data);
-            }
-        </script>
-    </table>
-</body>
+                    xhr.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                        // レスポンス処理
+                        alert("履修解除が完了しました");
+                        }
+                    };
+
+                    // POSTパラメータとして送信するデータ
+                    var data = {class_id : id, name : username}; // ここで適切なデータを設定
+                    xhr.send(data);
+                }
+            </script>
+        </table>
+    </main>
+</div>
 
 </html>

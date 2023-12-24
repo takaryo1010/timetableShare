@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body>
-    <header>
-        <h1>週間時間割</h1>
+<div class="wrapper">
+    <aside class="sidebar">
+        <header>
+            <h1>週間時間割</h1>
+        </header>
         <nav>
             <ul>
                 <li><a href="/">ホーム</a></li>
@@ -22,13 +24,12 @@
                 <li><a href="/lecture_creation">授業作成</a></li>
             </ul>
         </nav>
-    </header>
-
-    <body>
+    </aside>
+    <main class="main">
         {% for message in get_flashed_messages() %}
-    <p>{{ message }}</p>
-    {% endfor %}
-    <p>You have been logged out.</p>
-    <a href="{{ url_for('login') }}">Login again</a>
-    </body>
-</body>
+            <p>{{ message }}</p>
+        {% endfor %}
+        <p>You have been logged out.</p>
+        <a href="{{ url_for('login') }}">Login again</a>
+    </main>
+</div>

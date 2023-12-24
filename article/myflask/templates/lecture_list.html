@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body>
-    <header>
-        <h1>週間時間割</h1>
+<div class="wrapper">
+    <aside class="sidebar">
+        <header>
+            <h1>週間時間割</h1>
+        </header>
         <nav>
             <ul>
                 <li><a href="/">ホーム</a></li>
@@ -22,33 +24,35 @@
                 <li><a href="/lecture_creation">授業作成</a></li>
             </ul>
         </nav>
-    </header>
-    <table>
-        <tr>
-            <th>授業名</th>
-            <th>授業ID</th>
-            <th>曜日</th>
-            <th>時限</th>
-            <th>単位</th>
-            <th>必修</th>
-            <th>先生</th>
-            <th>教室</th>
-            <th>学期</th>
-            <th>学科</th>
-        </tr>
-        {% for lecture in json %}
-        <tr>
-            <td>{{ lecture.name }}</td>
-            <td>{{ lecture.class_id }}</td>
-            <td>{{ lecture.day }}</td>
-            <td>{{ lecture.period }}</td>
-            <td>{{ lecture.unit }}</td>
-            <td>{{ lecture.must }}</td>
-            <td>{{ lecture.teacher }}</td>
-            <td>{{ lecture.room }}</td>
-            <td>{{ lecture.term }}</td>
-            <td>{{ lecture.department }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
+    </aside>
+    <main class="main">
+        <table>
+            <tr>
+                <th>授業名</th>
+                <th>授業ID</th>
+                <th>曜日</th>
+                <th>時限</th>
+                <th>単位</th>
+                <th>必修</th>
+                <th>先生</th>
+                <th>教室</th>
+                <th>学期</th>
+                <th>学科</th>
+            </tr>
+            {% for lecture in json %}
+            <tr>
+                <td>{{ lecture.name }}</td>
+                <td>{{ lecture.class_id }}</td>
+                <td>{{ lecture.day }}</td>
+                <td>{{ lecture.period }}</td>
+                <td>{{ lecture.unit }}</td>
+                <td>{{ lecture.must }}</td>
+                <td>{{ lecture.teacher }}</td>
+                <td>{{ lecture.room }}</td>
+                <td>{{ lecture.term }}</td>
+                <td>{{ lecture.department }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </main>
+</div>

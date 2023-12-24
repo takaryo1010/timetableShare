@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body>
-    <header>
-        <h1>週間時間割</h1>
+<div class="wrapper">
+    <aside class="sidebar">
+        <header>
+            <h1>週間時間割</h1>
+        </header>
         <nav>
             <ul>
                 <li><a href="/">ホーム</a></li>
@@ -22,7 +24,8 @@
                 <li><a href="/lecture_creation">授業作成</a></li>
             </ul>
         </nav>
-    </header>
+    </aside>
+    <main class="main">
         <h1>友達追加</h1>
         <table>
             <tr>
@@ -42,6 +45,7 @@
             <input type="txt" name="remove_friend" placeholder="Friend Name">
             <button type="submit">削除</button>
         </form>
-</body>
+    </main>
+</div>
 
 </html>
