@@ -3,10 +3,10 @@
     width: 94%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0;
     display: flex;
     justify-content: space-between;
     font-family: Arial, sans-serif;
-    padding: 0;
 }
 /* サイドバー */
 .sidebar {
