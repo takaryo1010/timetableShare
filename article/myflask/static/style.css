@@ -5,6 +5,9 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    font-family: Arial, sans-serif;
+    padding: 0;
+    background: #f0f0f0;
 }
 /* サイドバー */
 .sidebar {
