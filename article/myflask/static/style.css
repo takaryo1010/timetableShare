@@ -7,7 +7,6 @@
     justify-content: space-between;
     font-family: Arial, sans-serif;
     padding: 0;
-    background: #f0f0f0;
 }
 /* サイドバー */
 .sidebar {
@@ -68,12 +67,6 @@ nav ul li a:hover {
 }
 
 /* 共通スタイル */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f0f0f0;
-}
 
 h1 {
     text-align: center;
