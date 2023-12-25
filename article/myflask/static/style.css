@@ -25,7 +25,7 @@ header h1 {
     display: flex;
     justify-content: space-between;
     font-family: Arial, sans-serif;
-    flex-direction: column;
+    /* flex-direction: column; */
 }
 /* サイドバー */
 .sidebar {
