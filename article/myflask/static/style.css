@@ -8,19 +8,10 @@
     justify-content: space-between;
     font-family: Arial, sans-serif;
 }
-/* サイドバー */
-.sidebar {
-    width: 180px;
-    background-color: #1f716a;
-    color: #fff;
-    padding-top: 10px; /* メインコンテンツとの間にスペースを追加 */
-    padding-bottom: 10px; /* メインコンテンツとの間にスペースを追加 */
-    box-sizing: border-box; /* パディングが要素のサイズに含まれるようにボックスモデルを設定 */
-}
-
 /* ヘッダースタイル */
 header {
-    background-color: rgb(31, 113, 106);
+    width: 100%;
+    background-color: #1f716a;
     padding: 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 0 auto;
@@ -34,6 +25,17 @@ header h1 {
     font-size: 1.5em;
     color: #ffffff;
 }
+
+/* サイドバー */
+.sidebar {
+    width: 180px;
+    background-color: #7c7c7c;
+    color: #fff;
+    padding-top: 10px; /* メインコンテンツとの間にスペースを追加 */
+    padding-bottom: 10px; /* メインコンテンツとの間にスペースを追加 */
+    box-sizing: border-box; /* パディングが要素のサイズに含まれるようにボックスモデルを設定 */
+}
+
 nav ul {
     list-style: none;
     padding: 0;
