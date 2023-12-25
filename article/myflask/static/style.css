@@ -25,7 +25,6 @@ header h1 {
     display: flex;
     justify-content: space-between;
     font-family: Arial, sans-serif;
-    /* flex-direction: column; */
 }
 /* サイドバー */
 .sidebar {
@@ -37,6 +36,7 @@ header h1 {
     box-sizing: border-box; /* パディングが要素のサイズに含まれるようにボックスモデルを設定 */
     margin-left: 0; /* 画面の端に配置 */
     height: 100vh;
+    flex-shrink: 0;
 }
 
 nav ul {
@@ -66,7 +66,7 @@ nav ul li a:hover {
 /* メインコンテンツ */
 .main {
     flex: 1; /* メインコンテンツが残りのスペースを占有するように設定 */
-    margin-left: 20px; /* サイドバーとの間にスペースを追加 */
+    margin-left: 0; /* サイドバーとの間にスペースを追加 */
     /* メインコンテンツの幅を調整 */
     width: calc(100% - 180px); /* サイドバーの幅を引いた分の幅をメインコンテンツに設定 */
 }
