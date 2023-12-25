@@ -108,9 +108,12 @@ h1 {
 table {
     width: 95%;
     margin: 20px auto;
-    border-collapse: collapse;
+    border-collapse: separate;
     box-shadow: 0 2px 3px #ccc;
     table-layout: fixed;
+    border-spacing: 0; /* セル間のスペースをなくす */
+    border-radius: 15px; /* 角を丸くする */
+    overflow: hidden; /* 内容がはみ出した時に隠す */
 }
 
 th, td {
@@ -125,16 +128,6 @@ th, td {
 th {
     background-color: #f2f2f2;
     color: #333;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-}
-
-tr:last-child td:first-child {
-    border-bottom-left-radius: 15px;
-}
-
-tr:last-child td:last-child {
-    border-bottom-right-radius: 15px;
 }
 
 td {
