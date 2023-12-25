@@ -25,6 +25,7 @@ header h1 {
     display: flex;
     justify-content: space-between;
     font-family: Arial, sans-serif;
+    margin-left: 0; /* 画面の端に配置 */
 }
 /* サイドバー */
 .sidebar {
