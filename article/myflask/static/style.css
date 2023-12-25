@@ -40,6 +40,14 @@ header h1 {
     height: 100vh;
 }
 
+.sidebar ul {
+    padding-left: 0;
+}
+
+.sidebar ul li {
+    list-style-type: none;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
