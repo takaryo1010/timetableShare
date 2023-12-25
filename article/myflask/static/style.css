@@ -48,6 +48,11 @@ header h1 {
     list-style-type: none;
 }
 
+.sidebar ul li i {
+    margin-right: 8px;
+    color: #fff;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
