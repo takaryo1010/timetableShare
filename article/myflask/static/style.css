@@ -1,7 +1,7 @@
 /* 共通のスタイル */
 .wrapper {
     width: 94%;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 0;
     display: flex;
@@ -10,7 +10,7 @@
 }
 /* サイドバー */
 .sidebar {
-    width: 200px;
+    width: 180px;
     background-color: #1f716a;
     color: #fff;
     padding-top: 10px; /* メインコンテンツとの間にスペースを追加 */
@@ -63,7 +63,7 @@ nav ul li a:hover {
     flex: 1; /* メインコンテンツが残りのスペースを占有するように設定 */
     margin-left: 20px; /* サイドバーとの間にスペースを追加 */
     /* メインコンテンツの幅を調整 */
-    width: calc(100% - 200px); /* サイドバーの幅を引いた分の幅をメインコンテンツに設定 */
+    width: calc(100% - 180px); /* サイドバーの幅を引いた分の幅をメインコンテンツに設定 */
 }
 
 /* 共通スタイル */
