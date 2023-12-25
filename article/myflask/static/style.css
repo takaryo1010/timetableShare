@@ -108,6 +108,7 @@ h1 {
 table {
     width: 95%;
     margin: 20px auto;
+    border: none;
     border-collapse: separate;
     box-shadow: 0 2px 3px #ccc;
     table-layout: fixed;
