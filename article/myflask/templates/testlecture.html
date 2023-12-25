@@ -5,19 +5,21 @@
     <meta charset="UTF-8">
     <title>時間割</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='modal.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <div class="wrapper">
     <aside class="sidebar">
         <nav>
             <ul>
-                <li><a href="/">ホーム</a></li>
-                <li><a href="/login">ログイン</a></li>
-                <li><a href="/logout">ログアウト</a></li>
-                <li><a href="/timetable_registration">時間割登録</a></li>
-                <li><a href="/timetable_sharing">時間割共有</a></li>
-                <li><a href="/add_friends">友達追加</a></li>
-                <li><a href="/lecture_list">授業一覧</a></li>
-                <li><a href="/lecture_creation">授業作成</a></li>
+                <li><a href="/"><i class="fas fa-home"></i> ホーム</a></li>
+        <li><a href="/login"><i class="fas fa-sign-in-alt"></i> ログイン</a></li>
+        <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> ログアウト</a></li>
+        <li><a href="/timetable_registration"><i class="fas fa-calendar-plus"></i> 時間割登録</a></li>
+        <li><a href="/timetable_sharing"><i class="fas fa-users"></i> 時間割共有</a></li>
+        <li><a href="/add_friends"><i class="fas fa-user-plus"></i> 友達追加</a></li>
+        <li><a href="/lecture_list"><i class="fas fa-list"></i> 授業一覧</a></li>
+        <li><a href="/lecture_creation"><i class="fas fa-plus-circle"></i> 授業作成</a></li>
             </ul>
         </nav>
     </aside>
@@ -50,21 +52,58 @@
                 {% for day in ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Ondemand"] %}
                 {% set lecture = timetable.get(day)[i] if timetable.get(day)%}
                 <td>
-                    <div class="lecture" onclick="handleClick('{{ lecture }}', '{{ day }}', '{{ i+1 }}')">{{ lecture }}
+                    {% set name = lecture["name"] %}
+                    {% set room = lecture["room"] %}
+                    {% set teacher = lecture["teacher"] %}
+                    {% set id = lecture["class_id"] %}
+
+                    <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}')">{{ name }}</div>
+                    <div id="popupContainer" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closePopup()">&times;</span>
+                            <p id="lectureInfo">授業情報</p>
+                            <button id="unregisterButton" onclick="unregisterCourse('{{id}}', '{{username}}')">履修解除</button>
+                        </div>
+                    </div>
                 </td>
+                
                 {% endfor %}
             </tr>
             {% endfor %}
             <script>
-                function handleClick(lecture, day, period) {
-                    // alert(lecture);
-                    if (lecture != '') {
-                        alert('Class has already exist');
-                    } else {
-                        //location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
+                function showModal(name, day, period, room, teacher) {
+                    var infoText = '授業名: ' + name + '\n曜日: ' + day + '\n時限: ' + period + "\n部屋: " +  room + "\n担当教師: " + teacher;
+                    document.getElementById('lectureInfo').innerText = infoText;
+                    document.getElementById('popupContainer').style.display = 'flex';
+                }
+                function closePopup() {
+                    document.getElementById('popupContainer').style.display = 'none';
+                }
+                function handleClick(name, day, period, room, teacher) {
+                    if (name == "") {
                         location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
-
+                    } else {
+                        // alert(lecture['name']+"\n"+lecture['room']+"\n"+lecture[unit])
+                        showModal(name, day, period, room, teacher);
+                        
                     }
+                }
+                function unregisterCourse(id, username) {
+                    // Ajaxを使用してPOSTリクエストを送信
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "http://52.69.43.211/removeCourse", true);
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                    xhr.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                        // レスポンス処理
+                        alert("履修解除が完了しました");
+                        }
+                    };
+
+                    // POSTパラメータとして送信するデータ
+                    var data = {class_id : id, name : username}; // ここで適切なデータを設定
+                    xhr.send(data);
                 }
             </script>
         </table>
