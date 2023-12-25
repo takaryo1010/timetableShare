@@ -64,13 +64,26 @@ nav ul li {
 }
 
 nav ul li a {
-    display: block;
+    display: flex;
+    align-items: center;
     text-decoration: none;
     color: #fff;
     font-weight: bold;
     padding: 10px 15px;
     border-radius: 5px;
     transition: background-color 0.3s;
+}
+
+nav ul li a i {
+    width: 20px; /* アイコンの幅を固定します */
+    min-width: 20px; /* アイコンの最小幅を固定します */
+    margin-right: 10px; /* アイコンとテキストの間に余白を追加します */
+    text-align: center; /* アイコンを中央揃えにします */
+}
+
+nav ul li a span {
+    display: block; /* テキストをブロックレベルの要素にします */
+    text-align: left; /* テキストを左揃えにします */
 }
 
 nav ul li a:hover {
