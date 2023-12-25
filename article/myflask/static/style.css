@@ -109,7 +109,7 @@ table {
     width: 95%;
     margin: 20px auto;
     border: none;
-    border-collapse: separate;
+    border-collapse: collapse;
     box-shadow: 0 2px 3px #ccc;
     table-layout: fixed;
     border-spacing: 0; /* セル間のスペースをなくす */
