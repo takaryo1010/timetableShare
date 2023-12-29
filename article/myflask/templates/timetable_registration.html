@@ -30,7 +30,6 @@
             <input type="text" name="class_name" placeholder="Class Name">
             <select name="class_day">
                 <option value="">Select class day</option>
-                <option value="Sunday">Sunday</option>
                 <option value="Monday">Monday</option>
                 <option value="Tuesday">Tuesday</option>
                 <option value="Wednesday">Wednesday</option>
@@ -47,7 +46,12 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
-            <input type="number" name="class_unit" placeholder="Class Unit">
+            <select name="class_unit">
+                <option value="">Select class time</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+            <!-- <input type="number" name="class_unit" placeholder="Class Unit"> -->
             <select name="must_flag">
                 <option value="">Select must</option>
                 <option value=0>選択</option>
@@ -70,7 +74,7 @@
             <input type="number" name="class_id" placeholder="Class ID">
             <button type="submit">登録</button>
         </form>
-        <!--{{data}}--!>
+        <!--{{data}} -->
         <table>
             <tr>
                 <th>授業名</th>
