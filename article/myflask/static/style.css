@@ -304,6 +304,18 @@ td .free {
     flex-direction: column; /* 子要素を縦に配置する */
 }
 
+.window form {
+    display: flex;
+    flex-direction: column;
+}
+
+.window form:last-of-type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .close {
     margin-top: auto; /* 上部マージンを自動で空け、下部に寄せる */
 }
