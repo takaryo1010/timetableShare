@@ -27,9 +27,6 @@
 
     </style>
 </head>
-<header>
-    <h1>週間時間割</h1>
-</header>
 <div class="wrapper">
     <aside class="sidebar">
         <nav>
@@ -46,6 +43,7 @@
         </nav>
     </aside>
     <main class="main">
+        <h1>時間割共有</h1>
         <h2>
             {% set selected_friend = request.args.get('selected_friend') %}
             {% if selected_friend in friendstimetable %}
