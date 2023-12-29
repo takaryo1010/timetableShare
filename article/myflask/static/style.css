@@ -42,11 +42,12 @@ header h1 {
 
 .sidebar ul {
     padding-left: 0;
+    text-align: center;
 }
 
 .sidebar ul li {
     list-style-type: none;
-    text-align: center; /* 画像を中央に配置 */
+    text-align: center;
 }
 
 .sidebar ul li i {
