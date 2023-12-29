@@ -122,7 +122,8 @@ h1 {
 
 /* テーブルスタイル */
 table {
-    width: 740px;
+    width: 90%;
+    height: auto;
     margin: 20px auto;
     border: none;
     border-collapse: collapse;
