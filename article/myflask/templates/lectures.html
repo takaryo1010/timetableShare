@@ -66,7 +66,7 @@
                         <div class="modal-content">
                             <span class="close" onclick="closePopup()">&times;</span>
                             <p id="lectureInfo">授業情報</p>
-                            <button id="unregisterButton" onclick="unregisterCourse('{{id}}', '{{username}}')">履修解除</button>
+                            <button id="unregisterButton" onclick="unregisterCourse('{{id}}', '{{current_user.username}}')">履修解除</button>
                         </div>
                     </div>
                 </td>
@@ -106,8 +106,8 @@
                     };
 
                     // POSTパラメータとして送信するデータ
-                    var data = {'class_id' : id, 'name' : username}; // ここで適切なデータを設定
-                    xhr.send(data);
+                    var params = 'class_id=' + encodeURIComponent(id) + '&name=' + encodeURIComponent(username);
+                    xhr.send(params);
                 }
             </script>
         </table>
