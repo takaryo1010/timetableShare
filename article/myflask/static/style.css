@@ -32,8 +32,9 @@ header h1 {
     width: 180px;
     background-color: #57a09b;
     color: #fff;
-    padding-top: 0%; /* メインコンテンツとの間にスペースを追加 */
-    padding-bottom: 0%; /* メインコンテンツとの間にスペースを追加 */
+    padding: 0;
+    /* padding-top: 0%; メインコンテンツとの間にスペースを追加
+    padding-bottom: 0%; メインコンテンツとの間にスペースを追加 */
     box-sizing: border-box; /* パディングが要素のサイズに含まれるようにボックスモデルを設定 */
     margin-right: 0%;
     margin-bottom: 0%;
@@ -110,6 +111,7 @@ nav ul li a:hover {
     flex: 1; /* メインコンテンツが残りのスペースを占有するように設定 */
     text-align: center;
     margin-left: 0; /* サイドバーとの間にスペースを追加 */
+    padding: 0;
     /* メインコンテンツの幅を調整 */
     width: calc(100% - 180px); /* サイドバーの幅を引いた分の幅をメインコンテンツに設定 */
 }
