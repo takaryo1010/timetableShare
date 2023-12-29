@@ -35,6 +35,8 @@ header h1 {
     padding-top: 0%; /* メインコンテンツとの間にスペースを追加 */
     padding-bottom: 0%; /* メインコンテンツとの間にスペースを追加 */
     box-sizing: border-box; /* パディングが要素のサイズに含まれるようにボックスモデルを設定 */
+    margin-right: 0%;
+    margin-bottom: 0%;
     margin-left: 0%; /* 画面の端に配置 */
     margin-top: 0%;
     height: 100vh;
