@@ -127,6 +127,7 @@ table {
     border: none;
     border-collapse: collapse;
     box-shadow: 0 2px 3px #ccc;
+    text-align: center;
     table-layout: fixed;
     border-spacing: 0; /* セル間のスペースをなくす */
     border-radius: 15px; /* 角を丸くする */
