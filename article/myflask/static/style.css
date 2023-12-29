@@ -46,6 +46,7 @@ header h1 {
 
 .sidebar ul li {
     list-style-type: none;
+    text-align: center; /* 画像を中央に配置 */
 }
 
 .sidebar ul li i {
@@ -60,7 +61,7 @@ header h1 {
 }
 
 .sidebar-image-container img {
-    max-width: 100%; /* 画像がコンテナより大きくならないようにする */
+    width: 80px; /* 画像がコンテナより大きくならないようにする */
     height: auto; /* 画像の比率を維持 */
 }
 
