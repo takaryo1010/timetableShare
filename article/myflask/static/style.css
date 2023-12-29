@@ -245,6 +245,7 @@ td .free {
 /* ポップアップ */
 .open {
 	cursor:pointer;
+    font-size: 1.5em;
 }
 #pop-up {
 	display: none;
@@ -264,8 +265,8 @@ td .free {
 }
 .window {
 	position: fixed;
-	top: 50%;
-	left: 50%;
+	top: 100%;
+	left: 100%;
 	width: 90vw;
 	max-width: 360px;
     padding: 20px;
@@ -277,7 +278,7 @@ td .free {
 }
 .close {
 	position: absolute;
-	top: 4px;
-	right: 4px;
+	top: 100%;
+	left: 50%;
 	cursor:pointer;
 }
