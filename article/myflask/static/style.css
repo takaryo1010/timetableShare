@@ -53,6 +53,17 @@ header h1 {
     color: #fff;
 }
 
+.sidebar-image-container {
+    text-align: center; /* 画像を中央に配置 */
+    padding: 10px; /* 画像周りの余白 */
+    margin-top: 20px; /* 他の要素との間にスペースを作る */
+}
+
+.sidebar-image-container img {
+    max-width: 100%; /* 画像がコンテナより大きくならないようにする */
+    height: auto; /* 画像の比率を維持 */
+}
+
 nav ul {
     list-style: none;
     padding: 0;
