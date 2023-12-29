@@ -276,7 +276,7 @@ td .free {
 	display: none;
 }
 .overlay {
-	display: none;
+	position: none;
 }
 #pop-up:checked + .overlay {
 	display: block;
@@ -317,5 +317,5 @@ td .free {
 
 
 .close {
-    margin-top: auto; /* 上部マージンを自動で空け、下部に寄せる */
+    margin-left: auto; /* 上部マージンを自動で空け、下部に寄せる */
 }
