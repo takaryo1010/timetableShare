@@ -20,7 +20,7 @@ header h1 {
 .wrapper {
     width: 100%;
     max-width: 100%;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
     display: flex;
     justify-content: space-between;
@@ -32,8 +32,8 @@ header h1 {
     width: 180px;
     background-color: #57a09b;
     color: #fff;
-    padding: 0;
-    /* padding-top: 0%; メインコンテンツとの間にスペースを追加
+    /*padding: 0;
+    padding-top: 0%; メインコンテンツとの間にスペースを追加
     padding-bottom: 0%; メインコンテンツとの間にスペースを追加 */
     box-sizing: border-box; /* パディングが要素のサイズに含まれるようにボックスモデルを設定 */
     margin-right: 0%;
