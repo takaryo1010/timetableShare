@@ -9,7 +9,7 @@ import (
 )
 
 func removeFriends(e echo.Context) error {
-	
+
 	my_name := e.FormValue("my_name")
 	your_name := e.FormValue("your_name")
 
@@ -38,11 +38,6 @@ func removeFriends(e echo.Context) error {
 		return e.JSON(http.StatusCreated, err) // エラーを返す
 	}
 
-
-
-
-
-
 	// SQLの準備（Personからnameに一致するidを取得する）
 	db.QueryRow("DELETE FROM Friends WHERE my_id = ? AND your_id = ?", my_id, your_id)
 
@@ -70,8 +65,6 @@ func removeFriends(e echo.Context) error {
 
 		friends = append(friends, c)
 	}
-
-	
 
 	return e.JSON(http.StatusCreated, friends)
 }
