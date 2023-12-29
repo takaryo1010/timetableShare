@@ -32,11 +32,11 @@ header h1 {
     width: 180px;
     background-color: #57a09b;
     color: #fff;
-    padding-top: 10px; /* メインコンテンツとの間にスペースを追加 */
-    padding-bottom: 10px; /* メインコンテンツとの間にスペースを追加 */
+    padding-top: 0%; /* メインコンテンツとの間にスペースを追加 */
+    padding-bottom: 0%; /* メインコンテンツとの間にスペースを追加 */
     box-sizing: border-box; /* パディングが要素のサイズに含まれるようにボックスモデルを設定 */
-    margin-left: 0; /* 画面の端に配置 */
-    margin-top: 0;
+    margin-left: 0%; /* 画面の端に配置 */
+    margin-top: 0%;
     height: 100vh;
 }
 
