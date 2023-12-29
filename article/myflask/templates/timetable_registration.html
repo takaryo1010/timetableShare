@@ -24,11 +24,11 @@
         </nav>
     </aside>
     <main class="main">
-        <label class="open" for="pop-up">時間割登録</label>
+        <h1 class="open" for="pop-up">時間割登録</h1>
         <input type="checkbox" id="pop-up">
         <div class="overlay">
             <div class="window">
-                <h4>時間割登録</h4>
+                <h1>時間割登録</h1>
                 <form action="/timetable_registration" method="POST">
                     <input type="text" name="class_name" placeholder="Class Name">
                     <select name="class_day">
@@ -73,13 +73,15 @@
                         <option value="CS">CS</option>
                     </select>
                     <button type="submit">検索</button>
-                    
-                    <input type="number" name="class_id" placeholder="Class ID">
-                    <button type="submit">登録</button>
                 </form>
                 <label class="close" for="pop-up">閉じる</label>
             </div>
         </div>
+        <form action="/timetable_registration" method="POST">
+            <input type="number" name="class_id" placeholder="Class ID">
+            <button type="submit">登録</button>
+        </form>
+                
         <!--{{data}} -->
         <table>
             <tr>
