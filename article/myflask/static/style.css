@@ -250,11 +250,15 @@ td .free {
     font-size: 16px;
     text-align: center;
     cursor: pointer;
-    border: 2px solid #1f716a;
-    background-color: #1f716a;
+    border: 2px solid #57a09b;
+    background-color: #57a09b;
     color: #ffffff;
     border-radius: 5px;
     transition: all 0.3s ease;
+}
+.open:hover {
+    background-color: #1f716a;
+    border-color: #1f716a;
 }
 #pop-up {
 	display: none;
@@ -273,17 +277,17 @@ td .free {
 	background: rgba(0, 0, 0, 0.6);
 }
 .window {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 90vw;
-    max-width: 360px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 90vw;
+	max-width: 360px;
     padding: 20px;
-    height: 300px;
-    background-color: #fff;
-    border-radius: 4px;
-    align-items: center;
-    transform: translate(0, 100%);
+	height: 300px;
+	background-color: #fff;
+	border-radius: 4px;
+	align-items: center;
+	transform: translate(-50%, -50%);
 }
 .close {
 	position: absolute;
