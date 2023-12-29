@@ -243,6 +243,12 @@ td .free {
     background-color: #e0d0f0; /* ホバー時の色 */
 }
 
+.form-container {
+    width: 300px; /* 必要に応じて幅を調整してください */
+    float: left; /* コンテナを左側に配置します */
+    margin-right: 20px; /* フォームと他のコンテンツとの間にスペースを追加します */
+}
+
 /* ポップアップ */
 .open {
 	display: inline-block;
@@ -277,21 +283,21 @@ td .free {
 	background: rgba(0, 0, 0, 0.6);
 }
 .window {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	width: 90vw;
-	max-width: 360px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 90vw;
+    max-width: 360px;
     padding: 20px;
-	height: 300px;
-	background-color: #fff;
-	border-radius: 4px;
-	align-items: center;
-	transform: translate(-50%, -50%);
+    height: 300px;
+    background-color: #fff;
+    border-radius: 4px;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column; /* 子要素を縦に配置する */
 }
+
 .close {
-	position: absolute;
-	top: 100%;
-	left: 50%;
-	cursor:pointer;
+    margin-top: auto; /* 上部マージンを自動で空け、下部に寄せる */
 }
