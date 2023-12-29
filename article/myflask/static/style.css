@@ -120,6 +120,12 @@ nav ul li a:hover {
     width: calc(100% - 180px); /* サイドバーの幅を引いた分の幅をメインコンテンツに設定 */
 }
 
+.right {
+    /* 画面の右側のフォームに関するスタイル */
+    margin-left: auto; /* 右側に寄せる */
+    padding: 20px; /* 必要に応じて余白を設定 */
+}
+
 /* 共通スタイル */
 
 h1 {
@@ -254,7 +260,7 @@ td .free {
 	display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
-    text-align: center;
+    text-align: right;
     cursor: pointer;
     border: 2px solid #57a09b;
     background-color: #57a09b;
