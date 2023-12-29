@@ -294,22 +294,22 @@ td .free {
 	background: rgba(0, 0, 0, 0.6);
 }
 .window {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 90vw;
-    max-width: 360px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 90vw;
+	max-width: 360px;
     padding: 20px;
-    height: 300px;
-    background-color: #fff;
-    border-radius: 4px;
-    align-items: center;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column; /* 子要素を縦に配置する */
+	height: 300px;
+	background-color: #fff;
+	border-radius: 4px;
+	align-items: center;
+	transform: translate(-50%, -50%);
 }
 
 .window form {
+    position: fixed;
+    left: 30%;
     display: flex;
     flex-direction: column;
 }
@@ -322,5 +322,8 @@ td .free {
 
 
 .close {
-    margin-left: auto; /* 上部マージンを自動で空け、下部に寄せる */
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	cursor:pointer;
 }
