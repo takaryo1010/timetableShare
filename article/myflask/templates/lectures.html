@@ -65,7 +65,7 @@
                         {% set teacher = lecture["teacher"] %}
                         {% set class_id = lecture["class_id"] %}
 
-                        <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}')">{{ name }}</div>
+                        <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}', '{{class_id}}')">{{ name }}</div>
                         <div id="popupContainer" class="modal">
                             <div class="modal-content">
                                 <span class="close" onclick="closePopup()">&times;</span>
@@ -79,8 +79,8 @@
                 </tr>
                 {% endfor %}
                 <script>
-                    function showModal(name, day, period, room, teacher) {
-                        var infoText = '授業名: ' + name + '\n曜日: ' + day + '\n時限: ' + period + "\n部屋: " +  room + "\n担当教師: " + teacher;
+                    function showModal(name, day, period, room, teacher, id) {
+                        var infoText = '授業名: ' + name + '授業 id: ' + id + '\n曜日: ' + day + '\n時限: ' + period + "\n部屋: " +  room + "\n担当教師: " + teacher;
                         document.getElementById('lectureInfo').innerText = infoText;
                         document.getElementById('popupContainer').style.display = 'flex';
                     }
