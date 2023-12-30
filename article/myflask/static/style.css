@@ -38,10 +38,10 @@ h1 {
 
 /* ボタン */
 button {
-    font: 20;
+    font-size: 48em;
 }
 input {
-    font: 20;
+    font-size: 48em;
 }
 
 /* その他スタイル */
