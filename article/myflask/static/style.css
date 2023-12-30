@@ -5,7 +5,7 @@ body {
     padding: 0;
     display: flex;
     justify-content: space-between;
-    font-family: Arial, sans-serif;
+    font-family: "Arial", sans-serif;
 }
 
 p {
