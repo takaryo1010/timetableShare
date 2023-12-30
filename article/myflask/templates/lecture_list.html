@@ -45,6 +45,7 @@
                     <th cmanSortBtn>教室</th>
                     <th cmanSortBtn>学期</th>
                     <th cmanSortBtn>学科</th>
+                    <th>登録</th>
                 </tr>
                 {% for lecture in json %}
                 <tr>
@@ -58,6 +59,18 @@
                     <td>{{ lecture.room }}</td>
                     <td>{{ lecture.term }}</td>
                     <td>{{ lecture.department }}</td>
+                    <td>
+                        <form id="registerForm_{{ lecture.class_id }}" action="/timetable_registration" method="POST">
+                            <input type="hidden" name="class_id" value="{{ lecture.class_id }}">
+                            <button type="button" onclick="registerClass('{{ lecture.class_id }}')">登録</button>
+                        </form>
+                    </td>
+                    <script>
+                        function registerClass(classId) {
+                            var formId = 'registerForm_' + classId;
+                            document.getElementById(formId).submit();
+                        }
+                    </script>
                 </tr>
                 {% endfor %}
             </table>
