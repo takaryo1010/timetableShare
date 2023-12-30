@@ -82,7 +82,7 @@
                     function showModal(name, day, period, room, teacher, id) {
                         alert("test");
                         var infoText = '授業名: ' + name + '\n授業 id: ' + id + '\n曜日: ' + day + '\n時限: ' + period + "\n部屋: " +  room + "\n担当教師: " + teacher;
-                        var popupContainer = document.getElementById('popupContainer_' + classid);
+                        var popupContainer = document.getElementById('popupContainer_' + id);
                         popupContainer.querySelector('#lectureInfo').innerText = infoText;
                         popupContainer.style.display = 'flex';
                     }
