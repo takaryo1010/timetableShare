@@ -1,3 +1,4 @@
+/* サイドバーに関するデザイン */
 .sidebar {
     /* width: 180px; */
     width: 20%;
@@ -11,17 +12,12 @@
     height: 100vh;
 }
 
-/* 画像に関するデザイン */
-.sidebar-image-container {
-    text-align: center; /* 画像を中央に配置 */
-    padding: 10px; /* 画像周りの余白 */
-    margin-top: 20px; /* 他の要素との間にスペースを作る */
+/* メニューに関するデザイン */
+.sidebar nav {
+
 }
-.sidebar-image-container img {
-    max-width: 100%; /* 画像がコンテナより大きくならないようにする */
-    height: auto; /* 画像の比率を維持 */
-}
-/* サイドバーの項目に関するデザイン */
+
+/* リストに関するデザイン */
 .sidebar ul {
     list-style: none;
     padding: 0;
@@ -29,12 +25,14 @@
     margin: 0;
     text-align: center;
 }
+/* リストの項目に関するデザイン */
 .sidebar li {
     list-style-type: none;
     text-align: center;
     align-items: center;
     margin-left: 25px;
 }
+/* リンクに関するデザイン */
 .sidebar a {
     display: flex;
     align-items: center;
@@ -46,11 +44,12 @@
     border-radius: 15px;
     transition: background-color 0.3s;
 }
+/* リンクにカーソルを当てたときに関するデザイン */
 .sidebar a:hover {
     background-color: #e7f1ff;
 }
 
-/* アイコンに関するデザイン */
+/* フォント(イタリック)に関するデザイン */
 .sidebar i {
     margin-right: 8px;
     color: #fff;
@@ -63,3 +62,15 @@
     display: block; /* テキストをブロックレベルの要素にします */
     text-align: left; /* テキストを左揃えにします */
 }
+
+/* 画像に関するデザイン */
+.sidebar-image-container {
+    text-align: center; /* 画像を中央に配置 */
+    padding: 10px; /* 画像周りの余白 */
+    margin-top: 20px; /* 他の要素との間にスペースを作る */
+}
+.sidebar-image-container img {
+    max-width: 100%; /* 画像がコンテナより大きくならないようにする */
+    height: auto; /* 画像の比率を維持 */
+}
+
