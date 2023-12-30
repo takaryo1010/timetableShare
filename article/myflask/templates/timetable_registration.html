@@ -33,7 +33,7 @@
         <div id="popupContainer" class="modal">
             <div class="big-modal-content">
                 <span class="close" onclick="closePopup()">&times;</span>
-                <h3>授業検索</h3><P>条件は 1 つでも構いません</P>
+                <h3>授業検索</h3><h6>条件は 1 つでも構いません</h6>
                 <form action="/timetable_registration" method="POST">
                     <p>1. 授業名</p>
                     <input type="text" name="class_name" placeholder="(例) 科学英語"><br>
@@ -89,79 +89,7 @@
                 </form>
             </div>
         </div>
-        <!---<div class="right">
-            <label class="open" for="pop-up">時間割登録</label>
-        </div>
-        <input type="checkbox" id="pop-up">
-        <div class="overlay">
-            <div class="window">
-                <h1>時間割登録</h1>
-                <form action="/timetable_registration" method="POST">
-                    <input type="text" name="class_name" placeholder="Class Name">
-                </form>
-                <form action="/timetable_registration" method="POST">
-                    <select name="class_day">
-                        <option value="">Select class day</option>
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                        <option value="Saturday">Saturday</option>
-                        <option value="Ondemand">Ondemand</option>
-                    </select>
-                </form>
-                <form action="/timetable_registration" method="POST">
-                    <select name="class_time">
-                        <option value="">Select class time</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                </form>
-                <form action="/timetable_registration" method="POST">
-                    <select name="class_unit">
-                        <option value="">Select class unit</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                </form>
-                <input type="number" name="class_unit" placeholder="Class Unit">
-                <form action="/timetable_registration" method="POST">
-                    <select name="must_flag">
-                        <option value="">Select must</option>
-                        <option value=0>選択</option>
-                        <option value=1>必修</option>
-                    </select>
-                </form>
-                <form action="/timetable_registration" method="POST">
-                    <input type="text" name="teacher_name" placeholder="Teacher Name">
-                </form>
-                <form action="/timetable_registration" method="POST">
-                    <input type="text" name="room" placeholder="Room">
-                </form>
-                <form action="/timetable_registration" method="POST">
-                    <select name="term">
-                        <option value="">Select term</option>
-                        <option value="Spring">Spring</option>
-                        <option value="Fall">Fall</option>
-                    </select>
-                </form>
-                <form action="/timetable_registration" method="POST">
-                    <select name="department">
-                        <option value="">Select department</option>
-                        <option value="DM">DM</option>
-                        <option value="CS">CS</option>
-                    </select>
-                </form>
-                <form action="/timetable_registration" method="POST">
-                    <button type="submit">検索</button>
-                </form>
-                <label class="close" for="pop-up">×</label>
-            </div>
-        </div> -->
+        
         <button type="button" onclick="showModal()">授業検索</button><br>
         <div class="right">
             <form action="/timetable_registration" method="POST">
@@ -169,9 +97,7 @@
                 <button type="submit">登録</button>
             </form>
         </div>
-        
-                
-        <!--{{data}} -->
+
         <table>
             <tr>
                 <th>授業名</th>
