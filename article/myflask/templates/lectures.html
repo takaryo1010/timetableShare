@@ -96,20 +96,16 @@
                         }
                     }
                     function unregisterCourse(id, username) {
-                        alert(id+" "+username)
+                        // alert(id+" "+username)
                         var xhr = new XMLHttpRequest();
                         xhr.open("POST", "http://52.69.43.211/removeCourse", true);
                         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-                        xhr.onreadystatechange = function() {
-                            if (this.readyState == 4 && this.status == 200) {
-                            alert("履修解除が完了しました");
-                            }
-                        };
-
                         // POSTパラメータとして送信するデータ
                         var params = 'class_id=' + encodeURIComponent(id) + '&name=' + encodeURIComponent(username);
                         xhr.send(params);
+                        alert("登録解除が完了しました。")
+                        location.reload()
                     }
                 </script>
             </table>
