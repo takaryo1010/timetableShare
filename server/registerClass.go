@@ -139,10 +139,8 @@ func registerClass(c echo.Context) error {
 	// データベースから授業を取得
 	for rows.Next() {
 		var cc class
-
 		err := rows.Scan(&cc.Class_id, &cc.Name, &cc.Day, &cc.Period,
 			&cc.Unit, &cc.Must, &cc.Teacher, &cc.Room, &cc.Term, &cc.Department)
-
 		if err != nil {
 			log.Fatal(err)
 			return c.JSON(http.StatusCreated, err) // エラーを返す
