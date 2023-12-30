@@ -20,6 +20,10 @@
     overflow-y: auto;
 }
 
+.big-modal-content p {
+    margin-left: 50px;
+}
+
 .big-modal-content p,
 .big-modal-content form,
 .big-modal-content input,
