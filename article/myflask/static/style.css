@@ -42,9 +42,6 @@ p {
     width: 180px;
     background-color: #57a09b;
     color: #fff;
-    /*padding: 0;
-    padding-top: 0%; メインコンテンツとの間にスペースを追加
-    padding-bottom: 0%; メインコンテンツとの間にスペースを追加 */
     box-sizing: border-box; /* パディングが要素のサイズに含まれるようにボックスモデルを設定 */
     margin-right: 0%;
     margin-bottom: 0%;
@@ -152,7 +149,7 @@ th, td {
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #f1f1f1;
     color: #333;
 }
 
