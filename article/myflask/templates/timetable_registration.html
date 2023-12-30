@@ -1,140 +1,140 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-<head>
-    <meta charset="UTF-8">
-    <title>時間割</title>
-    <link rel="icon" href="../static/TimeTie.png" type="image/png">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='modal.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='sidebar.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-</head>
-<body>
-    <aside class="sidebar">
-        <nav>
-            <div class="sidebar-image-container">
-                <img src="../static/TTTT.png" alt="説明テキスト">
+    <head>
+        <meta charset="UTF-8">
+        <title>時間割</title>
+        <link rel="icon" href="../static/TimeTie.png" type="image/png">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='modal.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='sidebar.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    </head>
+    <body>
+        <aside class="sidebar">
+            <nav>
+                <div class="sidebar-image-container">
+                    <img src="../static/TTTT.png" alt="説明テキスト">
+                </div>
+                <ul>
+                    <li><a href="/"><i class="fas fa-home"></i> <span>ホーム</span></a></li>
+                    <li><a href="/login"><i class="fas fa-sign-in-alt"></i> <span>ログイン</span></a></li>
+                    <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> <span>ログアウト</span></a></li>
+                    <li><a href="/timetable_registration"><i class="fas fa-calendar-plus"></i> <span>時間割登録</span></a></li>
+                    <li><a href="/timetable_sharing"><i class="fas fa-users"></i> <span>時間割共有</span></a></li>
+                    <li><a href="/add_friends"><i class="fas fa-user-plus"></i> <span>友達追加</span></a></li>
+                    <li><a href="/lecture_list"><i class="fas fa-list"></i> <span>授業一覧</span></a></li>
+                    <li><a href="/lecture_creation"><i class="fas fa-plus-circle"></i> <span>授業作成</span></a></li>
+                </ul>
+                <p>こんにちは、{{ username }}さん</p>
+            </nav>
+        </aside>
+        <main class="main">
+            <h1>時間割登録</h1>
+            <div id="popupContainer" class="modal">
+                <div class="big-modal-content">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                    <h3>授業検索</h3><P>条件は 1 つでも構いません</P>
+                    <form action="/timetable_registration" method="POST">
+                        <p>1. 授業名</p>
+                        <input type="text" name="class_name" placeholder="(例) 科学英語"><br>
+                        <p>2. 曜日</p>
+                        <select name="class_day">
+                            <option value="">曜日を選択してください</option>
+                            <option value="Monday">月</option>
+                            <option value="Tuesday">火</option>
+                            <option value="Wednesday">水</option>
+                            <option value="Thursday">木</option>
+                            <option value="Friday">金</option>
+                            <option value="Saturday">土</option>
+                            <option value="Ondemand">オンデマンド</option>
+                        </select><br>
+                        <p>3. 時限</p>
+                        <select name="class_time">
+                            <option value="">時限を選択してください</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select><br>
+                        <p>4. 単位数</p>
+                        <select name="class_unit">
+                            <option value="">単位数を選択してください</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select><br>
+                        <p>5. 必修 / 選択</p>
+                        <select name="must_flag">
+                            <option value="">必修 / 選択 を指定してください</option>
+                            <option value=0>選択</option>
+                            <option value=1>必修</option>
+                        </select><br>
+                        <p>6. 担当教師</p>
+                        <input type="text" name="teacher_name" placeholder="(例) 廣津"><br>
+                        <p>7. 部屋</p>
+                        <input type="text" name="room" placeholder="(例) W213"><br>
+                        <p>8. セメスタ</p>
+                        <select name="term">
+                            <option value="">セメスタを選択してください</option>
+                            <option value="Spring">Spring</option>
+                            <option value="Fall">Fall</option>
+                        </select><br>
+                        <p>9. 学科</p>
+                        <select name="department">
+                            <option value="">学科を選択してください</option>
+                            <option value="DM">DM</option>
+                            <option value="CS">CS</option>
+                        </select><br>
+                        <button type="submit">検索</button>
+                    </form>
+                </div>
             </div>
-            <ul>
-                <li><a href="/"><i class="fas fa-home"></i> <span>ホーム</span></a></li>
-                <li><a href="/login"><i class="fas fa-sign-in-alt"></i> <span>ログイン</span></a></li>
-                <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> <span>ログアウト</span></a></li>
-                <li><a href="/timetable_registration"><i class="fas fa-calendar-plus"></i> <span>時間割登録</span></a></li>
-                <li><a href="/timetable_sharing"><i class="fas fa-users"></i> <span>時間割共有</span></a></li>
-                <li><a href="/add_friends"><i class="fas fa-user-plus"></i> <span>友達追加</span></a></li>
-                <li><a href="/lecture_list"><i class="fas fa-list"></i> <span>授業一覧</span></a></li>
-                <li><a href="/lecture_creation"><i class="fas fa-plus-circle"></i> <span>授業作成</span></a></li>
-            </ul>
-            <p>こんにちは、{{ username }}さん</p>
-        </nav>
-    </aside>
-    <main class="main">
-        <h1>時間割登録</h1>
-        <div id="popupContainer" class="modal">
-            <div class="big-modal-content">
-                <span class="close" onclick="closePopup()">&times;</span>
-                <h3>授業検索</h3><P>条件は 1 つでも構いません</P>
+            
+            <button type="button" onclick="showModal()">授業検索</button><br>
+            <div class="right">
                 <form action="/timetable_registration" method="POST">
-                    <p>1. 授業名</p>
-                    <input type="text" name="class_name" placeholder="(例) 科学英語"><br>
-                    <p>2. 曜日</p>
-                    <select name="class_day">
-                        <option value="">曜日を選択してください</option>
-                        <option value="Monday">月</option>
-                        <option value="Tuesday">火</option>
-                        <option value="Wednesday">水</option>
-                        <option value="Thursday">木</option>
-                        <option value="Friday">金</option>
-                        <option value="Saturday">土</option>
-                        <option value="Ondemand">オンデマンド</option>
-                    </select><br>
-                    <p>3. 時限</p>
-                    <select name="class_time">
-                        <option value="">時限を選択してください</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select><br>
-                    <p>4. 単位数</p>
-                    <select name="class_unit">
-                        <option value="">単位数を選択してください</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select><br>
-                    <p>5. 必修 / 選択</p>
-                    <select name="must_flag">
-                        <option value="">必修 / 選択 を指定してください</option>
-                        <option value=0>選択</option>
-                        <option value=1>必修</option>
-                    </select><br>
-                    <p>6. 担当教師</p>
-                    <input type="text" name="teacher_name" placeholder="(例) 廣津"><br>
-                    <p>7. 部屋</p>
-                    <input type="text" name="room" placeholder="(例) W213"><br>
-                    <p>8. セメスタ</p>
-                    <select name="term">
-                        <option value="">セメスタを選択してください</option>
-                        <option value="Spring">Spring</option>
-                        <option value="Fall">Fall</option>
-                    </select><br>
-                    <p>9. 学科</p>
-                    <select name="department">
-                        <option value="">学科を選択してください</option>
-                        <option value="DM">DM</option>
-                        <option value="CS">CS</option>
-                    </select><br>
-                    <button type="submit">検索</button>
+                    <input type="number" name="class_id" placeholder="Class ID">
+                    <button type="submit">登録</button>
                 </form>
             </div>
-        </div>
-        
-        <button type="button" onclick="showModal()">授業検索</button><br>
-        <div class="right">
-            <form action="/timetable_registration" method="POST">
-                <input type="number" name="class_id" placeholder="Class ID">
-                <button type="submit">登録</button>
-            </form>
-        </div>
 
-        <table>
-            <tr>
-                <th>授業名</th>
-                <th>授業ID</th>
-                <th>曜日</th>
-                <th>時限</th>
-                <th>単位</th>
-                <th>必修</th>
-                <th>先生</th>
-                <th>教室</th>
-                <th>学期</th>
-                <th>学科</th>
-            </tr>
-            {% for lecture in json %}
-            <tr>
-                <td>{{ lecture.name }}</td>
-                <td>{{ lecture.class_id }}</td>
-                <td>{{ lecture.day }}</td>
-                <td>{{ lecture.period }}</td>
-                <td>{{ lecture.unit }}</td>
-                <td>{{ lecture.must }}</td>
-                <td>{{ lecture.teacher }}</td>
-                <td>{{ lecture.room }}</td>
-                <td>{{ lecture.term }}</td>
-                <td>{{ lecture.department }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-        <script>
-            function showModal() {
-                document.getElementById('popupContainer').style.display = 'flex';
-            }
-            function closePopup() {
-                document.getElementById('popupContainer').style.display = 'none';
-            }
-        </script>
-    </main>
-</body>
+            <table>
+                <tr>
+                    <th>授業名</th>
+                    <th>授業ID</th>
+                    <th>曜日</th>
+                    <th>時限</th>
+                    <th>単位</th>
+                    <th>必修</th>
+                    <th>先生</th>
+                    <th>教室</th>
+                    <th>学期</th>
+                    <th>学科</th>
+                </tr>
+                {% for lecture in json %}
+                <tr>
+                    <td>{{ lecture.name }}</td>
+                    <td>{{ lecture.class_id }}</td>
+                    <td>{{ lecture.day }}</td>
+                    <td>{{ lecture.period }}</td>
+                    <td>{{ lecture.unit }}</td>
+                    <td>{{ lecture.must }}</td>
+                    <td>{{ lecture.teacher }}</td>
+                    <td>{{ lecture.room }}</td>
+                    <td>{{ lecture.term }}</td>
+                    <td>{{ lecture.department }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <script>
+                function showModal() {
+                    document.getElementById('popupContainer').style.display = 'flex';
+                }
+                function closePopup() {
+                    document.getElementById('popupContainer').style.display = 'none';
+                }
+            </script>
+        </main>
+    </body>
 </html>
