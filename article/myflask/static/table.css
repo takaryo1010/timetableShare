@@ -1,0 +1,73 @@
+/* テーブルに関するデザイン */
+table {
+    width: 90%;
+    height: auto;
+    margin: 20px auto;
+    border: none;
+    border-collapse: collapse;
+    box-shadow: 0 2px 3px #ccc;
+    text-align: center;
+    table-layout: fixed;
+    border-spacing: 0; /* セル間のスペースをなくす */
+    border-radius: 15px; /* 角を丸くする */
+    overflow: hidden; /* 内容がはみ出した時に隠す */
+}
+th {
+    width: auto;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+td {
+    width: auto;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-color: #fff;
+    position: relative; 
+    padding: 2px; 
+    text-align: center; 
+    vertical-align: middle; 
+}
+
+th:first-child, td:first-child {
+    width: 15%;
+}
+
+
+td .free {
+    display: block;
+    padding: 10px;
+    margin: 4px;
+}
+
+/* ソートボタンを表示するエリア */
+.tsImgArea{
+    line-height: 1;
+  }
+  /* ソートボタン */
+  .tsImg{
+    display    : inline-block;
+    width      : 8px;
+    height     : 6px;
+    background : #eee;
+    border     : 1px solid #777;
+    margin     : 1px 3px;
+    padding    : 3px;
+    cursor     : pointer;
+  }
+  /* ソートボタン */
+  .tsImg:hover{
+    background : #94ceb3;
+  }
+  /* ソートボタン内の三角の色 */
+  .tsImg path{
+    fill       : #888;
+  }

@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='modal.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='sidebar.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='table.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='table.js') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     </head>
     <body>
@@ -31,18 +33,18 @@
         </aside>
         <main class="main">
             <h1>授業一覧</h1>
-            <table>
+            <table id="sort">
                 <tr>
-                    <th>授業名</th>
-                    <th>授業ID</th>
-                    <th>曜日</th>
-                    <th>時限</th>
-                    <th>単位</th>
-                    <th>必修</th>
-                    <th>先生</th>
-                    <th>教室</th>
-                    <th>学期</th>
-                    <th>学科</th>
+                    <th cmanSortBtn>授業名</th>
+                    <th cmanSortBtn>授業ID</th>
+                    <th cmanSortBtn>曜日</th>
+                    <th cmanSortBtn>時限</th>
+                    <th cmanSortBtn>単位</th>
+                    <th cmanSortBtn>必修</th>
+                    <th cmanSortBtn>先生</th>
+                    <th cmanSortBtn>教室</th>
+                    <th cmanSortBtn>学期</th>
+                    <th cmanSortBtn>学科</th>
                 </tr>
                 {% for lecture in json %}
                 <tr>

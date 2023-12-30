@@ -34,46 +34,7 @@ h1 {
     text-align: center;
 }
 /* -------------------- */
-/* テーブルに関するデザイン */
-table {
-    width: 90%;
-    height: auto;
-    margin: 20px auto;
-    border: none;
-    border-collapse: collapse;
-    box-shadow: 0 2px 3px #ccc;
-    text-align: center;
-    table-layout: fixed;
-    border-spacing: 0; /* セル間のスペースをなくす */
-    border-radius: 15px; /* 角を丸くする */
-    overflow: hidden; /* 内容がはみ出した時に隠す */
-}
 
-th, td {
-    padding: 8px;
-    text-align: center;
-    border: 1px solid #ddd;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-th {
-    background-color: #f1f1f1;
-    color: #333;
-}
-
-td {
-    background-color: #fff;
-}
-
-th:first-child, td:first-child {
-    width: 15%;
-}
-
-th, td {
-    width: auto;
-}
 
 /* その他スタイル */
 
@@ -114,20 +75,6 @@ th, td {
     white-space: normal;
     overflow: hidden; 
     text-overflow: ellipsis; 
-}
-
-
-td {
-    position: relative; 
-    padding: 2px; 
-    text-align: center; 
-    vertical-align: middle; 
-}
-
-td .free {
-    display: block;
-    padding: 10px;
-    margin: 4px;
 }
 
 .free-slot {
