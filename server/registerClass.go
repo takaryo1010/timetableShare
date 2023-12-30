@@ -91,8 +91,8 @@ func registerClass(c echo.Context) error {
 	}
 	defer db.Close()
 
-	// 名前と期間が既に存在するか確認するクエリ
-	existsQuery := "SELECT COUNT(*) FROM Class WHERE Name = ? AND Term = ?"
+	// 名前、先生名、セメスタが一致する授業があるか確認するクエリ
+	existsQuery := "SELECT COUNT(*) FROM Class WHERE Name = ? Teacher = ? AND Term = ?"
 	var count int
 	err = db.QueryRow(existsQuery, name, term).Scan(&count)
 	if err != nil {
