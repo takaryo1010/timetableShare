@@ -12,7 +12,8 @@
 .big-modal-content {
     width: 50%; /* 幅を50%に設定 */
     height: 25%; /* 高さは内容に合わせて自動調整 */
-    margin: auto; /* 中央に配置 */
+    margin-top: 5px;
+    margin-bottom: 5px;
     padding: 20px;
     border: 1px solid #888;
     background-color: white;
