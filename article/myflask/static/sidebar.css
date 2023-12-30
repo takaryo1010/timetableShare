@@ -12,11 +12,6 @@
     height: 100vh;
 }
 
-/* メニューに関するデザイン */
-.sidebar nav {
-
-}
-
 /* リストに関するデザイン */
 .sidebar ul {
     list-style: none;
@@ -24,6 +19,7 @@
     padding-left: 0;
     margin: 0;
     text-align: center;
+    border: solid 1px #888;
 }
 /* リストの項目に関するデザイン */
 .sidebar li {
@@ -31,6 +27,7 @@
     text-align: center;
     align-items: center;
     margin-left: 25px;
+    
 }
 /* リンクに関するデザイン */
 .sidebar a {
@@ -46,7 +43,8 @@
 }
 /* リンクにカーソルを当てたときに関するデザイン */
 .sidebar a:hover {
-    background-color: #e7f1ff;
+    background-color: #d7e1ef;
+    border-left: solid 6px #fff;
 }
 
 /* フォント(イタリック)に関するデザイン */
