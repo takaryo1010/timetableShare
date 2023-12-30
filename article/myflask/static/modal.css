@@ -17,7 +17,7 @@
     border: 1px solid #888;
     background-color: white;
     border-radius: 20px; /* 角を丸くする */
-    overflow: hidden; /* コンテンツがボックス外にはみ出さないようにする */
+    overflow-y: auto;
 }
 
 .modal {
