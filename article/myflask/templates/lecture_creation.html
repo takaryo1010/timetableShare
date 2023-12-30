@@ -34,10 +34,10 @@
         <main class="main">
             <h1>授業作成</h1>
 
-            <div id="popupContainer" class="modal">
+            {% comment %} <div id="popupContainer" class="modal">
                 <div class="big-modal-content">
                     <span class="close" onclick="closePopup()">&times;</span>
-                    <h3>授業登録</h3>
+                    <h3>授業登録</h3> {% endcomment %}
                     <form action="/lecture_creation" method="POST">
                         <p>1. 授業名</p>
                         <input type="text" name="class_name" placeholder="(例) 科学英語"><br>
@@ -91,8 +91,8 @@
                         </select><br>
                         <button type="submit">登録</button>
                     </form>
-                </div>
-            </div>
+                {% comment %} </div>
+            </div> {% endcomment %}
             <div class="right">
                 <button type="button" onclick="showModal()">授業作成</button><br>
             </div>
