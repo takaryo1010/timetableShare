@@ -12,13 +12,20 @@
 .big-modal-content {
     width: 50%; /* 幅を50%に設定 */
     height: 25%; /* 高さは内容に合わせて自動調整 */
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: auto; /* 中央に配置 */
     padding: 20px;
     border: 1px solid #888;
     background-color: white;
     border-radius: 20px; /* 角を丸くする */
     overflow-y: auto;
+}
+
+.big-modal-content p,
+.big-modal-content form,
+.big-modal-content input,
+.big-modal-content button {
+    margin-top: 5px; /* 上のマージンを5pxに設定 */
+    margin-bottom: 5px; /* 下のマージンを5pxに設定 */
 }
 
 .modal {
