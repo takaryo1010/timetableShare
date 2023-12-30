@@ -169,7 +169,7 @@ th, td {
 }
 /* -------------------- */
 /* ポップアップに関するデザイン */
-.open {
+/* .open {
 	display: inline-block;
     padding: 10px 20px;
     font-size: 16px;
@@ -234,7 +234,7 @@ th, td {
 	top: 4px;
 	right: 4px;
 	cursor:pointer;
-}
+} */
 /* -------------------- */
 
 /* その他スタイル */
