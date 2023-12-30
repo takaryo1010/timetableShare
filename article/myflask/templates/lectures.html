@@ -63,9 +63,9 @@
                         {% set name = lecture["name"] %}
                         {% set room = lecture["room"] %}
                         {% set teacher = lecture["teacher"] %}
-                        {% set class_id = lecture["class_id"] %}
+                        {% set classid = lecture["class_id"] %}
 
-                        <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}', '{{class_id}}')">{{ name }}</div>
+                        <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}', '{{classid}}')">{{ name }}</div>
                         <div id="popupContainer" class="modal">
                             <div class="modal-content">
                                 <span class="close" onclick="closePopup()">&times;</span>
