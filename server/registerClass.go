@@ -87,18 +87,16 @@ func registerClass(c echo.Context) error {
 	db, err := sql.Open("mysql", db_state)
 	if err != nil {
 		log.Fatal(err)
-		log.Println(err)
 		return err // エラーを返す
 	}
 	defer db.Close()
 
 	// 名前、時限、先生名、セメスタが一致する授業があるか確認するクエリ
-	existsQuery := "SELECT COUNT(*) FROM Class WHERE name = ? AND period = ? AND teacher = ? AND term = ?"
+	existsQuery := "SELECT COUNT(*) FROM Class WHERE name = ? AND term = ?"
 	var count int
-	err = db.QueryRow(existsQuery, name, period, teacher, term).Scan(&count)
+	err = db.QueryRow(existsQuery, name, term).Scan(&count)
 	if err != nil {
 		log.Fatal(err)
-		log.Println(err)
 		return err
 	}
 
@@ -111,7 +109,6 @@ func registerClass(c echo.Context) error {
 	ins, err := db.Prepare("INSERT INTO Class (Name, Day, Period, Unit, Must, Teacher, Room,Term,Department) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)")
 	if err != nil {
 		log.Fatal(err)
-		log.Println(err)
 		return err
 	}
 
@@ -119,7 +116,6 @@ func registerClass(c echo.Context) error {
 	result, err := ins.Exec(name, day, period, unit, must, teacher, room, term, department)
 	if err != nil {
 		log.Fatal(err)
-		log.Println(err)
 		return c.JSON(http.StatusBadRequest, "登録が間違っています") // ステータスコード400: Bad Request
 	}
 
@@ -133,7 +129,6 @@ func registerClass(c echo.Context) error {
 	rows, err := db.Query("SELECT * FROM Class")
 	if err != nil {
 		log.Fatal(err)
-		log.Println(err)
 		return c.JSON(http.StatusCreated, err) // エラーを返す
 	}
 	defer rows.Close()
