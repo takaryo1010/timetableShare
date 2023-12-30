@@ -29,7 +29,7 @@
         </nav>
     </aside>
     <main class="main">
-        <div id="popupContainer" class="s_modal">
+        <div id="popupContainer" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closePopup()">&times;</span>
                 <form action="/timetable_registration" method="POST">
@@ -176,6 +176,7 @@
                 <button type="submit">登録</button>
             </form>
         </div>
+        <button type="button" onclick="showModal()">授業検索</button>
                 
         <!--{{data}} -->
         <table>
@@ -206,5 +207,13 @@
             </tr>
             {% endfor %}
         </table>
+        <script>
+            function showModal() {
+                document.getElementById('popupContainer').style.display = 'flex';
+            }
+            function closePopup() {
+                document.getElementById('popupContainer').style.display = 'none';
+            }
+        </script>
     </main>
 </div>

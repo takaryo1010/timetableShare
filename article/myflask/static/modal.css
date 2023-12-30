@@ -22,18 +22,6 @@
     background-color: rgba(0,0,0,0.4); /* 背景色（透明度付き） */
 }
 
-.s_modal {
-    position: fixed;
-    z-index: 1; /* 他の要素より上に表示 */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto; /* モーダル外のスクロールを許可 */
-    background-color: rgb(0,0,0); /* 背景色 */
-    background-color: rgba(0,0,0,0.4); /* 背景色（透明度付き） */
-}
-
 .close {
     color: #aaa;
     float: right;
