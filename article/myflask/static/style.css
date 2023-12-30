@@ -126,9 +126,9 @@ nav ul li a:hover {
 }
 
 .right {
-    /* 画面の右側のフォームに関するスタイル */
-    margin-left: auto; /* 右側に寄せる */
-    padding: 20px; /* 必要に応じて余白を設定 */
+    width: 300px; /* 必要に応じて幅を調整 */
+    float: right; /* 右側に配置 */
+    margin-right: 20px; /* 他の要素との間にスペースを追加 */
 }
 
 /* 共通スタイル */
