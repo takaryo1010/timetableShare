@@ -87,12 +87,12 @@
                     function closePopup() {
                         document.getElementById('popupContainer').style.display = 'none';
                     }
-                    function handleClick(name, day, period, room, teacher) {
+                    function handleClick(name, day, period, room, teacher, classid) {
                         if (name == "") {
                             location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
                         } else {
                             // alert(lecture['name']+"\n"+lecture['room']+"\n"+lecture[unit])
-                            showModal(name, day, period, room, teacher);
+                            showModal(name, day, period, room, teacher, classid);
                             
                         }
                     }
