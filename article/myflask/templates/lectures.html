@@ -68,7 +68,7 @@
                         <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}', '{{classid}}')">{{ name }}</div>
                         <div id="popupContainer_{{ classid }}" class="modal">
                             <div class="modal-content">
-                                <span class="close" onclick="closePopup()">&times;</span>
+                                <span class="close" onclick="closePopup('{{ classid }}')">&times;</span>
                                 <p id="lectureInfo">授業情報</p>
                                 <button id="unregisterButton_{{ classid }}" onclick="unregisterCourse('{{classid}}', '{{current_user.username}}')">履修解除</button>
                             </div>
@@ -86,7 +86,7 @@
                         popupContainer.querySelector('#lectureInfo').innerText = infoText;
                         popupContainer.style.display = 'flex';
                     }
-                    function closePopup() {
+                    function closePopup(id) {
                         document.getElementById('popupContainer_' + id).style.display = 'none';
                     }
                     function handleClick(name, day, period, room, teacher, id) {
