@@ -79,7 +79,7 @@
                 </tr>
                 {% endfor %}
                 <script>
-                    function showModal(name, day, period, room, teacher, classid) {
+                    function showModal(name, day, period, room, teacher, id) {
                         var infoText = '授業名: ' + name + '\n授業 id: ' + id + '\n曜日: ' + day + '\n時限: ' + period + "\n部屋: " +  room + "\n担当教師: " + teacher;
                         document.getElementById('lectureInfo').innerText = infoText;
                         document.getElementById('popupContainer').style.display = 'flex';
@@ -87,12 +87,12 @@
                     function closePopup() {
                         document.getElementById('popupContainer').style.display = 'none';
                     }
-                    function handleClick(name, day, period, room, teacher, classid) {
+                    function handleClick(name, day, period, room, teacher, id) {
                         if (name == "") {
                             location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
                         } else {
                             // alert(lecture['name']+"\n"+lecture['room']+"\n"+lecture[unit])
-                            showModal(name, day, period, room, teacher, classid);
+                            showModal(name, day, period, room, teacher, id);
                             
                         }
                     }
