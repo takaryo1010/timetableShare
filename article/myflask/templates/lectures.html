@@ -63,14 +63,14 @@
                         {% set name = lecture["name"] %}
                         {% set room = lecture["room"] %}
                         {% set teacher = lecture["teacher"] %}
-                        {% set id = lecture["class_id"] %}
+                        {% set class_id = lecture["class_id"] %}
 
                         <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}')">{{ name }}</div>
                         <div id="popupContainer" class="modal">
                             <div class="modal-content">
                                 <span class="close" onclick="closePopup()">&times;</span>
                                 <p id="lectureInfo">授業情報</p>
-                                <button id="unregisterButton" onclick="unregisterCourse('{{id}}', '{{current_user.username}}')">履修解除</button>
+                                <button id="unregisterButton" onclick="unregisterCourse('{{class_id}}', '{{current_user.username}}')">履修解除</button>
                             </div>
                         </div>
                     </td>
@@ -97,7 +97,6 @@
                         }
                     }
                     function unregisterCourse(id, username) {
-                        // Ajaxを使用してPOSTリクエストを送信
                         alert(id+" "+username)
                         var xhr = new XMLHttpRequest();
                         xhr.open("POST", "http://52.69.43.211/removeCourse", true);
@@ -105,7 +104,6 @@
 
                         xhr.onreadystatechange = function() {
                             if (this.readyState == 4 && this.status == 200) {
-                            // レスポンス処理
                             alert("履修解除が完了しました");
                             }
                         };
