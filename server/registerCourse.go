@@ -39,9 +39,45 @@ func registerCourse(c echo.Context) error {
 		return c.JSON(http.StatusCreated, err) // エラーを返す
 	}
 
+	// すでに授業が登録されているかどうか
+	query2 := "SELECT count(*) FROM Course WHERE person_id = ? AND class_id = ?"
+	var countSameCourse int
+	err = db.QueryRow(query2, id, class_id).Scan(&countSameCourse)
+	if err != nil {
+		log.Fatal(err)
+		return c.JSON(http.StatusCreated, err) // エラーを返す
+	}
+
+	if countSameCourse > 0 {
+		// すでに授業が登録されている場合はエラーを返す
+		return c.JSON(http.StatusConflict, "既に授業が登録されています")
+	}
+	// SQLの準備（class_idからdayとperiodを取得する）
+	query3 := "SELECT day, period FROM Class WHERE class_id = ?"
+	var day string
+	var period int
+	err = db.QueryRow(query3, class_id).Scan(&day, &period)
+	if err != nil {
+		log.Fatal(err)
+		return c.JSON(http.StatusNotFound, "指定された授業が見つかりません") // エラーを返す
+	}
+	// SQLの準備（指定された日付と時間帯に一致する授業を取得する）
+	query4 := "SELECT count(*) FROM Class WHERE day = ? AND period = ?"
+	var countSameDayPeriod int
+	err = db.QueryRow(query4, day, period).Scan(&countSameDayPeriod)
+	if err != nil {
+		log.Fatal(err)
+		return c.JSON(http.StatusCreated, err) // エラーを返す
+	}
+
+	if countSameDayPeriod > 0 {
+		// 指定された日付と時間帯に別の授業が登録されている場合はエラーを返す
+		return c.JSON(http.StatusConflict, "既に別の授業が登録されています")
+	}
+
 	// INSERT INTO Course ステートメントの準備
-	query2 := "INSERT INTO Course (person_id, class_id) VALUES (?, ?)"
-	ins, err := db.Prepare(query2)
+	query5 := "INSERT INTO Course (person_id, class_id) VALUES (?, ?)"
+	ins, err := db.Prepare(query5)
 	if err != nil {
 		log.Fatal(err)
 		return c.JSON(http.StatusCreated, err) // エラーを返す
@@ -55,8 +91,8 @@ func registerCourse(c echo.Context) error {
 	}
 
 	// データベースから全ての時間割を取得
-	query3 := "SELECT * FROM Course"
-	rows, err := db.Query(query3)
+	query6 := "SELECT * FROM Course"
+	rows, err := db.Query(query6)
 	if err != nil {
 		log.Fatal(err)
 		return c.JSON(http.StatusCreated, err) // エラーを返す
