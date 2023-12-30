@@ -1,7 +1,7 @@
 /* テーブルに関するデザイン */
 table {
     width: 90%;
-    height: 60vw;
+    height: auto;
     margin: 20px auto;
     border: none;
     border-collapse: collapse;
