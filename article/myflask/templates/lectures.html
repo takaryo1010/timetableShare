@@ -80,6 +80,7 @@
                 {% endfor %}
                 <script>
                     function showModal(name, day, period, room, teacher, id) {
+                        alert("test");
                         var infoText = '授業名: ' + name + '\n授業 id: ' + id + '\n曜日: ' + day + '\n時限: ' + period + "\n部屋: " +  room + "\n担当教師: " + teacher;
                         var popupContainer = document.getElementById('popupContainer_' + classid);
                         popupContainer.querySelector('#lectureInfo').innerText = infoText;
@@ -92,7 +93,6 @@
                         if (name == "") {
                             location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
                         } else {
-                            alert("test");
                             showModal(name, day, period, room, teacher, id);
                         }
                     }
