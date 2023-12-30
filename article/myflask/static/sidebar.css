@@ -22,20 +22,20 @@
     height: auto; /* 画像の比率を維持 */
 }
 /* サイドバーの項目に関するデザイン */
-.sidebar nav ul {
+.sidebar ul {
     list-style: none;
     padding: 0;
     padding-left: 0;
     margin: 0;
     text-align: center;
 }
-.sidebar nav ul li {
+.sidebar li {
     list-style-type: none;
     text-align: center;
     align-items: center;
     margin-left: 25px;
 }
-.sidebar nav ul li a {
+.sidebar a {
     display: flex;
     align-items: center;
     text-align: center;
@@ -46,12 +46,12 @@
     border-radius: 15px;
     transition: background-color 0.3s;
 }
-.sidebar nav ul li a:hover {
+.sidebar a:hover {
     background-color: #e7f1ff;
 }
 
 /* アイコンに関するデザイン */
-.sidebar nav ul li i {
+.sidebar i {
     margin-right: 8px;
     color: #fff;
     width: 20px; /* アイコンの幅を固定します */
@@ -59,7 +59,7 @@
     text-align: center; /* アイコンを中央揃えにします */
 }
 /* テキストに関するデザイン */
-.sidebar nav ul li a span {
+.sidebar span {
     display: block; /* テキストをブロックレベルの要素にします */
     text-align: left; /* テキストを左揃えにします */
 }
