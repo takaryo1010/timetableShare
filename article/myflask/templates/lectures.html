@@ -66,11 +66,11 @@
                         {% set classid = lecture["class_id"] %}
 
                         <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}', '{{classid}}')">{{ name }}</div>
-                        <div id="popupContainer" class="modal">
+                        <div id="popupContainer_{{ classid }}" class="modal">
                             <div class="modal-content">
                                 <span class="close" onclick="closePopup()">&times;</span>
                                 <p id="lectureInfo">授業情報</p>
-                                <button id="unregisterButton" onclick="unregisterCourse('{{classid}}', '{{current_user.username}}')">履修解除</button>
+                                <button id="unregisterButton_{{ classid }}" onclick="unregisterCourse('{{classid}}', '{{current_user.username}}')">履修解除</button>
                             </div>
                         </div>
                     </td>
@@ -81,8 +81,9 @@
                 <script>
                     function showModal(name, day, period, room, teacher, id) {
                         var infoText = '授業名: ' + name + '\n授業 id: ' + id + '\n曜日: ' + day + '\n時限: ' + period + "\n部屋: " +  room + "\n担当教師: " + teacher;
-                        document.getElementById('lectureInfo').innerText = infoText;
-                        document.getElementById('popupContainer').style.display = 'flex';
+                        var popupContainer = document.getElementById('popupContainer_' + classid);
+                        popupContainer.querySelector('#lectureInfo').innerText = infoText;
+                        popupContainer.style.display = 'flex';
                     }
                     function closePopup() {
                         document.getElementById('popupContainer').style.display = 'none';
@@ -91,9 +92,7 @@
                         if (name == "") {
                             location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
                         } else {
-                            // alert(lecture['name']+"\n"+lecture['room']+"\n"+lecture[unit])
                             showModal(name, day, period, room, teacher, id);
-                            
                         }
                     }
                     function unregisterCourse(id, username) {
