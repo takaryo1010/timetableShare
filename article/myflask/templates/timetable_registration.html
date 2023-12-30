@@ -33,50 +33,58 @@
         <div id="popupContainer" class="modal">
             <div class="big-modal-content">
                 <span class="close" onclick="closePopup()">&times;</span>
-                <h3>授業検索</h3>
+                <h3>授業検索</h3><P>条件は 1 つでも構いません</P>
                 <form action="/timetable_registration" method="POST">
-                    <input type="text" name="class_name" placeholder="Class Name">
+                    <p>1. 授業名</p><br>
+                    <input type="text" name="class_name" placeholder="(例) 科学英語"><br>
+                    <p>2. 曜日</p><br>
                     <select name="class_day">
-                        <option value="">Select class day</option>
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                        <option value="Saturday">Saturday</option>
-                        <option value="Ondemand">Ondemand</option>
-                    </select>
+                        <option value="">曜日を選択してください</option>
+                        <option value="Monday">月</option>
+                        <option value="Tuesday">火</option>
+                        <option value="Wednesday">水</option>
+                        <option value="Thursday">木</option>
+                        <option value="Friday">金</option>
+                        <option value="Saturday">土</option>
+                        <option value="Ondemand">オンデマンド</option>
+                    </select><br>
+                    <p>3. 時限</p><br>
                     <select name="class_time">
-                        <option value="">Select class time</option>
+                        <option value="">時限を選択してください</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
-                    </select>
+                    </select><br>
+                    <p>4. 単位数</p><br>
                     <select name="class_unit">
-                        <option value="">Select class unit</option>
+                        <option value="">単位数を選択してください</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
-                    </select>
-                <form action="/timetable_registration" method="POST">
+                    </select><br>
+                    <p>5. 必修 / 選択</p><br>
                     <select name="must_flag">
-                        <option value="">Select must</option>
+                        <option value="">必修 / 選択 を指定してください</option>
                         <option value=0>選択</option>
                         <option value=1>必修</option>
-                    </select>
-                    <input type="text" name="teacher_name" placeholder="Teacher Name">
-                    <input type="text" name="room" placeholder="Room">
+                    </select><br>
+                    <p>6. 担当教師</p><br>
+                    <input type="text" name="teacher_name" placeholder="(例) 廣津"><br>
+                    <p>7. 部屋</p><br>
+                    <input type="text" name="room" placeholder="(例) W213"><br>
+                    <p>8. セメスタ</p><br>
                     <select name="term">
-                        <option value="">Select term</option>
+                        <option value="">セメスタを選択してください</option>
                         <option value="Spring">Spring</option>
                         <option value="Fall">Fall</option>
-                    </select>
+                    </select><br>
+                    <p>9. 学科</p><br>
                     <select name="department">
-                        <option value="">Select department</option>
+                        <option value="">学科を選択してください</option>
                         <option value="DM">DM</option>
                         <option value="CS">CS</option>
-                    </select>
+                    </select><br>
                     <button type="submit">検索</button>
                 </form>
             </div>
