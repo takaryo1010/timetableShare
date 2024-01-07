@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -66,7 +67,7 @@ func registerFriends(c echo.Context) error {
 		log.Fatal(err)
 		return err // エラーを返す
 	}
-
+	fmt.Println(ins)
 	// SQLの実行
 	_, err = ins.Exec(my_id, your_id)
 	if err != nil {
