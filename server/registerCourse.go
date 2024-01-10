@@ -50,7 +50,7 @@ func registerCourse(c echo.Context) error {
 	// SQLの実行（Courseへの挿入）
 	_, err = ins.Exec(id, class_id)
 	if err != nil {
-		log.Fatal(err)
+		
 		return c.JSON(http.StatusBadRequest, err) // ステータスコード400: Bad Request
 	}
 
