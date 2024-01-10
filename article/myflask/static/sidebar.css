@@ -87,4 +87,9 @@
     /* 画像がコンテナより大きくならないようにする */
     height: auto;
     /* 画像の比率を維持 */
+
+    background-color: transparent;
+    border-radius: 15px;
+    border-left: none;
+    transition: none; /* ホバー時のアニメーションを無効化 */
 }
