@@ -43,7 +43,7 @@ func registerCourse(c echo.Context) error {
 	query2 := "INSERT INTO Course (person_id, class_id) VALUES (?, ?)"
 	ins, err := db.Prepare(query2)
 	if err != nil {
-		log.Fatal(err)
+		
 		return c.JSON(http.StatusCreated, err) // エラーを返す
 	}
 
