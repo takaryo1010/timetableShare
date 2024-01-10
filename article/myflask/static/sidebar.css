@@ -46,11 +46,11 @@
 }
 
 /* リンクにカーソルを当てたときに関するデザイン */
-/* .sidebar a:hover {
+.sidebar a:hover {
     background-color: #d7e1ef;
     border-radius: 0;
     border-left: solid 6px #fff;
-} */
+}
 
 /* フォント(イタリック)に関するデザイン */
 .sidebar i {
