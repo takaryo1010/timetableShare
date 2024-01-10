@@ -26,7 +26,7 @@ func removeFriends(e echo.Context) error {
 	var my_id int
 	err = db.QueryRow(query1, my_name).Scan(&my_id)
 	if err != nil {
-		log.Fatal(err)
+		
 		return e.JSON(http.StatusCreated, err) // エラーを返す
 	}
 	// SQLの準備（Personからnameに一致するidを取得する）
@@ -34,7 +34,7 @@ func removeFriends(e echo.Context) error {
 	var your_id int
 	err = db.QueryRow(query2, your_name).Scan(&your_id)
 	if err != nil {
-		log.Fatal(err)
+		
 		return e.JSON(http.StatusCreated, err) // エラーを返す
 	}
 
