@@ -40,10 +40,10 @@ func registerFriends(c echo.Context) error {
 	}
 
 	// your_nameに対応するyour_idを取得するクエリ
+	// TODO
 	err = db.QueryRow(searchQuery, your_name).Scan(&your_id)
 	if err != nil {
-		log.Fatal(err)
-		return err // エラーを返す
+		return c.JSON(http.StatusCreated, err)
 	}
 
 	// SQLの実行
