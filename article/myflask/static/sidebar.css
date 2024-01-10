@@ -4,10 +4,12 @@
     /* width: 20%; */
     background-color: #57a09b;
     color: #fff;
-    box-sizing: border-box; /* パディングが要素のサイズに含まれるようにボックスモデルを設定 */
+    box-sizing: border-box;
+    /* パディングが要素のサイズに含まれるようにボックスモデルを設定 */
     margin-right: 0%;
     margin-bottom: 0%;
-    margin-left: 0%; /* 画面の端に配置 */
+    margin-left: 0%;
+    /* 画面の端に配置 */
     margin-top: 0%;
     height: 100vh;
 }
@@ -20,14 +22,16 @@
     margin: 0;
     text-align: center;
 }
+
 /* リストの項目に関するデザイン */
 .sidebar li {
     list-style-type: none;
     text-align: center;
     align-items: center;
     margin-left: 25px;
-    
+
 }
+
 /* リンクに関するデザイン */
 .sidebar a {
     display: flex;
@@ -40,35 +44,47 @@
     border-radius: 15px;
     transition: background-color 0.3s;
 }
+
 /* リンクにカーソルを当てたときに関するデザイン */
-.sidebar a:hover {
+/* .sidebar a:hover {
     background-color: #d7e1ef;
     border-radius: 0;
     border-left: solid 6px #fff;
-}
+} */
 
 /* フォント(イタリック)に関するデザイン */
 .sidebar i {
     margin-right: 8px;
     color: #fff;
-    width: 20px; /* アイコンの幅を固定します */
-    min-width: 20px; /* アイコンの最小幅を固定します */
-    text-align: center; /* アイコンを中央揃えにします */
+    width: 20px;
+    /* アイコンの幅を固定します */
+    min-width: 20px;
+    /* アイコンの最小幅を固定します */
+    text-align: center;
+    /* アイコンを中央揃えにします */
 }
+
 /* テキストに関するデザイン */
 .sidebar span {
-    display: block; /* テキストをブロックレベルの要素にします */
-    text-align: left; /* テキストを左揃えにします */
+    display: block;
+    /* テキストをブロックレベルの要素にします */
+    text-align: left;
+    /* テキストを左揃えにします */
 }
 
 /* 画像に関するデザイン */
 .sidebar-image-container {
-    text-align: center; /* 画像を中央に配置 */
-    padding: 10px; /* 画像周りの余白 */
-    margin-top: 20px; /* 他の要素との間にスペースを作る */
-}
-.sidebar-image-container img {
-    max-width: 100%; /* 画像がコンテナより大きくならないようにする */
-    height: auto; /* 画像の比率を維持 */
+    text-align: center;
+    /* 画像を中央に配置 */
+    padding: 10px;
+    /* 画像周りの余白 */
+    margin-top: 20px;
+    /* 他の要素との間にスペースを作る */
 }
 
+.sidebar-image-container img {
+    max-width: 100%;
+    /* 画像がコンテナより大きくならないようにする */
+    height: auto;
+    /* 画像の比率を維持 */
+}
