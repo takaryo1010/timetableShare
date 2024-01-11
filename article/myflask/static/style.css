@@ -34,7 +34,7 @@ p {
     text-align: center; /* テキストを中央揃えにする */
     text-decoration: none; /* テキストの装飾をなくす */
     display: inline-block; /* インラインブロック要素として表示 */
-    font-size: 10px; /* フォントサイズ */
+    font-size: 15px; /* フォントサイズ */
     transition: background-color 0.3s, color 0.3s; /* 背景色とテキスト色の遷移効果 */
 }
 
