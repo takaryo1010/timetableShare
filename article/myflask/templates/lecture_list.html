@@ -103,56 +103,47 @@
                     <span class="close" onclick="closePopup('popupContainer_create')">&times;</span>
                     <h3>授業作成</h3>
                     <form action="/lecture_creation" method="post">
-                        <p>1. 授業名</p>
-                        <input type="text" name="class_name" placeholder="(例) 科学英語" required><br>
-                        <p>2. 曜日</p>
+                        <input type="text" name="class_name" placeholder="Class Name" required>
                         <select name="class_day" required>
-                            <option value="">曜日を選択してください</option>
-                            <option value="Monday">月</option>
-                            <option value="Tuesday">火</option>
-                            <option value="Wednesday">水</option>
-                            <option value="Thursday">木</option>
-                            <option value="Friday">金</option>
-                            <option value="Saturday">土</option>
-                            <option value="Ondemand">オンデマンド</option>
-                        </select><br>
-                        <p>3. 時限</p>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Ondemand">Ondemand</option>
+                        </select>
                         <select name="class_time" required>
-                            <option value="">時限を選択してください</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
-                        </select><br>
-                        <p>4. 単位数</p>
+                        </select>
+                        <br>
                         <select name="class_unit" required>
-                            <option value="">単位数を選択してください</option>
+                            <option value="">Select class unit</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
-                        </select><br>
-                        <p>5. 必修 / 選択</p>
+                        </select>
                         <select name="must_flag" required>
-                            <option value="">必修 / 選択 を指定してください</option>
                             <option value=0>選択</option>
                             <option value=1>必修</option>
-                        </select><br>
-                        <p>6. 担当教師</p>
-                        <input type="text" name="teacher_name" placeholder="(例) 廣津" required><br>
-                        <p>7. 部屋</p>
-                        <input type="text" name="room" placeholder="(例) W213" required><br>
-                        <p>8. セメスタ</p>
+                        </select>
+                        <input type="text" name="teacher_name" placeholder="Teacher Name" required>
+                        <br>
+                        <input type="text" name="room" placeholder="Room" required>
                         <select name="term" required>
-                            <option value="">セメスタを選択してください</option>
                             <option value="Spring">Spring</option>
                             <option value="Fall">Fall</option>
-                        </select><br>
-                        <p>9. 学科</p>
-                        <select name="department" required>
-                            <option value="">学科を選択してください</option>
-                            <option value="DM">DM</option>
+                        </select>
+                        <select name="dmcs" required>
+                            <option value="CS">All</option>
                             <option value="CS">CS</option>
-                        </select><br>
+                            <option value="DM">DM</option>
+        
+                        </select>
+                        <br>
                         <button type="submit">登録</button>
                     </form>
                 </div>
