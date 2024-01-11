@@ -25,8 +25,8 @@ p {
 
 /* ボタンの基本スタイル */
 .main button {
-    background-color: #007bff; /* ボタンの背景色 */
-    color: white; /* テキストの色 */
+    background-color: #c0c0c0; /* ボタンの背景色 */
+    color: rgb(56, 56, 56); /* テキストの色 */
     padding: 10px 20px; /* 内側の余白 */
     border: none; /* ボーダーなし */
     border-radius: 5px; /* 角を丸くする */
@@ -34,14 +34,14 @@ p {
     text-align: center; /* テキストを中央揃えにする */
     text-decoration: none; /* テキストの装飾をなくす */
     display: inline-block; /* インラインブロック要素として表示 */
-    font-size: 16px; /* フォントサイズ */
+    font-size: 10px; /* フォントサイズ */
     transition: background-color 0.3s, color 0.3s; /* 背景色とテキスト色の遷移効果 */
 }
 
 /* ホバー時のスタイル */
 .main button:hover {
-    background-color: #0056b3; /* ホバー時の背景色 */
-    color: #fff; /* ホバー時のテキスト色 */
+    background-color: #8b8b8b; /* ホバー時の背景色 */
+    color: rgb(56, 56, 56); /* ホバー時のテキスト色 */
 }
 
 .right {
