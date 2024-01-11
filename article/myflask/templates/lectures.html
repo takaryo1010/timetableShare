@@ -25,7 +25,7 @@
                         <li><a href="/"><i class="fas fa-home"></i> <span>ホーム</span></a></li>
                         <li><a href="/login"><i class="fas fa-sign-in-alt"></i> <span>ログイン</span></a></li>
                         <li><a href="/logout"><i class="fas fa-sign-out-alt"></i> <span>ログアウト</span></a></li>
-                        <li><a href="/timetable_registration"><i class="fas fa-calendar-plus"></i> <span>時間割登録</span></a></li>
+                        <!-- <li><a href="/timetable_registration"><i class="fas fa-calendar-plus"></i> <span>時間割登録</span></a></li> -->
                         <li><a href="/timetable_sharing"><i class="fas fa-users"></i> <span>時間割共有</span></a></li>
                         <li><a href="/add_friends"><i class="fas fa-user-plus"></i> <span>友達追加</span></a></li>
                         <li><a href="/lecture_list"><i class="fas fa-list"></i> <span>授業一覧</span></a></li>
@@ -68,8 +68,9 @@
                         {% set room = lecture["room"] %}
                         {% set teacher = lecture["teacher"] %}
                         {% set classid = lecture["class_id"] %}
+                        {% set unit = lecture["unit"] %}
 
-                        <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}', '{{classid}}')">{{ name }}</div>
+                        <div class="lecture" onclick="handleClick('{{ name }}', '{{ day }}', '{{ i+1 }}', '{{ room }}', '{{ teacher }}', '{{classid}}', '{{ unit }}')">{{ name }}</div>
                         <div id="popupContainer_{{ classid }}" class="modal">
                             <div class="modal-content">
                                 <span class="close" onclick="closePopup('{{ classid }}')">&times;</span>
@@ -83,8 +84,8 @@
                 </tr>
                 {% endfor %}
                 <script>
-                    function showModal(name, day, period, room, teacher, id) {
-                        var infoText = '授業名: ' + name + '\n授業 id: ' + id + '\n曜日: ' + day + '\n時限: ' + period + "\n部屋: " +  room + "\n担当教師: " + teacher;
+                    function showModal(name, day, period, room, teacher, id, unit) {
+                        var infoText = '授業名: ' + name + '\n単位数' + unit + '\n曜日: ' + day + '\n時限: ' + period + "\n部屋: " +  room + "\n担当教師: " + teacher;
                         var popupContainer = document.getElementById('popupContainer_' + id);
                         popupContainer.querySelector('#lectureInfo').innerText = infoText;
                         popupContainer.style.display = 'flex';
