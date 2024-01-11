@@ -52,6 +52,19 @@
     border-left: solid 6px #fff;
 }
 
+
+.sidebar b {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 15px;
+    transition: background-color 0.3s;
+}
+
 /* フォント(イタリック)に関するデザイン */
 .sidebar i {
     margin-right: 8px;
