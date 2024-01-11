@@ -25,11 +25,11 @@ p {
 
 /* ボタンの基本スタイル */
 .main button {
-    background-color: #c0c0c0; /* ボタンの背景色 */
+    background-color: #e2e2e2; /* ボタンの背景色 */
     color: rgb(56, 56, 56); /* テキストの色 */
-    padding: 3px 3px; /* 内側の余白 */
+    padding: 7px 7px; /* 内側の余白 */
     border: none; /* ボーダーなし */
-    border-radius: 10px; /* 角を丸くする */
+    border-radius: 5px; /* 角を丸くする */
     cursor: pointer; /* カーソルをポインターに変更 */
     text-align: center; /* テキストを中央揃えにする */
     text-decoration: none; /* テキストの装飾をなくす */
@@ -40,7 +40,7 @@ p {
 
 /* ホバー時のスタイル */
 .main button:hover {
-    background-color: #8b8b8b; /* ホバー時の背景色 */
+    background-color: #bdbdbd; /* ホバー時の背景色 */
     color: rgb(56, 56, 56); /* ホバー時のテキスト色 */
 }
 
