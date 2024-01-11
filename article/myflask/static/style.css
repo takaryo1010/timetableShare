@@ -27,7 +27,8 @@ p {
 .main button {
     background-color: #e2e2e2; /* ボタンの背景色 */
     color: rgb(56, 56, 56); /* テキストの色 */
-    padding: 7px 7px; /* 内側の余白 */
+    box-shadow: 0 2px 3px #ccc;
+    padding: 4px 7px; /* 内側の余白 */
     border: none; /* ボーダーなし */
     border-radius: 5px; /* 角を丸くする */
     cursor: pointer; /* カーソルをポインターに変更 */
