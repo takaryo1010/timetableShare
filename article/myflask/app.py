@@ -316,7 +316,7 @@ def index_lecture_creation():
     # レスポンスを出力
     print(json_response)
     username = current_user.username
-    return render_template('lecture_creation.html',json=json_response, username=username)
+    return render_template('lecture_list.html',json=json_response, username=username)
 
 @app.route('/timetable_sharing')
 @login_required
