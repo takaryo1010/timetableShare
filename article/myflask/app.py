@@ -218,7 +218,7 @@ def index_timetable_registration_designation():
     json_response = response.json()
     print(json_response)
     username = current_user.username
-    return render_template('timetable_registration.html', data=data, json=json_response, username=username)
+    return render_template('lecture_list.html', data=data, json=json_response, username=username)
 
 @app.route("/lecture_list", methods=['GET', 'POST'])
 def index_lecture_list():
