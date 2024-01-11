@@ -250,7 +250,7 @@ def index_lecture_list():
             response = requests.post(url, data=data)
             json_response = response.json()
             print(json_response)
-            return render_template('timetable_registration.html', data=data, json=json_response)
+            return render_template('lectures_list.html', data=data, json=json_response)
     else:
         url = 'http://52.69.43.211/showClassInfoAll'  # サーバーの実際のURLに置き換えてください
 
