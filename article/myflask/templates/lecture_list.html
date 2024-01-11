@@ -97,7 +97,58 @@
                 </div>
             </div>
             <button type="button" onclick="showModal()">授業検索</button>
-            <button type="button" onclick="location.href='/lecture_creation'">授業作成</button>
+            <!-- <button type="button" onclick="location.href='/lecture_creation'">授業作成</button> -->
+            <div id="popupContainer" class="modal">
+                <div class="big-modal-content">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                    <h3>授業検索</h3>
+                    <form action="/lecture_creation" method="post">
+                        <input type="text" name="class_name" placeholder="Class Name" required>
+                        <select name="class_day" required>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Ondemand">Ondemand</option>
+                        </select>
+                        <select name="class_time" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <br>
+                        <select name="class_unit" required>
+                            <option value="">Select class unit</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                        <select name="must_flag" required>
+                            <option value=0>選択</option>
+                            <option value=1>必修</option>
+                        </select>
+                        <input type="text" name="teacher_name" placeholder="Teacher Name" required>
+                        <br>
+                        <input type="text" name="room" placeholder="Room" required>
+                        <select name="term" required>
+                            <option value="Spring">Spring</option>
+                            <option value="Fall">Fall</option>
+                        </select>
+                        <select name="dmcs" required>
+                            <option value="CS">All</option>
+                            <option value="CS">CS</option>
+                            <option value="DM">DM</option>
+        
+                        </select>
+                        <br>
+                        <button type="submit">登録</button>
+                    </form>
+                </div>
+            </div>
+            <button type="button" onclick="showModal()">授業作成</button>
             <table id="sort">
                 <tr>
                     <th cmanSortBtn>授業名</th>
