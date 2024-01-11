@@ -168,6 +168,7 @@ def logout():
     return redirect(url_for('login'))
 
 @app.route("/timetable_registration", methods=['GET', 'POST'])
+@login_required
 def index_timetable_registration():
     if request.method == 'POST':
         if request.form.get('class_id') == "" or request.form.get('class_id') == None:
@@ -210,6 +211,7 @@ def index_timetable_registration():
     return render_template('timetable_registration.html', username=username)
 
 @app.route("/timetable_registration_designation", methods=['GET', 'POST'])
+@login_required
 def index_timetable_registration_designation():
     print(request.args.get('day', default=None), request.args.get('period', default=None))
     url = 'http://52.69.43.211/showClassInfoTimeSpecification'
@@ -221,6 +223,7 @@ def index_timetable_registration_designation():
     return render_template('lecture_list.html', data=data, json=json_response, username=username)
 
 @app.route("/lecture_list", methods=['GET', 'POST'])
+@login_required
 def index_lecture_list():
     if request.method == 'POST':
         if request.form.get('class_id') == "" or request.form.get('class_id') == None:
@@ -275,6 +278,7 @@ def index_lecture_list():
     return render_template('lecture_list.html', json=json_response, username=username)
 
 @app.route("/lecture_creation", methods=['GET', 'POST'])
+@login_required
 def index_lecture_creation():
     if request.method == 'POST':
         class_name = request.form.get('class_name')
