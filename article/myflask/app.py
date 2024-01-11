@@ -258,17 +258,16 @@ def index_lecture_list():
             response = requests.post(url, data)
             json_response = response.json()
             print(json_response)
+            url = 'http://52.69.43.211/showClassInfoAll'
+            response = requests.get(url)
+            json_response = response.json()
         
         username = current_user.username
         return render_template('lecture_list.html', data=data, json=json_response, username=username)
         
     else:
-        url = 'http://52.69.43.211/showClassInfoAll'  # サーバーの実際のURLに置き換えてください
-
-        # HTTP POSTリクエストを送信
+        url = 'http://52.69.43.211/showClassInfoAll'
         response = requests.get(url)
-
-        # レスポンスをJSONとしてパース
         json_response = response.json()
     print(json_response)
 
