@@ -118,8 +118,9 @@ def test():
        "Saturday": ["", "", "", "", ""],
        "Ondemand": ["CF 特論", "IS 特論", "", "", ""],
     }
+    username = current_user.username
 
-    return render_template('testlecture.html', timetable=lectures)
+    return render_template('testlecture.html', timetable=lectures, username=username)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -215,7 +216,8 @@ def index_timetable_registration():
             response = requests.post(url, data)
             json_response = response.json()
             print(json_response)
-    return render_template('timetable_registration.html')
+    username = current_user.username
+    return render_template('timetable_registration.html', username=username)
 
 @app.route("/timetable_registration_designation", methods=['GET', 'POST'])
 def index_timetable_registration_designation():
@@ -225,7 +227,8 @@ def index_timetable_registration_designation():
     response = requests.post(url, data)
     json_response = response.json()
     print(json_response)
-    return render_template('timetable_registration.html', data=data, json=json_response)
+    username = current_user.username
+    return render_template('timetable_registration.html', data=data, json=json_response, username=username)
 
 @app.route("/lecture_list")
 def index_lecture_list():
@@ -240,8 +243,8 @@ def index_lecture_list():
 
     # レスポンスを出力
     print(json_response)
-
-    return render_template('lecture_list.html', json=json_response)
+    username = current_user.username
+    return render_template('lecture_list.html', json=json_response, username=username)
 
 
 @app.route("/lecture_creation", methods=['GET', 'POST'])
@@ -281,7 +284,8 @@ def index_lecture_creation():
 
     # レスポンスを出力
     print(json_response)
-    return render_template('lecture_creation.html',json=json_response)
+    username = current_user.username
+    return render_template('lecture_creation.html',json=json_response, username=username)
 
 
 @app.route('/timetable_sharing')
@@ -376,7 +380,8 @@ def index_friend_add():
     if(json_response == None):
         json_response = []
     print(json_response)
-    return render_template('add_friends.html', json=json_response)
+    username = current_user.username
+    return render_template('add_friends.html', json=json_response, username=username)
 
 
 if __name__ == '__main__':
