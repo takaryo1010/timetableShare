@@ -19,12 +19,9 @@ else:
     pass
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-
-
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
-
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -37,11 +34,9 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-
 
 @app.route('/')
 @login_required
@@ -100,8 +95,6 @@ def index():
     
     return render_template('lectures.html', timetable=lectures, username=username)
 
-
-
 @app.route('/test')
 def test():
 
@@ -139,7 +132,6 @@ def login():
             flash('Invalid username or password.')
     return render_template('login.html')
 
-
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
@@ -168,14 +160,12 @@ def signup():
             flash('このユーザー名は既に存在します。')
     return render_template('signup.html')
 
-
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     flash('ログアウトしました。')
     return redirect(url_for('login'))
-
 
 @app.route("/timetable_registration", methods=['GET', 'POST'])
 def index_timetable_registration():
@@ -232,20 +222,48 @@ def index_timetable_registration_designation():
 
 @app.route("/lecture_list")
 def index_lecture_list():
-    # サーバーのエンドポイントURLを設定
-    url = 'http://52.69.43.211/showClassInfoAll'  # サーバーの実際のURLに置き換えてください
-
-    # HTTP POSTリクエストを送信
-    response = requests.get(url)
-
-    # レスポンスをJSONとしてパース
-    json_response = response.json()
+    if request.method == 'POST':
+        if request.form.get('class_id') == "" or request.form.get('class_id') == None:
+            data = {}
+            if request.form.get('class_name') != "" and request.form.get('class_name') != None:
+                print("aaaaaaaaa")
+                data['name'] = request.form.get('class_name')
+                print(data['name'])
+            if request.form.get('class_day') != "" and request.form.get('class_day') != None:
+                data['day'] = request.form.get('class_day')
+            if request.form.get('class_time') != "" and request.form.get('class_time') != None:
+                data['period'] = request.form.get('class_time')
+            if request.form.get('class_unit') != "" and request.form.get('class_unit') != None:
+                data['unit'] = request.form.get('class_unit')
+            if request.form.get('must_flag') != "" and request.form.get('must_flag') != None:
+                data['must'] = request.form.get('must_flag')
+            if request.form.get('teacher_name') != "" and request.form.get('teacher_name') != None:
+                data['teacher'] = request.form.get('teacher_name')
+            if request.form.get('room') != "" and request.form.get('room') != None:
+                data['room'] = request.form.get('room')
+            if request.form.get('term') != "" and request.form.get('term') != None:
+                data['term'] = request.form.get('term')
+            if request.form.get('department') != "" and request.form.get('department') != None:
+                data['department'] = request.form.get('department')
+            url = 'http://52.69.43.211/showClassInfoTimeSpecification'
+            print(data)
+            response = requests.post(url, data=data)
+            json_response = response.json()
+            print(json_response)
+            return render_template('timetable_registration.html', data=data, json=json_response)
+        else:
+            url = 'http://52.69.43.211/registerCourse'
+            name = current_user.username
+            classid = request.form.get('class_id')
+            data = {'name': name, 'classid': classid}
+            response = requests.post(url, data)
+            json_response = response.json()
+            print(json_response)
 
     # レスポンスを出力
     print(json_response)
     username = current_user.username
     return render_template('lecture_list.html', json=json_response, username=username)
-
 
 @app.route("/lecture_creation", methods=['GET', 'POST'])
 def index_lecture_creation():
@@ -286,7 +304,6 @@ def index_lecture_creation():
     print(json_response)
     username = current_user.username
     return render_template('lecture_creation.html',json=json_response, username=username)
-
 
 @app.route('/timetable_sharing')
 @login_required
@@ -354,7 +371,6 @@ def share_index():
     
     return render_template('timetable_sharing.html', friendstimetable=friendsTimetables, myusername=current_user.username)
 
-
 @app.route('/add_friends', methods=['GET', 'POST'])
 @login_required
 def index_friend_add():
@@ -382,7 +398,6 @@ def index_friend_add():
     print(json_response)
     username = current_user.username
     return render_template('add_friends.html', json=json_response, username=username)
-
 
 if __name__ == '__main__':
     with app.app_context():
