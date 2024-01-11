@@ -27,14 +27,14 @@ p {
 .main button {
     background-color: #c0c0c0; /* ボタンの背景色 */
     color: rgb(56, 56, 56); /* テキストの色 */
-    padding: 10px 20px; /* 内側の余白 */
+    padding: 3px 3px; /* 内側の余白 */
     border: none; /* ボーダーなし */
-    border-radius: 5px; /* 角を丸くする */
+    border-radius: 10px; /* 角を丸くする */
     cursor: pointer; /* カーソルをポインターに変更 */
     text-align: center; /* テキストを中央揃えにする */
     text-decoration: none; /* テキストの装飾をなくす */
     display: inline-block; /* インラインブロック要素として表示 */
-    font-size: 15px; /* フォントサイズ */
+    font-size: 12px; /* フォントサイズ */
     transition: background-color 0.3s, color 0.3s; /* 背景色とテキスト色の遷移効果 */
 }
 
