@@ -251,6 +251,14 @@ def index_lecture_list():
             json_response = response.json()
             print(json_response)
             return render_template('lecture_list.html', data=data, json=json_response)
+        else:
+            url = 'http://52.69.43.211/registerCourse'
+            name = current_user.username
+            classid = request.form.get('class_id')
+            data = {'name': name, 'classid': classid}
+            response = requests.post(url, data)
+            json_response = response.json()
+            print(json_response)
     else:
         url = 'http://52.69.43.211/showClassInfoAll'  # サーバーの実際のURLに置き換えてください
 
