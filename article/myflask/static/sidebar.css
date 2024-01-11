@@ -74,8 +74,6 @@
 
 /* 画像に関するデザイン */
 .sidebar-image-container {
-    position: relative;
-    /* 親要素に対して相対位置 */
     text-align: center;
     /* 画像を中央に配置 */
     padding: 10px;
@@ -91,13 +89,9 @@
 
 .sidebar-image-container img {
     max-width: 100%;
+    /* 画像がコンテナより大きくならないようにする */
     height: auto;
-    position: absolute;
-    /* 画像を絶対位置に配置 */
-    top: 50%;
-    /* 親要素の中央に配置 */
-    left: 50%;
-    /* 親要素の中央に配置 */
-    transform: translate(-50%, -50%);
-    /* 中央揃えに調整 */
+    /* 画像の比率を維持 */
+
+
 }
