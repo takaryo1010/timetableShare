@@ -39,7 +39,7 @@
             <h1>授業一覧</h1>
             <div id="popupContainer_search" class="modal">
                 <div class="big-modal-content">
-                    <span class="close" onclick="closePopup(popupContainer_search)">&times;</span>
+                    <span class="close" onclick="closePopup('popupContainer_search')">&times;</span>
                     <h3>授業検索</h3><P>条件は 1 つでも構いません</P>
                     <form action="/lecture_list" method="POST">
                         <p>1. 授業名</p>
@@ -96,11 +96,11 @@
                     </form>
                 </div>
             </div>
-            <button type="button" onclick="showModal(popupContainer_search)">授業検索</button>
+            <button type="button" onclick="showModal('popupContainer_search')">授業検索</button>
             <!-- <button type="button" onclick="location.href='/lecture_creation'">授業作成</button> -->
             <div id="popupContainer_create" class="modal">
                 <div class="big-modal-content">
-                    <span class="close" onclick="closePopup(popupContainer_create)">&times;</span>
+                    <span class="close" onclick="closePopup('popupContainer_create')">&times;</span>
                     <h3>授業検索</h3>
                     <form action="/lecture_creation" method="post">
                         <input type="text" name="class_name" placeholder="Class Name" required>
@@ -148,7 +148,7 @@
                     </form>
                 </div>
             </div>
-            <button type="button" onclick="showModal(popupContainer_create)">授業作成</button>
+            <button type="button" onclick="showModal('popupContainer_create')">授業作成</button>
             <table id="sort">
                 <tr>
                     <th cmanSortBtn>授業名</th>
