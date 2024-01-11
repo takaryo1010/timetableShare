@@ -101,3 +101,24 @@ h1 {
     float: left; /* コンテナを左側に配置します */
     margin-right: 20px; /* フォームと他のコンテンツとの間にスペースを追加します */
 }
+
+/* ボタンの基本スタイル */
+.button {
+    background-color: #007bff; /* ボタンの背景色 */
+    color: white; /* テキストの色 */
+    padding: 10px 20px; /* 内側の余白 */
+    border: none; /* ボーダーなし */
+    border-radius: 5px; /* 角を丸くする */
+    cursor: pointer; /* カーソルをポインターに変更 */
+    text-align: center; /* テキストを中央揃えにする */
+    text-decoration: none; /* テキストの装飾をなくす */
+    display: inline-block; /* インラインブロック要素として表示 */
+    font-size: 16px; /* フォントサイズ */
+    transition: background-color 0.3s, color 0.3s; /* 背景色とテキスト色の遷移効果 */
+}
+
+/* ホバー時のスタイル */
+.button:hover {
+    background-color: #0056b3; /* ホバー時の背景色 */
+    color: #fff; /* ホバー時のテキスト色 */
+}
