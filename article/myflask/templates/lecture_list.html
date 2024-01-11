@@ -124,7 +124,7 @@
                     <td>{{ lecture.term }}</td>
                     <td>{{ lecture.department }}</td>
                     <td>
-                        <form id="registerForm_{{ lecture.class_id }}" action="/timetable_registration" method="POST">
+                        <form id="registerForm_{{ lecture.class_id }}" action="/lecture_list" method="POST">
                             <input type="hidden" name="class_id" value="{{ lecture.class_id }}">
                             <button type="button" onclick="registerClass('{{ lecture.class_id }}')">登録</button>
                         </form>
