@@ -93,7 +93,7 @@
                     function closePopup(id) {
                         document.getElementById('popupContainer_' + id).style.display = 'none';
                     }
-                    function handleClick(name, day, period, room, teacher, id) {
+                    function handleClick(name, day, period, room, teacher, id, unit) {
                         if (name == "") {
                             location.href = "/timetable_registration_designation?day=" + day + "&period=" + period;
                         } else {
