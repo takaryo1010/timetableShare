@@ -260,8 +260,6 @@ def index_lecture_list():
             json_response = response.json()
             print(json_response)
 
-    # レスポンスを出力
-    print(json_response)
     username = current_user.username
     return render_template('lecture_list.html', json=json_response, username=username)
 
