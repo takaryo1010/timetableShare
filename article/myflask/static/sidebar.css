@@ -79,12 +79,6 @@
     padding: 10px;
     /* 画像周りの余白 */
     margin-top: 20px;
-    /* 他の要素との間にスペースを作る */
-    background-color: transparent;
-    border-radius: 15px;
-    border-left: none;
-    transition: none;
-    /* ホバー時のアニメーションを無効化 */
 }
 
 .sidebar-image-container img {
