@@ -37,6 +37,7 @@ p {
     display: inline-block; /* インラインブロック要素として表示 */
     font-size: 12px; /* フォントサイズ */
     transition: background-color 0.3s, color 0.3s; /* 背景色とテキスト色の遷移効果 */
+    font-weight: bold;
 }
 
 /* ホバー時のスタイル */
