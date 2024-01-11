@@ -220,7 +220,7 @@ def index_timetable_registration_designation():
     username = current_user.username
     return render_template('timetable_registration.html', data=data, json=json_response, username=username)
 
-@app.route("/lecture_list")
+@app.route("/lecture_list", methods=['GET', 'POST'])
 def index_lecture_list():
     if request.method == 'POST':
         if request.form.get('class_id') == "" or request.form.get('class_id') == None:
