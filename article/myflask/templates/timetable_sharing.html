@@ -108,7 +108,7 @@
                                 {% set myLecture = my_schedule[i] %}
                                 {% set yourLecture = friend_schedule[i] %}
                                 {% if myLecture != '' %}
-                                    {% if myLecture == yourLecture %}
+                                    {% if yourLecture != ''%}
                                         <div class="lecture myAndYourLecture" onclick="handleClick('{{ yourLecture }}')">{{ yourLecture }}</div>
                                     {% else %}
                                         <div class="lecture MyLecture" onclick="handleClick('{{ myLecture }}')">{{ myLecture }}</div>

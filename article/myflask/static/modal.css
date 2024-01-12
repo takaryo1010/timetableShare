@@ -79,6 +79,87 @@
     outline: none; /* フォーカス時のアウトラインを無効化 */
     border-color: #666; /* フォーカス時の枠線の色 */
 }
+/* カスタムモーダルのスタイリング */
+.custom-modal {
+    display: none; /* 初期状態では非表示 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 透明な背景 */
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* 他の要素より手前に表示 */
+}
+
+/* モーダル内のコンテンツ */
+.custom-modal-content {
+    background-color: #fff;
+    max-width: 600px; /* 最大幅 */
+    width: 80%; /* 幅を調整 */
+    padding: 20px; /* 内側の余白 */
+    border-radius: 8px; /* 角の丸み */
+    box-sizing: border-box; /* ボックスモデルの設定 */
+    position: relative;
+}
+
+/* モーダル内のテキスト入力フィールドのスタイリング */
+.custom-modal-content input[type="text"] {
+    width: calc(100% - 20px); /* 幅をコンテンツの幅に合わせる */
+    padding: 10px; /* 内側の余白 */
+    display: inline-block; /* ブロックレベルの要素として表示 */
+    border: 1px solid #ccc; /* 枠線 */
+    border-radius: 4px; /* 角の丸み */
+    box-sizing: border-box; /* ボックスモデルの設定 */
+    margin-top: 5px; /* 上のマージンを5pxに設定 */
+    margin-bottom: 5px; /* 下のマージンを5pxに設定 */
+}
+
+/* モーダル内のセレクトボックスのスタイリング */
+.custom-modal-content select {
+    width: calc(100% - 20px); /* 幅をコンテンツの幅に合わせる */
+    padding: 10px; /* 内側の余白 */
+    display: inline-block; /* ブロックレベルの要素として表示 */
+    border: 1px solid #ccc; /* 枠線 */
+    border-radius: 4px; /* 角の丸み */
+    box-sizing: border-box; /* ボックスモデルの設定 */
+    background-color: white; /* 背景色 */
+    -webkit-appearance: none; /* ブラウザ既定の外見を無効化 */
+    -moz-appearance: none; /* ブラウザ既定の外見を無効化 */
+    appearance: none; /* ブラウザ既定の外見を無効化 */
+    margin-top: 5px; /* 上のマージンを5pxに設定 */
+    margin-bottom: 5px; /* 下のマージンを5pxに設定 */
+}
+
+/* セレクトボックスの矢印部分のカスタムスタイリング */
+.custom-modal-content select::-ms-expand {
+    display: none; /* IE用の矢印を非表示 */
+}
+
+/* セレクトボックスのホバー時のスタイル */
+.custom-modal-content select:hover {
+    border-color: #aaa; /* ホバー時の枠線の色 */
+}
+
+/* セレクトボックスがフォーカスされたときのスタイル */
+.custom-modal-content select:focus {
+    outline: none; /* フォーカス時のアウトラインを無効化 */
+    border-color: #666; /* フォーカス時の枠線の色 */
+}
+
+/* カスタムモーダルを閉じるためのボタン */
+.close-custom-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* カスタムモーダルが表示された時のbodyのスタイル */
+.modal-open {
+    overflow: hidden; /* スクロールを禁止 */
+}
 
 .modal {
     display: none; /* 最初は非表示 */

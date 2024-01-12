@@ -38,13 +38,13 @@
         <main class="main">
             <h1>授業一覧</h1>
             <div id="popupContainer_search" class="modal">
-                <div class="big-modal-content">
+                <div class="custom-modal-content">
                     <span class="close" onclick="closePopup('popupContainer_search')">&times;</span>
                     <h3>授業検索</h3><P>条件は 1 つでも構いません</P>
                     <form action="/lecture_list" method="POST">
-                        <!-- <div class="back"> -->
+                        <div class="back">
                             <p>1. 授業名</p>
-                            <input type="text" name="class_name" placeholder="(例) 科学英語"><br>
+                            <input type="text" name="class_name"><br>
                             <p>2. 曜日</p>
                             <select name="class_day" placeholder="(例) 月">
                                 <option value="">曜日を選択してください</option>
@@ -94,7 +94,7 @@
                                 <option value="CS">CS</option>
                             </select><br>
                             <button type="submit">検索</button>
-                        <!-- </div> -->
+                        </div>
                     </form>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                     <span class="close" onclick="closePopup('popupContainer_create')">&times;</span>
                     <h3>授業作成</h3>
                     <form action="/lecture_creation" method="POST">
-                        <!-- <div class="back"> -->
+                        <div class="back">
                             <p>1. 授業名</p>
                             <input type="text" name="class_name" placeholder="(例) 科学英語" required><br>
                             <p>2. 曜日</p>
@@ -157,7 +157,7 @@
                                 <option value="CS">CS</option>
                             </select><br>
                             <button type="submit">作成</button>
-                        <!-- </div> -->
+                        </div>
                     </form>
                 </div>
             </div>
