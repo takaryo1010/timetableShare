@@ -21,7 +21,7 @@ p {
     margin-left: 180; /* サイドバーとの間にスペースを追加 */
     padding: 0;
     /* メインコンテンツの幅を調整 */
-    width: calc(100% - 180px);
+    width: calc(100% - 360px);
     /* width: 80%; サイドバーの幅を引いた分の幅をメインコンテンツに設定 */
     overflow-y: auto; /* 必要*/
 }
