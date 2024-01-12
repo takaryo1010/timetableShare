@@ -48,13 +48,17 @@
                 {% endfor %}
             </table>
             <form action="/add_friends" method="POST">
-                <input type="txt" name="add_friend" placeholder="追加したい友達の名前を入力してください">
-                <button type="submit">追加</button>
+                <div class="back">
+                    <input type="txt" name="add_friend" placeholder="追加したい友達の名前を入力してください">
+                    <button type="submit">追加</button>
+                </div>
             </form>
             <br>
             <form action="/add_friends" method="POST">
-                <input type="txt" name="remove_friend" placeholder="削除したい友達の名前を入力してください">
-                <button type="submit">削除</button>
+                <div class="back">
+                    <input type="txt" name="remove_friend" placeholder="削除したい友達の名前を入力してください">
+                    <button type="submit">削除</button>
+                </div>
             </form>
         </main>
     </body>
