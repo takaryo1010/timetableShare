@@ -16,7 +16,7 @@ p {
 .main {
     flex: 1; /* メインコンテンツが残りのスペースを占有するように設定 */
     text-align: center;
-    margin-left: 0; /* サイドバーとの間にスペースを追加 */
+    margin-left: 200; /* サイドバーとの間にスペースを追加 */
     padding: 0;
     /* メインコンテンツの幅を調整 */
     width: calc(100% - 180px);
