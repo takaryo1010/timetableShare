@@ -13,9 +13,6 @@ table {
     overflow: hidden; /* 内容がはみ出した時に隠す */
 }
 
-table form {
-}
-
 th {
     width: auto;
     padding: 8px;
