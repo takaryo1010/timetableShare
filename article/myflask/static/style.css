@@ -171,7 +171,7 @@ input[type="submit"]:hover {
     color: rgb(56, 56, 56); /* ホバー時のテキスト色 */
 }
 
-select {
+select, option {
     width: 100%; /* 幅をフォームの幅に合わせる */
     padding: 10px; /* 内側の余白 */
     display: inline-block; /* ブロックレベルの要素として表示 */
