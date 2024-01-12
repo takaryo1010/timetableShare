@@ -38,7 +38,7 @@
 }
 
 /* テキスト入力フィールドのスタイリング */
-input[type="text"], input[type="password"] {
+.big-modal-content input[type="text"] {
     width: 100%; /* 幅をフォームの幅に合わせる */
     padding: 10px; /* 内側の余白 */
     display: inline-block; /* ブロックレベルの要素として表示 */
