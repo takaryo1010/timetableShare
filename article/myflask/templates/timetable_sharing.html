@@ -65,12 +65,14 @@
                 {% endif %}
             </h2>
             <form>
-                <select id="friendsDropdown" name="selected_friend" onchange="this.form.submit()">
-                    <option value="" selected disabled>友達を選択</option>
-                    {% for name, _ in friendstimetable.items() %}
-                    <option value="{{ name }}">{{ name }}</option>
-                    {% endfor %}
-                </select>
+                <div class="back">
+                    <select id="friendsDropdown" name="selected_friend" onchange="this.form.submit()">
+                        <option value="" selected disabled>友達を選択</option>
+                        {% for name, _ in friendstimetable.items() %}
+                        <option value="{{ name }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
             </form>
             <table>
                 <tr>
