@@ -130,3 +130,43 @@ h1 {
     /* border-radius: 8px;  */
     box-shadow: 0 2px 3px #ccc;
 }
+
+form {
+    background-color: #f2f2f2; /* 背景色 */
+    padding: 20px; /* 内側の余白 */
+    border-radius: 10px; /* 角の丸み */
+    width: 300px; /* 幅 */
+    margin: auto;
+}
+
+input[type="text"] {
+    width: 100%; /* 幅をフォームの幅に合わせる */
+    padding: 10px; /* 内側の余白 */
+    display: inline-block; /* ブロックレベルの要素として表示 */
+    border: 1px solid #ccc; /* 枠線 */
+    border-radius: 4px; /* 角の丸み */
+    box-sizing: border-box; /* ボックスモデルの設定 */
+    margin-top: 5px; /* 上のマージンを5pxに設定 */
+    margin-bottom: 5px; /* 下のマージンを5pxに設定 */
+}
+
+input[type="submit"] {
+    background-color: #e2e2e2; /* ボタンの背景色 */
+    color: rgb(56, 56, 56); /* テキストの色 */
+    box-shadow: 0 2px 3px #ccc;
+    padding: 4px 7px; /* 内側の余白 */
+    border: none; /* ボーダーなし */
+    border-radius: 5px; /* 角を丸くする */
+    cursor: pointer; /* カーソルをポインターに変更 */
+    text-align: center; /* テキストを中央揃えにする */
+    text-decoration: none; /* テキストの装飾をなくす */
+    display: inline-block; /* インラインブロック要素として表示 */
+    font-size: 12px; /* フォントサイズ */
+    transition: background-color 0.3s, color 0.3s; /* 背景色とテキスト色の遷移効果 */
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    background-color: #bdbdbd; /* ホバー時の背景色 */
+    color: rgb(56, 56, 56); /* ホバー時のテキスト色 */
+}
