@@ -139,7 +139,7 @@ form {
     margin: auto;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="txt"] {
     width: 100%; /* 幅をフォームの幅に合わせる */
     padding: 10px; /* 内側の余白 */
     display: inline-block; /* ブロックレベルの要素として表示 */
