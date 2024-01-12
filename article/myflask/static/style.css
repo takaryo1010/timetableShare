@@ -150,7 +150,7 @@ input[type="text"] {
     margin-bottom: 5px; /* 下のマージンを5pxに設定 */
 }
 
-input[type="submit"] {
+input[type="submit"], input[type="password"] {
     background-color: #e2e2e2; /* ボタンの背景色 */
     color: rgb(56, 56, 56); /* テキストの色 */
     box-shadow: 0 2px 3px #ccc;
