@@ -18,12 +18,11 @@ p {
 .main {
     flex: 1; /* メインコンテンツが残りのスペースを占有するように設定 */
     text-align: center;
-    margin-left: 180; /* サイドバーとの間にスペースを追加 */
-    padding: 0;
+    margin-left: 0; /* サイドバーとの間にスペースを追加 */
+    padding-left: 180px;
     /* メインコンテンツの幅を調整 */
-    width: calc(100% - 360px);
+    width: calc(100% - 180px);
     /* width: 80%; サイドバーの幅を引いた分の幅をメインコンテンツに設定 */
-    overflow-y: auto; /* 必要*/
 }
 
 /* ボタンの基本スタイル */
